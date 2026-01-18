@@ -1,12 +1,11 @@
 import './App.css'
-import Card from './components/card.tsx'
+import { CardList, Card } from './components/card.tsx'
 
 function App() {
   return (
     <>
-      <Card title="Pokemon Realidea System" />
-      <Card title="Pokemon Infinity" />
-      <Card title="Pokemon Unbreakable Ties" />
+      <CardList/>
+      <Card title="PokeSouls" />
     </>
   )
 }

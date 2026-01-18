@@ -1,7 +1,33 @@
 import cards from '../data/card.json'
 import type { Card } from '../types/cards';
 
-export default function Card({title}: Pick<Card, "title">) {
+export function CardList() {
+    return cards.map(card => {
+        return (
+
+        <div className="card-container">
+          <div className="feature-rom-container">
+            <div>
+              <a className="feature-rom-link">
+                <span>
+                  <CardImage card={card} />
+                  <CardTag card={card} />
+                </span>
+              </a>
+            </div>
+          </div>
+          <div className="rom-title-container">
+            <CardTitle card={card}/>
+          </div>
+          <div className="rom-description">
+            <CardDescription card={card} />
+          </div>
+        </div>
+        )
+    })
+}
+
+export function Card({title}: Pick<Card, "title">) {
     const card = cards.find(c => c.title == title )
 
     if (!card) {
@@ -32,7 +58,6 @@ export default function Card({title}: Pick<Card, "title">) {
     );
   }
 
-//   <CardImage card=""/>
 function CardImage({card}: {card: Card}) {    
     return (
         <img className="rom-image" src={card.img} alt={card.title}/>
