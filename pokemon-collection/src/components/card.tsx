@@ -1,4 +1,5 @@
-import card from '../data/card.json'
+import cards from '../data/card.json'
+import type { Card } from '../types/cards';
 
 export default function Card() {
     return (
@@ -8,10 +9,10 @@ export default function Card() {
             <div>
               <a className="feature-rom-link">
                 <span>
-                  <img className="rom-image" src={card[1].img} />
+                  <CardImage title="Pokemon Infinity" />
                   <aside className="rom-tags">
-                    <a href="#">{card[1].tags[0]}</a>
-                    <a href="#">{card[1].tags[1]}</a>
+                    <a href="#">{cards[1].tags[0]}</a>
+                    <a href="#">{cards[1].tags[1]}</a>
                   </aside>
                 </span>
               </a>
@@ -19,14 +20,26 @@ export default function Card() {
           </div>
           <div className="rom-title-container">
             <h3 className="rom-title">
-              <a className="title-link">{card[1].title}</a>
+              <a className="title-link">{cards[1].title}</a>
               <span className="bookmark"></span>
             </h3>
           </div>
           <div className="rom-description">
-            <p>{card[1].description}</p>
+            <p>{cards[1].description}</p>
           </div>
         </div>
       </>
     );
   }
+
+  function CardImage({title}: Pick<Card, "title">) {
+    const card = cards.find(c => c.title == title )
+
+    if (!card) {
+        return null;
+      }
+    
+    return (
+        <img className="rom-image" src={card.img} alt={card.title}/>
+    )
+}
