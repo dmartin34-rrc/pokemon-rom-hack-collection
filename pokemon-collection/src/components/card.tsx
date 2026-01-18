@@ -16,10 +16,10 @@ export default function Card() {
             </div>
           </div>
           <div className="rom-title-container">
-            <CardTitle title="PokeSouls" />
+            <CardTitle title="Pokemon Infinity" />
           </div>
           <div className="rom-description">
-            <p>{cards[1].description}</p>
+            <CardDescription title="Pokemon Infinity" />
           </div>
         </div>
       </>
@@ -65,5 +65,17 @@ function CardTag({title}: Pick<Card, "title">) {
         <a href="#">{card.tags[0]}</a>
         <a href="#">{card.tags[1]}</a>
       </aside>
+    )
+}
+
+function CardDescription({title}: Pick<Card, "title">) {
+    const card = cards.find(c => c.title == title )
+
+    if (!card) {
+        return null;
+      }
+
+    return (
+        <p>{card.description}</p>
     )
 }
