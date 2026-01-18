@@ -10,10 +10,7 @@ export default function Card() {
               <a className="feature-rom-link">
                 <span>
                   <CardImage title="Pokemon Infinity" />
-                  <aside className="rom-tags">
-                    <a href="#">{cards[1].tags[0]}</a>
-                    <a href="#">{cards[1].tags[1]}</a>
-                  </aside>
+                  <CardTag title="Pokemon Infinity" />
                 </span>
               </a>
             </div>
@@ -53,5 +50,20 @@ function CardTitle({title}: Pick<Card, "title">) {
         <a className="title-link">{card.title}</a>
         <span className="bookmark"></span>
       </h3>
+    )
+}
+
+function CardTag({title}: Pick<Card, "title">) {
+    const card = cards.find(c => c.title == title )
+
+    if (!card) {
+        return null;
+      }
+
+    return (
+        <aside className="rom-tags">
+        <a href="#">{card.tags[0]}</a>
+        <a href="#">{card.tags[1]}</a>
+      </aside>
     )
 }
