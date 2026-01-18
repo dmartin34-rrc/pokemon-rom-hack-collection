@@ -4,7 +4,9 @@ import Card from './components/card.tsx'
 function App() {
   return (
     <>
-      <Card />
+      <Card title="Pokemon Realidea System" />
+      <Card title="Pokemon Infinity" />
+      <Card title="Pokemon Unbreakable Ties" />
     </>
   )
 }

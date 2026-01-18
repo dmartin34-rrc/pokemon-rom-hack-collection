@@ -19,7 +19,7 @@
         "title": "Pokemon Realidea System",
         "description": "Description for Pokemon Realidea System. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nibh enim, tincidunt nec accumsan eu, finibus at velit. Praesent tristique arcu non ligula vehicula porta. Sed ac justo augue. Vestibulum quis risus venenatis, fermentum arcu in, malesuada diam. Donec aliquam libero eget maximus hendrerit. Sed ut volutpat metus. Maecenas sed gravida est. Donec aliquet congue nunc, non tempor purus ultrices ut. Ut a nulla in ligula tristique scelerisque.",
         "tags": ["X", "Y", "Z", "Popular", "New Release", "Beta"],
-        "img": "/realidea-system.jpg",
+        "img": "/realidea-system.png",
         "bookmark": false,
         "pin": false
     },

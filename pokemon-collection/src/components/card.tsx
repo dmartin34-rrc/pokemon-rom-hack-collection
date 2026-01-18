@@ -1,32 +1,7 @@
 import cards from '../data/card.json'
 import type { Card } from '../types/cards';
 
-export default function Card() {
-    return (
-      <>
-        <div className="card-container">
-          <div className="feature-rom-container">
-            <div>
-              <a className="feature-rom-link">
-                <span>
-                  <CardImage title="Pokemon Infinity" />
-                  <CardTag title="Pokemon Infinity" />
-                </span>
-              </a>
-            </div>
-          </div>
-          <div className="rom-title-container">
-            <CardTitle title="Pokemon Infinity" />
-          </div>
-          <div className="rom-description">
-            <CardDescription title="Pokemon Infinity" />
-          </div>
-        </div>
-      </>
-    );
-  }
-
-function CardImage({title}: Pick<Card, "title">) {
+export default function Card({title}: Pick<Card, "title">) {
     const card = cards.find(c => c.title == title )
 
     if (!card) {
@@ -34,17 +9,37 @@ function CardImage({title}: Pick<Card, "title">) {
       }
     
     return (
+      <>
+        <div className="card-container">
+          <div className="feature-rom-container">
+            <div>
+              <a className="feature-rom-link">
+                <span>
+                  <CardImage card={card} />
+                  <CardTag card={card} />
+                </span>
+              </a>
+            </div>
+          </div>
+          <div className="rom-title-container">
+            <CardTitle card={card}/>
+          </div>
+          <div className="rom-description">
+            <CardDescription card={card} />
+          </div>
+        </div>
+      </>
+    );
+  }
+
+//   <CardImage card=""/>
+function CardImage({card}: {card: Card}) {    
+    return (
         <img className="rom-image" src={card.img} alt={card.title}/>
     )
 }
 
-function CardTitle({title}: Pick<Card, "title">) {
-    const card = cards.find(c => c.title == title )
-
-    if (!card) {
-        return null;
-      }
-
+function CardTitle({card}: {card: Card}) {
     return (
         <h3 className="rom-title">
         <a className="title-link">{card.title}</a>
@@ -53,13 +48,7 @@ function CardTitle({title}: Pick<Card, "title">) {
     )
 }
 
-function CardTag({title}: Pick<Card, "title">) {
-    const card = cards.find(c => c.title == title )
-
-    if (!card) {
-        return null;
-      }
-
+function CardTag({card}: {card: Card}) {
     return (
         <aside className="rom-tags">
         <a href="#">{card.tags[0]}</a>
@@ -68,13 +57,7 @@ function CardTag({title}: Pick<Card, "title">) {
     )
 }
 
-function CardDescription({title}: Pick<Card, "title">) {
-    const card = cards.find(c => c.title == title )
-
-    if (!card) {
-        return null;
-      }
-
+function CardDescription({card}: {card: Card}) {
     return (
         <p>{card.description}</p>
     )
