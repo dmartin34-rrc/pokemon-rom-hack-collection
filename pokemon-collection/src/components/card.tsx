@@ -19,10 +19,7 @@ export default function Card() {
             </div>
           </div>
           <div className="rom-title-container">
-            <h3 className="rom-title">
-              <a className="title-link">{cards[1].title}</a>
-              <span className="bookmark"></span>
-            </h3>
+            <CardTitle title="PokeSouls" />
           </div>
           <div className="rom-description">
             <p>{cards[1].description}</p>
@@ -32,7 +29,7 @@ export default function Card() {
     );
   }
 
-  function CardImage({title}: Pick<Card, "title">) {
+function CardImage({title}: Pick<Card, "title">) {
     const card = cards.find(c => c.title == title )
 
     if (!card) {
@@ -41,5 +38,20 @@ export default function Card() {
     
     return (
         <img className="rom-image" src={card.img} alt={card.title}/>
+    )
+}
+
+function CardTitle({title}: Pick<Card, "title">) {
+    const card = cards.find(c => c.title == title )
+
+    if (!card) {
+        return null;
+      }
+
+    return (
+        <h3 className="rom-title">
+        <a className="title-link">{card.title}</a>
+        <span className="bookmark"></span>
+      </h3>
     )
 }
