@@ -10,13 +10,13 @@ function Header() {
             
             <ul className='github-profiles'>
                 <li>
-                    <a href="https://github.com/dmartin34-rrc"><img src={dean} alt="Dean's GitHub Profile Picture" id='dean'/></a>
+                    <a href="https://github.com/dmartin34-rrc"><img src={dean} alt="Dean's GitHub Profile Picture" title="Dean's GitHub Profile Picture" id='dean'/></a>
                 </li>
                 <li>
-                    <a href="https://github.com/zachary-lam"><img src={zach} alt="Zach's GitHub Profile Picture" id='zach'/></a>
+                    <a href="https://github.com/zachary-lam"><img src={zach} alt="Zach's GitHub Profile Picture" title="Zach's GitHub Profile Picture" id='zach'/></a>
                 </li>
                 <li>
-                    <a href="https://github.com/EfeOnota"><img src={efe} alt="Efe's GitHub Profile Picture" id='efe'/></a>
+                    <a href="https://github.com/EfeOnota"><img src={efe} alt="Efe's GitHub Profile Picture" title="Efe's GitHub Profile Picture" id='efe'/></a>
                 </li>
             </ul>
         </header>
