@@ -17,7 +17,7 @@
   </div>
 </div>
 
-### Accent Colors
+<!-- ### Accent Colors -->
 
 ## Typography
 - The main body font will be [Poppins](https://fonts.google.com/specimen/Poppins)
@@ -30,15 +30,28 @@ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, O
 ```
 
 ### Font Sizes
-- Body(main) will be set to 1rem
-- Headings
-<!-- - Line height, letter spacing, text deco
-- Font weight(s) -->
+- Body (main) will be set to 1rem
+- Heading 1 will be set to 2rem
+- Heading 2 will be set to 1.5rem
+- Heading 3 will be set to 1.125 rem
+
+### Font Weights
+Poppins
+- Regular 400
+- Bold 700
+
+Oxygen
+- Bold 700
+
+Montserrat
+- Light 300
+
+<!-- TODO: Line height, letter spacing, text deco, font weight(s) -->
 
 ## Page Layout
 - Root level will have default margins and padding removed
-- Margins will be manually set to (x) rem
-- Padding will be manually set to (x) rem
+<!-- - Margins will be manually set to (x) rem
+- Padding will be manually set to (x) rem -->
 
 
 ## Media Query (Responsive Design)
@@ -59,11 +72,3 @@ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, O
   /* desktop */ 
 }
 ```
-
-
-<!-- 
-A central stylesheet and style guide will help to unify the appearance of the application.
-STYLEGUIDE.MD file is added to the application root. It describes:
-The colour palette of the application (three to five colours, their names and hex values) that should be used throughout the application.
-The font(s) to be used throughout the application and their respective sizes (three at minimum).
- -->
