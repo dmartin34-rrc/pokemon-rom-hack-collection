@@ -31,9 +31,9 @@ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, O
 
 ### Font Sizes
 - Body (main) will be set to 1rem
-- Heading 1 will be set to 2rem
-- Heading 2 will be set to 1.5rem
-- Heading 3 will be set to 1.125 rem
+- Heading 1 will be set to 2em
+- Heading 2 will be set to 1.5em
+- Heading 3 will be set to 1.125em
 
 ### Font Weights
 Poppins
