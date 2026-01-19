@@ -1,11 +1,12 @@
 import './App.css'
-import { CardList, Card } from './components/card.tsx'
+import { CardList } from './components/card.tsx'
+import Header from './components/common/header/Header.tsx'
 
 function App() {
   return (
     <>
+      <Header />
       <CardList/>
-      <Card title="PokeSouls" />
     </>
   )
 }
