@@ -2,14 +2,20 @@
 
 ## Color Palette
 ### Main Colors
-
-<span style="background-color: #fafaf9; color: #000000">Stone: 50 </span>
-
-<span style="background-color: #475569; color: #FFFFFF">Slate: 600</span>
-
-<span style="background-color: #030712; color: #FFFFFF">Gray: 950</span>
-
-<span style="background-color: #1e3a8a; color: #FFFFFF">Blue: 900</span>
+<div style="display: flex; gap: 10px;">
+  <div style="background-color: #fafaf9; color: #000000; padding: 20px; text-align: center;">
+    Stone 50<br>#FAFAF9
+  </div>
+  <div style="background-color: #475569; color: #FFFFFF; padding: 20px; text-align: center;">
+    Slate 600<br>#475569
+  </div>
+  <div style="background-color: #030712; color: #FFFFFF; padding: 20px; text-align: center;">
+    Gray 950<br>#030712
+  </div>
+  <div style="background-color: #1e3a8a; color: #FFFFFF; padding: 20px; text-align: center;">
+    Blue 900<br>#1E3A8A
+  </div>
+</div>
 
 ### Accent Colors
 
@@ -24,10 +30,10 @@ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, O
 ```
 
 ### Font Sizes
-- Body(main)
+- Body(main) will be set to 1rem
 - Headings
-- Line height, letter spacing, text deco
-- Font weight(s)
+<!-- - Line height, letter spacing, text deco
+- Font weight(s) -->
 
 ## Page Layout
 - Root level will have default margins and padding removed
