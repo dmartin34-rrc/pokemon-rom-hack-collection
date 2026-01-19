@@ -5,15 +5,15 @@ export function CardList() {
     return cards.map(card => {
         return (
 
-        <div className="card-container">
+        <div className="card-container" key={card.title}>
           <div className="feature-rom-container">
             <div>
               <a className="feature-rom-link">
-                <span>
-                  <CardImage card={card} />
-                  <CardTag card={card} />
-                </span>
+                <CardImage card={card} />
               </a>
+              <span>
+                <CardTag card={card} />
+              </span>
             </div>
           </div>
           <div className="rom-title-container">
@@ -38,13 +38,13 @@ export function Card({title}: Pick<Card, "title">) {
       <>
         <div className="card-container">
           <div className="feature-rom-container">
-            <div>
+            <div className="feature-rom">
               <a className="feature-rom-link">
-                <span>
                   <CardImage card={card} />
-                  <CardTag card={card} />
-                </span>
               </a>
+              <span>
+                  <CardTag card={card} />
+              </span>
             </div>
           </div>
           <div className="rom-title-container">
@@ -75,9 +75,10 @@ function CardTitle({card}: {card: Card}) {
 
 function CardTag({card}: {card: Card}) {
     return (
-        <aside className="rom-tags">
-        <a href="#">{card.tags[0]}</a>
-        <a href="#">{card.tags[1]}</a>
+      <aside className="rom-tags">
+          {card.tags.map((tag, index) => (
+            <a href="#" key={index}>{tag}</a>
+          ))}
       </aside>
     )
 }
