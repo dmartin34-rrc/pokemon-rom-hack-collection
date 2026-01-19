@@ -1,0 +1,22 @@
+
+#dean, #zach, #efe {
+    border-radius: 50%;
+    width: 50px;
+}
+
+.github-profiles {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    
+}
+
+li {
+    padding: 15px 10px 0 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: -2rem 0px 0px 0px;
+}
