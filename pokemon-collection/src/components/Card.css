@@ -1,0 +1,40 @@
+.card-container {
+    /* flex: 1 1 calc(50% - 20px); */
+    width: 400px;
+}
+
+.feature-rom-container img {
+    border-radius: 15px;
+    width: 400px;
+    height: 250px;
+}
+
+
+.feature-rom {
+    position: relative;
+}
+
+.rom-tags {
+    position: absolute;
+    top: 10rem;
+    left: 1rem;
+    bottom: 1rem;
+    width: 380px;
+    display: flex;
+    align-items: flex-end;
+    flex-flow: row wrap;
+    gap: 0.5rem;
+}
+
+.rom-tags a {
+    background: #64748b;
+    padding: 0.1rem 0.4rem;
+    margin: 0;
+    color: white;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+.rom-tags a:hover {
+    background: #475569;
+}

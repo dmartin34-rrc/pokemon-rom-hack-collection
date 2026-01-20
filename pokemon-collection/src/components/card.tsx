@@ -1,5 +1,6 @@
 import cards from '../data/card.json'
 import type { Card } from '../types/cards';
+import './Card.css'
 
 export function CardList() {
     return cards.map(card => {
@@ -7,13 +8,11 @@ export function CardList() {
 
         <div className="card-container" key={card.title}>
           <div className="feature-rom-container">
-            <div>
+            <div className="feature-rom">
               <a className="feature-rom-link">
                 <CardImage card={card} />
               </a>
-              <span>
-                <CardTag card={card} />
-              </span>
+              <CardTag card={card} />
             </div>
           </div>
           <div className="rom-title-container">

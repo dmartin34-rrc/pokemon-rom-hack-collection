@@ -6,7 +6,9 @@ function App() {
   return (
     <>
       <Header />
-      <CardList/>
+      <main>
+        <CardList/>
+      </main>
     </>
   )
 }
