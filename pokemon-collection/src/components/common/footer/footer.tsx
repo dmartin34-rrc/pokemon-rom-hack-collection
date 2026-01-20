@@ -1,4 +1,4 @@
-import "./Footer.css";
+import "./footer.css";
 
 const Footer: React.FC = () => {
   const members: string[] = ["Zachary Lam", "Efe Onota", "Dean Martin"];
