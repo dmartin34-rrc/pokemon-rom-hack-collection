@@ -6,7 +6,6 @@ export function Layout() {
     return(
         <>
             <Header />
-            {/* <Nav /> */}
             <main>
                 <Outlet />  
             </main>
