@@ -1,11 +1,15 @@
 import dean from '../../../assets/dean_github.png'
 import zach from '../../../assets/zach_github.png'
 import efe from '../../../assets/efe_github.png'
+
+interface HeaderProp {
+    title?: string;
+}
  
-function Header() {
+function Header({ title = "Pokemon ROM Hack Collection" }: HeaderProp) {
     return(
         <header className="flex justify-between items-center">
-            <h1 className='title'>Pokemon ROM Hack Collection</h1>
+            <h1 className='title'>{title}</h1>
             
             <ul className="list-none flex p-0">
                 <li className="pt-[15px] pr-[10px]">
