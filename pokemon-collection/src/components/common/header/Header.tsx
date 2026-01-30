@@ -4,7 +4,7 @@ import efe from '../../../assets/efe_github.png'
  
 function Header() {
     return(
-        <header className="flex justify-between -mt-8 items-center">
+        <header className="flex justify-between items-center">
             <h1 className='title'>Pokemon ROM Hack Collection</h1>
             
             <ul className="list-none flex p-0">
