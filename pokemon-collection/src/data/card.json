@@ -5,7 +5,8 @@
         "tags": ["Red", "Blue", "Yellow", "X", "Y", "Z", "Popular", "New Release", "Beta"],
         "img": "/pokesouls.jpg",
         "bookmark": false,
-        "pin": false
+        "pin": false,
+        "completed": true
     },
     {
         "title": "Pokemon Infinity",
@@ -13,7 +14,8 @@
         "tags": ["Red", "Blue", "Yellow", "X", "Y", "Z", "Popular", "New Release", "Beta"],
         "img": "/infinity.gif",
         "bookmark": false,
-        "pin": false
+        "pin": false,
+        "completed": true
     },
     {
         "title": "Pokemon Realidea System",
@@ -21,7 +23,8 @@
         "tags": ["X", "Y", "Z", "Popular", "New Release", "Beta"],
         "img": "/realidea-system.png",
         "bookmark": false,
-        "pin": false
+        "pin": false,
+        "completed": false
     },
     {
         "title": "Pokemon Unbreakable Ties",
@@ -29,6 +32,7 @@
         "tags": ["Popular", "New Release", "Beta"],
         "img": "/unbreakable-ties.jpg",
         "bookmark": false,
-        "pin": false
+        "pin": false,
+        "completed": true
     }
 ]
