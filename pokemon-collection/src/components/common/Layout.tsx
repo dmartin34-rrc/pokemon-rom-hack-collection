@@ -1,4 +1,3 @@
-import { Outlet } from 'react-router-dom';
 // components
 import Footer from './footer/footer';
 import Header from './header/Header';
@@ -9,8 +8,6 @@ const Layout = () => {
     <>
       <Header />
       <Navbar />
-      {/* uncomment Outlet component when ready to use */}
-      {/* <Outlet/> */}
       <Footer />
     </>
   );
