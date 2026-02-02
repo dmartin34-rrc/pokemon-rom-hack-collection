@@ -1,5 +1,5 @@
 // components
-import { CardList } from '../card';
+import CardList from '../card/CardList';
 import Footer from './footer/footer';
 import Header from './header/Header';
 import Navbar from './Navbar';
