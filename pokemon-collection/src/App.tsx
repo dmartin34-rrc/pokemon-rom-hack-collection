@@ -1,15 +1,15 @@
-import { CardList } from './components/card.tsx'
-import Header from './components/common/header/Header.tsx'
-import Footer from './components/common/footer/footer.tsx'
+import { Routes, Route } from 'react-router-dom';
+// components
+import Layout from './components/common/Layout';
 
 function App() {
   return (
     <>
-      <Header />
-      <CardList/>
-      <Footer/>
+      <Routes>
+        <Route path="/" element={<Layout />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
