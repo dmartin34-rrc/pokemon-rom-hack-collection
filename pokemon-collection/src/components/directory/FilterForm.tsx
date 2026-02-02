@@ -13,7 +13,7 @@ const FilterForm = () => {
         <span>Year</span>
         <div>
           <input type="number" />
-          <span> to </span>
+          <span>to</span>
           <input type="number" />
         </div>
       </label>
