@@ -70,7 +70,8 @@ export const filterRoms = (roms: Rom[], filter: Filter): Rom[] => {
       !filterTitle(rom.title, filter.title) ||
       !filterTags(rom.tags, filter.tags) ||
       !filterYear(rom.year, filter.yearMinimum, filter.yearMaximum) ||
-      !filterCheckbox(rom.multiplayer, filter.filterMultiplayer)
+      !filterCheckbox(rom.multiplayer, filter.filterMultiplayer) ||
+      !filterCheckbox(rom.completed, filter.filterCompleted)
     ) {
       return false;
     }

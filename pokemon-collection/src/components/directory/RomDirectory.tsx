@@ -13,16 +13,16 @@ import CardListDirectory from './CardListDirectory';
 const roms = cardData as Rom[];
 
 const RomDirectory = () => {
+  const yearRange = getYearRange(roms);
   const [filter, setFilter] = useState<Filter>({
     title: '',
     tags: '',
-    yearMinimum: 2012,
-    yearMaximum: 2024,
+    yearMinimum: yearRange.min,
+    yearMaximum: yearRange.max,
     filterMultiplayer: null,
     filterCompleted: null,
   });
 
-  const yearRange = getYearRange(roms);
   const filteredRoms = filterRoms(roms, filter);
 
   return (
