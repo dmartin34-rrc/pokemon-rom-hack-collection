@@ -6,7 +6,7 @@ export const getYearRange = (roms: Rom[]): { min: number; max: number } => {
   const years = roms.map((r) => r.year).filter((y) => typeof y == 'number');
 
   if (!years.length) {
-    return { min: Math.min(...years), max: Math.max(...years) };
+    return { min: 0, max: new Date().getFullYear() };
   }
 
   return { min: Math.min(...years), max: Math.max(...years) };
@@ -58,6 +58,9 @@ const filterCheckbox = (
   value: boolean | undefined,
   filter: boolean | null
 ): boolean => {
+  if (filter == null) {
+    return true;
+  }
   return value === filter;
 };
 
