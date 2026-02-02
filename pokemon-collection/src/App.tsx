@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+// components
 import Layout from './components/common/Layout.tsx';
 import CardList from './components/card/CardList.tsx';
 

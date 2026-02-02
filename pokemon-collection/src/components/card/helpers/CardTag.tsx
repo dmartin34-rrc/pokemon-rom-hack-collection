@@ -7,9 +7,13 @@ const CardTag = ({ tags }: CardType) => {
   }
 
   return (
-    <aside className="rom-tags">
+    <aside className="absolute bottom-4 left-4 flex flex-wrap gap-2">
       {tags.map((tag, index) => (
-        <a href="#" key={index}>
+        <a
+          className="bg-slate-500 text-white px-1 py-[0.2rem] rounded-[3px] tracking-[1px] hover:bg-slate-600"
+          href="#"
+          key={index}
+        >
           {tag}
         </a>
       ))}

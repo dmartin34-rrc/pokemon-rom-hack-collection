@@ -1,4 +1,3 @@
-import './Card.css';
 // data
 import cardData from '../../data/cardData.json';
 // types
@@ -20,9 +19,9 @@ const Card = ({ title }: CardType) => {
 
   return (
     <>
-      <div className="card-container">
+      <div className="w-[500px]">
         <CardTitle title={card.title} />
-        <div className="feature-container">
+        <div className="relative">
           <CardImage img={card.img} title={card.title} />
           <CardTag tags={card.tags} />
         </div>
