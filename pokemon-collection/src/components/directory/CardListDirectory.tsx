@@ -2,8 +2,10 @@
 import { addReadLater, removeReadLater, onDragStart } from './helpers/aside';
 // components
 import Card from '../card/card';
+import type CardType from '../../types/Card';
 
-const CardListDirectory = ({ title, readLater, setReadLater }: any) => {
+const CardListDirectory = ({ card, readLater, setReadLater }: any) => {
+  const title = card.title || "";
   const list = readLater.includes(title);
 
   return (
@@ -14,7 +16,7 @@ const CardListDirectory = ({ title, readLater, setReadLater }: any) => {
         onDragStart(e, title);
       }}
     >
-      <Card title={title} />
+      <Card card={card} />
 
       <div className="mt-2">
         {list ? (
