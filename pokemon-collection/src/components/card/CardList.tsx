@@ -1,7 +1,7 @@
 // data
 import cardData from '../../data/cardData.json';
 // components
-import Card from './Card';
+import Card from './card';
 
 const CardList = () => {
   return cardData.map((c) => {
