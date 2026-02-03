@@ -54,14 +54,16 @@ const RomDirectory = ({ readLater, setReadLater }: Props) => {
         />
 
         <div className="flex flex-wrap gap-6">
-          {pageRoms.map((card) => (
-            <CardListDirectory
-              key={card.title}
-              title={card.title || ""}
-              readLater={readLater}
-              setReadLater={setReadLater}
-            />
-          ))}
+          {pageRoms.map((card) => {
+            return (
+              <CardListDirectory
+                key={card.title}
+                card={card}
+                readLater={readLater}
+                setReadLater={setReadLater}
+              />
+            );
+          })}
         </div>
 
         {filteredRoms.length !== 0 ? (
