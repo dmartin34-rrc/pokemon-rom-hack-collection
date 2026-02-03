@@ -10,8 +10,9 @@ export const removeReadLater = (list: string[], title: string): string[] => {
   return list.filter((t) => t !== title);
 };
 
-export const handleDragOver = (e: React.DragEvent): string => {
-  return (e.dataTransfer.dropEffect = 'move');
+export const handleDragOver = (e: React.DragEvent): void => {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
 };
 
 export const handleDragStart = (e: React.DragEvent, title: string) => {
@@ -27,6 +28,8 @@ export const onDragStart = (e: React.DragEvent, title: string) => {
 export const handleAddDrop =
   (setReadLater: Dispatch<SetStateAction<string[]>>) =>
   (e: React.DragEvent) => {
+    e.preventDefault();
+
     const romAside = e.dataTransfer.getData(DRAG_ROM);
     const title = JSON.parse(romAside);
 
