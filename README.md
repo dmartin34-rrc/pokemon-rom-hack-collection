@@ -48,7 +48,7 @@ Full Stack Development Project
 - T.4: Components that can be reused in the entire app
 - O.1 : Set up CSS Framework
 - O.2 : Set up Page Layout
-- I.1 : Feature Page (Favorites)
+- I.1 : Feature Page (Directory)
 - I.2 : Form Component (Search Bar)
 - I.3 : Element Addition/Removal (Favorite Button)
 
