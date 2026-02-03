@@ -2,7 +2,6 @@
 import { addReadLater, removeReadLater, onDragStart } from './helpers/aside';
 // components
 import Card from '../card/card';
-import type CardType from '../../types/Card';
 
 const CardListDirectory = ({ card, readLater, setReadLater }: any) => {
   const title = card.title || "";
