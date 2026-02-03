@@ -7,6 +7,7 @@ const Navbar = () => {
         <NavLink to="/" end>
           Home
         </NavLink>
+        <NavLink to="/directory">Directory</NavLink>
       </div>
     </nav>
   );
