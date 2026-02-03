@@ -1,22 +1,23 @@
 import { useState } from 'react';
-// data
 import cardData from '../../data/cardData.json';
-// types
 import type Filter from '../../types/Filter';
 import type Rom from '../../types/Rom';
-// helpers
 import { filterRoms, getYearRange } from './helpers/filterRoms';
 import { PAGE_LIMIT, getTotalPages, getPage } from './helpers/pages';
 import { handleDragOver, handleRemoveDrop } from './helpers/aside';
-// components
 import FilterForm from './FilterForm';
 import CardListDirectory from './CardListDirectory';
 import Pagination from './Pagination';
 import Aside from './Aside';
 
+type Props = {
+  sharedMessage: string;
+  setSharedMessage: React.Dispatch<React.SetStateAction<string>>;
+};
+
 const roms = cardData as Rom[];
 
-const RomDirectory = () => {
+const RomDirectory = ({ sharedMessage, setSharedMessage }: Props) => {
   const yearRange = getYearRange(roms);
   const [filter, setFilter] = useState<Filter>({
     title: '',
@@ -26,6 +27,7 @@ const RomDirectory = () => {
     filterMultiplayer: null,
     filterCompleted: null,
   });
+
   const filteredRoms = filterRoms(roms, filter);
 
   const [page, setPage] = useState(1);
@@ -41,6 +43,23 @@ const RomDirectory = () => {
         onDragOver={handleDragOver}
         onDrop={handleRemoveDrop(setReadLater)}
       >
+        <div className="mb-4">
+          <p>
+            You are feeling: <strong>{sharedMessage || "not sure yet"}</strong>
+          </p>
+
+          <label>
+            How are you feeling today?
+            <input
+              type="text"
+              value={sharedMessage}
+              onChange={(e) => setSharedMessage(e.target.value)}
+              className="ml-2 border px-2 py-1"
+              placeholder="Happy, excited, tired..."
+            />
+          </label>
+        </div>
+
         <FilterForm
           filter={filter}
           setFilter={setFilter}
@@ -49,19 +68,17 @@ const RomDirectory = () => {
         />
 
         <div className="flex flex-wrap gap-6">
-          {pageRoms.map((card) => {
-            return (
-              <CardListDirectory
-                key={card.title}
-                card={card}
-                readLater={readLater}
-                setReadLater={setReadLater}
-              />
-            );
-          })}
+          {pageRoms.map((card) => (
+            <CardListDirectory
+              key={card.title}
+              card={card}
+              readLater={readLater}
+              setReadLater={setReadLater}
+            />
+          ))}
         </div>
 
-        {filteredRoms.length != 0 ? (
+        {filteredRoms.length !== 0 ? (
           <Pagination
             page={page}
             totalPages={totalPages}

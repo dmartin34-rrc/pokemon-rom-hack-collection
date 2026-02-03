@@ -7,11 +7,15 @@ import SearchBar from "../common/header/SearchBar";
 function Favorites(
     { 
         favorites, 
-        onUpdateFavorites 
+        onUpdateFavorites,
+        sharedMessage,
+        setSharedMessage
     } 
     : { 
         favorites: string[], 
-        onUpdateFavorites: (title: string) => void 
+        onUpdateFavorites: (title: string) => void,
+        sharedMessage: string,
+        setSharedMessage: React.Dispatch<React.SetStateAction<string>>
     } 
 ) {
     const [searchQuery, setSearchQuery] = useState("");
@@ -27,6 +31,23 @@ function Favorites(
     return (
         <main className="max-w-[1100px] mx-auto p-4">
             <h2 className="text-2xl font-bold mb-6 font-[Oxygen]">My Favorites</h2>
+
+            <div className="mb-4">
+                <p>
+                    You are feeling: <strong>{sharedMessage || "not sure yet"}</strong>
+                </p>
+
+                <label>
+                    How are you feeling today?
+                    <input
+                        type="text"
+                        value={sharedMessage}
+                        onChange={(e) => setSharedMessage(e.target.value)}
+                        className="ml-2 border px-2 py-1"
+                        placeholder="Happy, excited, tired..."
+                    />
+                </label>
+            </div>
             
             <SearchBar
                 value={searchQuery}
@@ -42,7 +63,9 @@ function Favorites(
                 <CardList 
                     cards={displayedCards} 
                     favorites={favorites} 
-                    onUpdateFavorites={onUpdateFavorites} 
+                    onUpdateFavorites={onUpdateFavorites}
+                    sharedMessage={sharedMessage}
+                    setSharedMessage={setSharedMessage}
                 />
             )}
         </main>
