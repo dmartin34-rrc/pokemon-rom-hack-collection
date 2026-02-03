@@ -52,6 +52,7 @@ const RomDirectory = () => {
           {pageRoms.map((card) => {
             return (
               <CardListDirectory
+                key={card.title}
                 title={card.title || ''}
                 readLater={readLater}
                 setReadLater={setReadLater}

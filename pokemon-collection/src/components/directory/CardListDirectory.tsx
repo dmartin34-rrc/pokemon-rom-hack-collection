@@ -1,7 +1,7 @@
 // helpers
 import { addReadLater, removeReadLater, onDragStart } from './helpers/aside';
 // components
-import Card from '../card/Card';
+import Card from '../card/card';
 
 const CardListDirectory = ({ title, readLater, setReadLater }: any) => {
   const list = readLater.includes(title);

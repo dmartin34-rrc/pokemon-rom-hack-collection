@@ -26,6 +26,7 @@ const Aside = ({ readLater, setReadLater }: any) => {
           readLater.map((title: any) => (
             <li
               className="flex items-center justify-between gap-2 bg-white border border-slate-200 rounded px-2 py-1.5 text-sm cursor-grab active:cursor-grabbing"
+              key={title}
               draggable
               onDragStart={(e) => handleDragStart(e, title)}
             >
