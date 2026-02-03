@@ -10,7 +10,12 @@ const Navbar = () => {
         <NavLink to="/favorites" end>
           Favorites
         </NavLink>
-        <NavLink to="/directory">Directory</NavLink>
+        <NavLink to="/directory">
+          Directory
+        </NavLink>
+        <NavLink to="/tracker">
+          Tracker
+        </NavLink>
       </div>
     </nav>
   );
