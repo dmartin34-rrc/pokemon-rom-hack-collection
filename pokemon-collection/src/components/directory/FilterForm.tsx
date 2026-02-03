@@ -4,29 +4,37 @@ const FilterForm = ({ filter, setFilter, yearMinimum, yearMaximum }: any) => {
   };
 
   return (
-    <form>
-      <label>
-        <span>Title</span>
+    <form className="flex flex-wrap gap-4 items-end mb-6">
+      <label className="flex flex-col gap-1">
+        <span className="text-sm font-medium">Title</span>
+
         <input
+          className="border border-slate-300 rounded px-2 py-1 min-w-[160px]"
           type="text"
           placeholder="PokeSouls"
           value={filter.title}
           onChange={(e) => updateFilter({ title: e.target.value })}
         />
       </label>
-      <label>
-        <span>Tags</span>
+
+      <label className="flex flex-col gap-1">
+        <span className="text-sm font-medium">Tags</span>
+
         <input
+          className="border border-slate-300 rounded px-2 py-1 min-w-[160px]"
           type="text"
           placeholder="X, Red, Beta"
           value={filter.tags}
           onChange={(e) => updateFilter({ tags: e.target.value })}
         />
       </label>
-      <label>
-        <span>Year</span>
-        <div>
+
+      <label className="flex flex-col gap-1">
+        <span className="text-sm font-medium">Year</span>
+
+        <div className="flex items-center gap-2">
           <input
+            className="border border-slate-300 rounded px-2 py-1 w-20"
             type="number"
             min={yearMinimum}
             max={yearMaximum}
@@ -37,8 +45,11 @@ const FilterForm = ({ filter, setFilter, yearMinimum, yearMaximum }: any) => {
               })
             }
           />
-          <span> to </span>
+
+          <span>to</span>
+
           <input
+            className="border border-slate-300 rounded px-2 py-1 w-20"
             type="number"
             min={yearMinimum}
             max={yearMaximum}
@@ -51,7 +62,8 @@ const FilterForm = ({ filter, setFilter, yearMinimum, yearMaximum }: any) => {
           />
         </div>
       </label>
-      <label>
+
+      <label className="flex items-center gap-2 cursor-pointer">
         <input
           type="checkbox"
           checked={filter.filterMultiplayer == true}
@@ -61,9 +73,11 @@ const FilterForm = ({ filter, setFilter, yearMinimum, yearMaximum }: any) => {
             })
           }
         />
-        <span>Multiplayer</span>
+
+        <span className="text-sm">Multiplayer</span>
       </label>
-      <label>
+
+      <label className="flex items-center gap-2 cursor-pointer">
         <input
           type="checkbox"
           checked={filter.filterCompleted == true}
@@ -73,7 +87,8 @@ const FilterForm = ({ filter, setFilter, yearMinimum, yearMaximum }: any) => {
             })
           }
         />
-        <span>Completed</span>
+
+        <span className="text-sm">Completed</span>
       </label>
     </form>
   );

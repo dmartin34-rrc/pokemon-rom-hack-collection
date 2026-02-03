@@ -35,8 +35,12 @@ const RomDirectory = () => {
   const [readLater, setReadLater] = useState<string[]>([]);
 
   return (
-    <>
-      <div onDragOver={handleDragOver} onDrop={handleRemoveDrop(setReadLater)}>
+    <div className="flex gap-6 p-4">
+      <div
+        className="flex-1 min-w-0"
+        onDragOver={handleDragOver}
+        onDrop={handleRemoveDrop(setReadLater)}
+      >
         <FilterForm
           filter={filter}
           setFilter={setFilter}
@@ -44,7 +48,7 @@ const RomDirectory = () => {
           yearMaximum={yearRange.max}
         />
 
-        <div>
+        <div className="flex flex-wrap gap-6">
           {pageRoms.map((card) => {
             return (
               <CardListDirectory
@@ -68,7 +72,7 @@ const RomDirectory = () => {
       </div>
 
       <Aside readLater={readLater} setReadLater={setReadLater} />
-    </>
+    </div>
   );
 };
 
