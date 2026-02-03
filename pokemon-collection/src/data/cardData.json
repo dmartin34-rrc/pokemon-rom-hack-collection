@@ -1,0 +1,92 @@
+[
+    {
+        "title": "PokeSouls",
+        "description": "Description for PokeSouls. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus elit eu vehicula molestie. Morbi dapibus enim lectus, quis semper ligula fringilla sit amet. Vestibulum enim turpis, malesuada ut elit eu, posuere condimentum orci. Vestibulum accumsan, lorem vel lacinia feugiat, nunc turpis placerat nisl, id maximus odio quam quis libero. Nam pretium urna elit. Integer pellentesque sem ut leo imperdiet vulputate. Mauris consectetur, metus ac tempus pulvinar, nisl sapien interdum orci, sed posuere tortor ante eget sem. Aliquam euismod ipsum id accumsan elementum. Aenean in nibh massa. Etiam a leo augue. Curabitur et semper nisi. Aliquam in tempus lectus, quis auctor diam. Quisque ultricies euismod tortor ut tincidunt. Phasellus ultricies turpis vel sagittis consectetur. Nullam vehicula interdum tortor ultricies consectetur.",
+        "tags": ["Red", "Blue", "Yellow", "X", "Y", "Z", "Popular", "New Release", "Beta"],
+        "img": "/pokesouls.jpg",
+        "year": 2012,
+        "completed": false,
+        "multiplayer": false
+    },
+    {
+        "title": "Pokemon Infinity",
+        "description": "Description for Pokemon Infinity. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque cursus turpis et dapibus. Nulla nec sodales lorem. In vulputate urna non tristique malesuada. Ut gravida vehicula finibus. Nullam interdum massa orci, vel bibendum enim luctus nec. Donec imperdiet orci nibh. Nulla ut est vehicula, venenatis tortor ac, iaculis orci. Integer et accumsan velit. Suspendisse non tellus sed sem mattis faucibus sed sit amet lorem. Praesent blandit nunc at semper vehicula. Duis eleifend maximus ligula vitae condimentum. Curabitur sit amet lobortis ex.",
+        "tags": ["Red", "Blue", "Yellow", "X", "Y", "Z", "Popular", "New Release", "Beta"],
+        "img": "/infinity.gif",
+        "year": 2000,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "title": "Pokemon Realidea System",
+        "description": "Description for Pokemon Realidea System. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nibh enim, tincidunt nec accumsan eu, finibus at velit. Praesent tristique arcu non ligula vehicula porta. Sed ac justo augue. Vestibulum quis risus venenatis, fermentum arcu in, malesuada diam. Donec aliquam libero eget maximus hendrerit. Sed ut volutpat metus. Maecenas sed gravida est. Donec aliquet congue nunc, non tempor purus ultrices ut. Ut a nulla in ligula tristique scelerisque.",
+        "tags": ["X", "Y", "Z", "Popular", "New Release", "Beta"],
+        "img": "/realidea-system.png",
+        "year": 2024,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "title": "Pokemon Unbreakable Ties",
+        "description": "Description for Pokemon Unbreakable Ties. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet mi sit amet mi luctus gravida nec eu dui. In eget eros ut sapien pulvinar congue vel ac ex. Mauris pulvinar scelerisque risus ut gravida. Nulla rutrum arcu et purus tristique, non aliquet turpis placerat. In id nisl in diam laoreet tincidunt et sed massa. Mauris tristique, purus quis consectetur posuere, ipsum diam varius massa, et fringilla purus ipsum a nisi. Nunc odio enim, congue nec sem quis, aliquet faucibus nibh. Donec tincidunt egestas tellus, sit amet suscipit magna viverra eget. Maecenas sed tortor sed erat rhoncus molestie. In non nunc mi. Aenean ac cursus enim, non accumsan augue.",
+        "tags": ["Popular", "New Release", "Beta"],
+        "img": "/unbreakable-ties.jpg",
+        "year": 2016,
+        "completed": false,
+        "multiplayer": true
+    },
+    {
+        "title": "Pokemon Golden Shield",
+        "description": "Description for Pokemon Golden Shield. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet mi sit amet mi luctus gravida nec eu dui. In eget eros ut sapien pulvinar congue vel ac ex. Mauris pulvinar scelerisque risus ut gravida. Nulla rutrum arcu et purus tristique, non aliquet turpis placerat. In id nisl in diam laoreet tincidunt et sed massa. Mauris tristique, purus quis consectetur posuere, ipsum diam varius massa, et fringilla purus ipsum a nisi. Nunc odio enim, congue nec sem quis, aliquet faucibus nibh. Donec tincidunt egestas tellus, sit amet suscipit magna viverra eget. Maecenas sed tortor sed erat rhoncus molestie. In non nunc mi. Aenean ac cursus enim, non accumsan augue.",
+        "tags": ["Popular", "New Release", "Beta", "Gold", "NDS", "HGSS"],
+        "img": "/golden-shield.png",
+        "year": 2026,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "title": "Pokemon Duality",
+        "description": "Description for Pokemon Unbreakable Ties. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet mi sit amet mi luctus gravida nec eu dui. In eget eros ut sapien pulvinar congue vel ac ex. Mauris pulvinar scelerisque risus ut gravida. Nulla rutrum arcu et purus tristique, non aliquet turpis placerat. In id nisl in diam laoreet tincidunt et sed massa. Mauris tristique, purus quis consectetur posuere, ipsum diam varius massa, et fringilla purus ipsum a nisi. Nunc odio enim, congue nec sem quis, aliquet faucibus nibh. Donec tincidunt egestas tellus, sit amet suscipit magna viverra eget. Maecenas sed tortor sed erat rhoncus molestie. In non nunc mi. Aenean ac cursus enim, non accumsan augue.",
+        "tags": ["New Release", "Beta", "Vanilla"],
+        "img": "/duality.jpg",
+        "year": 2008,
+        "completed": false,
+        "multiplayer": true
+    },
+    {
+        "title": "Pokemon Project Nova",
+        "description": "Description for Pokemon Project Nova. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet mi sit amet mi luctus gravida nec eu dui. In eget eros ut sapien pulvinar congue vel ac ex. Mauris pulvinar scelerisque risus ut gravida. Nulla rutrum arcu et purus tristique, non aliquet turpis placerat. In id nisl in diam laoreet tincidunt et sed massa. Mauris tristique, purus quis consectetur posuere, ipsum diam varius massa, et fringilla purus ipsum a nisi. Nunc odio enim, congue nec sem quis, aliquet faucibus nibh. Donec tincidunt egestas tellus, sit amet suscipit magna viverra eget. Maecenas sed tortor sed erat rhoncus molestie. In non nunc mi. Aenean ac cursus enim, non accumsan augue.",
+        "tags": ["New Release", "Beta", "In Progress", "GBA", "Fan Art"],
+        "img": "/project-nova.jpg",
+        "year": 2008,
+        "completed": false,
+        "multiplayer": true
+    },
+    {
+        "title": "Pokemon Avalon",
+        "description": "Description for Pokemon Avalon. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet mi sit amet mi luctus gravida nec eu dui. In eget eros ut sapien pulvinar congue vel ac ex. Mauris pulvinar scelerisque risus ut gravida. Nulla rutrum arcu et purus tristique, non aliquet turpis placerat. In id nisl in diam laoreet tincidunt et sed massa. Mauris tristique, purus quis consectetur posuere, ipsum diam varius massa, et fringilla purus ipsum a nisi. Nunc odio enim, congue nec sem quis, aliquet faucibus nibh. Donec tincidunt egestas tellus, sit amet suscipit magna viverra eget. Maecenas sed tortor sed erat rhoncus molestie. In non nunc mi. Aenean ac cursus enim, non accumsan augue.",
+        "tags": ["Popular", "New Release", "Beta", "Cannon"],
+        "img": "/avalon.jpg",
+        "year": 2025,
+        "completed": false,
+        "multiplayer": true
+    },
+    {
+        "title": "Pokemon Stellar",
+        "description": "Description for Pokemon Stellar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet mi sit amet mi luctus gravida nec eu dui. In eget eros ut sapien pulvinar congue vel ac ex. Mauris pulvinar scelerisque risus ut gravida. Nulla rutrum arcu et purus tristique, non aliquet turpis placerat. In id nisl in diam laoreet tincidunt et sed massa. Mauris tristique, purus quis consectetur posuere, ipsum diam varius massa, et fringilla purus ipsum a nisi. Nunc odio enim, congue nec sem quis, aliquet faucibus nibh. Donec tincidunt egestas tellus, sit amet suscipit magna viverra eget. Maecenas sed tortor sed erat rhoncus molestie. In non nunc mi. Aenean ac cursus enim, non accumsan augue.",
+        "tags": ["Popular", "New Release", "Beta"],
+        "img": "/stellar.png",
+        "year": 2002,
+        "completed": false,
+        "multiplayer": true
+    },
+    {
+        "title": "Pokemon JetBlack",
+        "description": "Description for Pokemon JetBlack. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet mi sit amet mi luctus gravida nec eu dui. In eget eros ut sapien pulvinar congue vel ac ex. Mauris pulvinar scelerisque risus ut gravida. Nulla rutrum arcu et purus tristique, non aliquet turpis placerat. In id nisl in diam laoreet tincidunt et sed massa. Mauris tristique, purus quis consectetur posuere, ipsum diam varius massa, et fringilla purus ipsum a nisi. Nunc odio enim, congue nec sem quis, aliquet faucibus nibh. Donec tincidunt egestas tellus, sit amet suscipit magna viverra eget. Maecenas sed tortor sed erat rhoncus molestie. In non nunc mi. Aenean ac cursus enim, non accumsan augue.",
+        "tags": ["Popular", "New Release", "New Update"],
+        "img": "/jet-black.jpg",
+        "year": 2021,
+        "completed": false,
+        "multiplayer": true
+    }
+]
