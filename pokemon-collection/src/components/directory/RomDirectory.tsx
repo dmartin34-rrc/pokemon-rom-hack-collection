@@ -53,7 +53,7 @@ const RomDirectory = () => {
             return (
               <CardListDirectory
                 key={card.title}
-                title={card.title || ''}
+                card={card}
                 readLater={readLater}
                 setReadLater={setReadLater}
               />
