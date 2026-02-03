@@ -8,6 +8,7 @@ const CardListDirectory = ({ title, readLater, setReadLater }: any) => {
 
   return (
     <div
+      className="relative group cursor-grab active:cursor-grabbing"
       draggable
       onDragStart={(e) => {
         onDragStart(e, title);
@@ -15,9 +16,10 @@ const CardListDirectory = ({ title, readLater, setReadLater }: any) => {
     >
       <Card title={title} />
 
-      <div>
+      <div className="mt-2">
         {list ? (
           <button
+            className="text-sm text-slate-600 hover:text-red-600 border border-slate-300 rounded px-2 py-1"
             type="button"
             onClick={() =>
               setReadLater((prev: any) => removeReadLater(prev, title))
@@ -27,6 +29,7 @@ const CardListDirectory = ({ title, readLater, setReadLater }: any) => {
           </button>
         ) : (
           <button
+            className="text-sm text-slate-600 hover:text-slate-800 border border-slate-300 rounded px-2 py-1"
             type="button"
             onClick={() =>
               setReadLater((prev: any) => addReadLater(prev, title))
