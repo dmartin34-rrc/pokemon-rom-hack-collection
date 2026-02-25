@@ -15,9 +15,11 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = ({
   card,
-  isFavorite = false,
+  isFavorite,
   onUpdateFavorites,
 }): React.JSX.Element | null => {
+  isFavorite = false;
+
   if (!card.title) return null;
 
   return (

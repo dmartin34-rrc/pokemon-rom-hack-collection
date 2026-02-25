@@ -1,4 +1,3 @@
-import type React from 'react';
 import cardData from '../../data/cardData.json';
 import Card from './card';
 
