@@ -1,4 +1,3 @@
-
 // types
 import type CardType from '../../types/Card';
 // components
@@ -8,18 +7,17 @@ import CardDescription from './helpers/CardDescription';
 import CardTag from './helpers/CardTag';
 import { FavoriteButton } from '../common/FavoriteButton';
 
-const Card = (
-  {
-    card,
-    isFavorite = false,
-    onUpdateFavorites
-  }
-  : {
-    card: CardType,
-    isFavorite?: boolean,
-    onUpdateFavorites?: (title: string) => void
-  }
-) => {
+type CardProps = {
+  card: CardType;
+  isFavorite?: boolean;
+  onUpdateFavorites?: (title: string) => void;
+};
+
+const Card: React.FC<CardProps> = ({
+  card,
+  isFavorite = false,
+  onUpdateFavorites,
+}): React.JSX.Element | null => {
   if (!card.title) return null;
 
   return (
@@ -27,7 +25,7 @@ const Card = (
       <div className="w-[500px]">
         <div className="flex justify-between items-center">
           <CardTitle title={card.title} />
-          </div>
+        </div>
 
         <div className="relative">
           {onUpdateFavorites && (
