@@ -1,18 +1,27 @@
+import type React from 'react';
 import cardData from '../../data/cardData.json';
 import Card from './card';
 
-const CardList = ({
+type CardListProps = {
+  cards: {}[];
+  favorites: string[];
+  onUpdateFavorites: (title: string) => void;
+  sharedMessage: string;
+  setSharedMessage: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const CardList: React.FC<CardListProps> = ({
   cards = cardData,
-  favorites = [],
+  favorites,
   onUpdateFavorites,
   sharedMessage,
-  setSharedMessage
-}: any) => {
+  setSharedMessage,
+}): React.JSX.Element => {
   return (
     <>
       <div className="mb-4">
         <p>
-          You are feeling: <strong>{sharedMessage || "not sure yet"}</strong>
+          You are feeling: <strong>{sharedMessage || 'not sure yet'}</strong>\
         </p>
 
         <label>
