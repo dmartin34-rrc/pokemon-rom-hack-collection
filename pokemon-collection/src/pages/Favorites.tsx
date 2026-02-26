@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import CardList from '../card/CardList';
-import cardData from '../../data/cardData.json';
-import type CardType from '../../types/Card';
-import SearchBar from '../../layouts/header/SearchBar';
+import CardList from '../components/card/CardList';
+import cardData from '../data/cardData.json';
+import type CardType from '../types/Card';
+import SearchBar from '../layouts/header/SearchBar';
 
 function Favorites({
   favorites,

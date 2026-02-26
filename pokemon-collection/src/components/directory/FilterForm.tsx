@@ -1,41 +1,41 @@
+// components
+import Form from '../forms/Form';
+import Input from '../ui/Input';
+
 const FilterForm = ({ filter, setFilter, yearMinimum, yearMaximum }: any) => {
   const updateFilter = (part: any) => {
     setFilter((prev: any) => ({ ...prev, ...part }));
   };
 
   return (
-    <form className="flex flex-wrap gap-4 items-end mb-6">
-      <label className="flex flex-col gap-1">
-        <span className="text-sm font-medium">Title</span>
+    <Form className="flex flex-wrap gap-4 items-end mb-6">
+      <Input
+        type="text"
+        className="border border-slate-300 rounded px-2 py-1 min-w-[160px]"
+        placeholder="PokeSouls"
+        value={filter.title}
+        onChange={(e) => updateFilter({ title: e.target.value })}
+        labelClassName="flex flex-col gap-1"
+        actions={<span className="text-sm font-medium">Title</span>}
+      />
 
-        <input
-          className="border border-slate-300 rounded px-2 py-1 min-w-[160px]"
-          type="text"
-          placeholder="PokeSouls"
-          value={filter.title}
-          onChange={(e) => updateFilter({ title: e.target.value })}
-        />
-      </label>
-
-      <label className="flex flex-col gap-1">
-        <span className="text-sm font-medium">Tags</span>
-
-        <input
-          className="border border-slate-300 rounded px-2 py-1 min-w-[160px]"
-          type="text"
-          placeholder="X, Red, Beta"
-          value={filter.tags}
-          onChange={(e) => updateFilter({ tags: e.target.value })}
-        />
-      </label>
+      <Input
+        type="text"
+        className="border border-slate-300 rounded px-2 py-1 min-w-[160px]"
+        placeholder="X, Red, Beta"
+        value={filter.tags}
+        onChange={(e) => updateFilter({ tags: e.target.value })}
+        labelClassName="flex flex-col gap-1"
+        actions={<span className="text-sm font-medium">Tags</span>}
+      />
 
       <label className="flex flex-col gap-1">
         <span className="text-sm font-medium">Year</span>
 
         <div className="flex items-center gap-2">
-          <input
-            className="border border-slate-300 rounded px-2 py-1 w-20"
+          <Input
             type="number"
+            className="border border-slate-300 rounded px-2 py-1 w-20"
             min={yearMinimum}
             max={yearMaximum}
             value={filter.yearMinimum}
@@ -48,9 +48,9 @@ const FilterForm = ({ filter, setFilter, yearMinimum, yearMaximum }: any) => {
 
           <span>to</span>
 
-          <input
-            className="border border-slate-300 rounded px-2 py-1 w-20"
+          <Input
             type="number"
+            className="border border-slate-300 rounded px-2 py-1 w-20"
             min={yearMinimum}
             max={yearMaximum}
             value={filter.yearMaximum}
@@ -63,34 +63,30 @@ const FilterForm = ({ filter, setFilter, yearMinimum, yearMaximum }: any) => {
         </div>
       </label>
 
-      <label className="flex items-center gap-2 cursor-pointer">
-        <input
-          type="checkbox"
-          checked={filter.filterMultiplayer == true}
-          onChange={(e) =>
-            updateFilter({
-              filterMultiplayer: e.target.checked ? true : null,
-            })
-          }
-        />
+      <Input
+        type="checkbox"
+        checked={filter.filterMultiplayer == true}
+        onChange={(e) =>
+          updateFilter({
+            filterMultiplayer: e.target.checked ? true : null,
+          })
+        }
+        labelClassName="flex items-center gap-2 cursor-pointer"
+        actions={<span className="text-sm">Multiplayer</span>}
+      />
 
-        <span className="text-sm">Multiplayer</span>
-      </label>
-
-      <label className="flex items-center gap-2 cursor-pointer">
-        <input
-          type="checkbox"
-          checked={filter.filterCompleted == true}
-          onChange={(e) =>
-            updateFilter({
-              filterCompleted: e.target.checked ? true : null,
-            })
-          }
-        />
-
-        <span className="text-sm">Completed</span>
-      </label>
-    </form>
+      <Input
+        type="checkbox"
+        checked={filter.filterCompleted == true}
+        onChange={(e) =>
+          updateFilter({
+            filterCompleted: e.target.checked ? true : null,
+          })
+        }
+        labelClassName="flex items-center gap-2 cursor-pointer"
+        actions={<span className="text-sm">Completed</span>}
+      />
+    </Form>
   );
 };
 
