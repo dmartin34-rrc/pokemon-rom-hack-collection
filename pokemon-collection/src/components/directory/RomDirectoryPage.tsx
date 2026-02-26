@@ -19,6 +19,7 @@ const roms = cardData as Rom[];
 
 const RomDirectory = ({ sharedMessage, setSharedMessage }: Props) => {
   const yearRange = getYearRange(roms);
+
   const [filter, setFilter] = useState<Filter>({
     title: '',
     tags: '',
@@ -27,14 +28,12 @@ const RomDirectory = ({ sharedMessage, setSharedMessage }: Props) => {
     filterMultiplayer: null,
     filterCompleted: null,
   });
-
   const filteredRoms = filterRoms(roms, filter);
-
+  const [readLater, setReadLater] = useState<string[]>([]);
   const [page, setPage] = useState(1);
+
   const totalPages = getTotalPages(filteredRoms.length, PAGE_LIMIT);
   const pageRoms = getPage(filteredRoms, page, PAGE_LIMIT);
-
-  const [readLater, setReadLater] = useState<string[]>([]);
 
   return (
     <div className="flex gap-6 p-4">
@@ -45,7 +44,7 @@ const RomDirectory = ({ sharedMessage, setSharedMessage }: Props) => {
       >
         <div className="mb-4">
           <p>
-            You are feeling: <strong>{sharedMessage || "not sure yet"}</strong>
+            You are feeling: <strong>{sharedMessage || 'not sure yet'}</strong>
           </p>
 
           <label>

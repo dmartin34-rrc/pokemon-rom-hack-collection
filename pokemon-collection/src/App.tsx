@@ -1,24 +1,24 @@
-import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 // components
-import Layout from "./components/common/Layout.tsx";
-import CardList from "./components/card/CardList.tsx";
-import RomDirectory from "./components/directory/RomDirectory.tsx";
-import Favorites from "./components/pages/Favorites.tsx";
-import ProgressTrackerPage from "./components/pages/ProgressTrackerPage.tsx";
+import Layout from './layouts/Layout.tsx';
+import CardList from './components/card/CardList.tsx';
+import RomDirectory from './components/directory/RomDirectoryPage.tsx';
+import Favorites from './pages/Favorites.tsx';
+import ProgressTrackerPage from './pages/ProgressTrackerPage.tsx';
 
 // data
-import cardData from "./data/cardData.json";
+import cardData from './data/cardData.json';
 
 // types
-import type Rom from "./types/Rom";
+import type Rom from './types/Rom';
 
 function App() {
   const [favorites, setFavorites] = useState<string[]>([]);
   const updateFavorites = (title: string) => {
     setFavorites((prev) =>
-      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title]
+      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title],
     );
   };
 
@@ -26,7 +26,7 @@ function App() {
   const [trackedRoms, setTrackedRoms] = useState<Rom[]>([]);
 
   // shared message across all pages
-  const [sharedMessage, setSharedMessage] = useState<string>("");
+  const [sharedMessage, setSharedMessage] = useState<string>('');
 
   return (
     <Routes>
