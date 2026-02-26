@@ -1,7 +1,11 @@
-import AddTrackedRomForm from '../components/tracker/AddTrackedRomForm';
+// types
 import type Rom from '../types/Rom';
+// components
+import AddTrackedRomForm from '../components/tracker/AddTrackedRomForm';
+import Input from '../components/ui/Input';
+import Button from '../components/ui/Button';
 
-type Props = {
+type ProgressTrackerPageProps = {
   trackedRoms: Rom[];
   setTrackedRoms: React.Dispatch<React.SetStateAction<Rom[]>>;
 
@@ -9,12 +13,12 @@ type Props = {
   setSharedMessage: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function ProgressTrackerPage({
+const ProgressTrackerPage: React.FC<ProgressTrackerPageProps> = ({
   trackedRoms,
   setTrackedRoms,
   sharedMessage,
   setSharedMessage,
-}: Props) {
+}): React.JSX.Element => {
   function removeRom(title: string) {
     setTrackedRoms((prev) => prev.filter((r) => r.title !== title));
   }
@@ -38,16 +42,14 @@ export default function ProgressTrackerPage({
           You are feeling: <strong>{sharedMessage || 'not sure yet'}</strong>
         </p>
 
-        <label>
-          How are you feeling today?
-          <input
-            type="text"
-            value={sharedMessage}
-            onChange={(e) => setSharedMessage(e.target.value)}
-            placeholder="Happy, excited, tired..."
-            style={{ marginLeft: 8 }}
-          />
-        </label>
+        <Input
+          type="text"
+          value={sharedMessage}
+          onChange={(e) => setSharedMessage(e.target.value)}
+          placeholder="Happy, excited, tired..."
+          style={{ marginLeft: 8 }}
+          label="How are you feeling today?"
+        />
       </div>
 
       <p>Tracked ROMs: {trackedRoms.length}</p>
@@ -71,7 +73,7 @@ export default function ProgressTrackerPage({
 
                 <div>
                   Progress:
-                  <input
+                  <Input
                     type="number"
                     min={0}
                     max={100}
@@ -85,14 +87,13 @@ export default function ProgressTrackerPage({
                   %
                 </div>
 
-                <button
-                  type="button"
+                <Button
                   onClick={() => removeRom(title)}
                   style={{ marginTop: 6 }}
                   disabled={!title}
                 >
                   Remove
-                </button>
+                </Button>
               </li>
             );
           })}
@@ -100,4 +101,5 @@ export default function ProgressTrackerPage({
       )}
     </div>
   );
-}
+};
+export default ProgressTrackerPage;

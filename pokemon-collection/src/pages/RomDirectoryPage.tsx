@@ -20,7 +20,7 @@ import {
 import FilterForm from '../components/directory/FilterForm';
 import CardList from '../components/card/CardList';
 import Pagination from '../components/directory/Pagination';
-import RomDirectoryAside from '../components/directory/Aside';
+import RomDirectoryAside from '../components/directory/RomDirectoryAside';
 import Button from '../components/ui/Button';
 
 const roms = cardData;

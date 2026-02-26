@@ -1,7 +1,7 @@
 // types
 import type CardType from '../../types/Card';
 // components
-import { FavoriteButton } from '../common/FavoriteButton';
+import FavoriteButton from '../common/FavoriteButton';
 
 type CardProps = {
   card: CardType;

@@ -1,7 +1,7 @@
 // types
 import type Filter from '../../types/Filter';
 // components
-import Form from '../forms/Form';
+import Form from '../form/Form';
 import Input from '../ui/Input';
 
 type FilterFormProps = {
