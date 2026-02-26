@@ -9,7 +9,7 @@ type FavoriteButtonProps = {
 const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   isFavorite,
   onClick,
-}) => {
+}): React.JSX.Element => {
   return (
     <Button
       className={`
