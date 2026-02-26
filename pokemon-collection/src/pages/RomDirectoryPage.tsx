@@ -1,24 +1,27 @@
 import { useState } from 'react';
 // data
-import cardData from '../../data/cardData.json';
+import cardData from '../data/cardData.json';
 // types
-import type Filter from '../../types/Filter';
+import type Filter from '../types/Filter';
 // helpers
-import { filterRoms, getYearRange } from './helpers/filterRoms';
-import { getPage } from './helpers/pages';
+import {
+  filterRoms,
+  getYearRange,
+} from '../components/directory/helpers/filterRoms';
+import { getPage } from '../components/directory/helpers/pages';
 import {
   handleDragOver,
   handleRemoveDrop,
   addReadLater,
   removeReadLater,
   onDragStart,
-} from './helpers/aside';
+} from '../components/directory/helpers/aside';
 // components
-import FilterForm from './FilterForm';
-import CardList from '../card/CardList';
-import Pagination from './Pagination';
-import RomDirectoryAside from './Aside';
-import Button from '../ui/Button';
+import FilterForm from '../components/directory/FilterForm';
+import CardList from '../components/card/CardList';
+import Pagination from '../components/directory/Pagination';
+import RomDirectoryAside from '../components/directory/Aside';
+import Button from '../components/ui/Button';
 
 const roms = cardData;
 const year = getYearRange(roms);

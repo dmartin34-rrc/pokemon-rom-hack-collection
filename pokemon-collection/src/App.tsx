@@ -4,7 +4,7 @@ import { useState } from 'react';
 // components
 import Layout from './layouts/Layout.tsx';
 import CardList from './components/card/CardList.tsx';
-import RomDirectory from './components/directory/RomDirectoryPage.tsx';
+import RomDirectory from './pages/RomDirectoryPage.tsx';
 import Favorites from './pages/Favorites.tsx';
 import ProgressTrackerPage from './pages/ProgressTrackerPage.tsx';
 
