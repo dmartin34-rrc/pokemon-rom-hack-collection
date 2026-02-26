@@ -1,12 +1,22 @@
 import { useState } from 'react';
+// data
 import cardData from '../../data/cardData.json';
+// types
 import type Filter from '../../types/Filter';
 import type Rom from '../../types/Rom';
+// helpers
 import { filterRoms, getYearRange } from './helpers/filterRoms';
 import { PAGE_LIMIT, getTotalPages, getPage } from './helpers/pages';
-import { handleDragOver, handleRemoveDrop } from './helpers/aside';
+import {
+  handleDragOver,
+  handleRemoveDrop,
+  addReadLater,
+  removeReadLater,
+  onDragStart,
+} from './helpers/aside';
+// components
 import FilterForm from './FilterForm';
-import CardListDirectory from './CardListDirectory';
+import CardList from '../card/CardList';
 import Pagination from './Pagination';
 import Aside from './Aside';
 
@@ -44,16 +54,46 @@ const RomDirectory = (): React.JSX.Element => {
           yearMaximum={yearRange.max}
         />
 
-        <div className="flex flex-wrap gap-6">
-          {pageRoms.map((card) => (
-            <CardListDirectory
-              key={card.title}
-              card={card}
-              readLater={readLater}
-              setReadLater={setReadLater}
-            />
-          ))}
-        </div>
+        <CardList
+          cards={pageRoms}
+          readLaterWrapper={(card) => {
+            const title = card.title || '';
+            const inList = readLater.includes(title);
+
+            return inList ? (
+              <button
+                className="text-sm text-slate-600 hover:text-red-600 border border-slate-300 rounded px-2 py-1"
+                type="button"
+                onClick={() =>
+                  setReadLater((prev) => removeReadLater(prev, title))
+                }
+              >
+                Remove from read later
+              </button>
+            ) : (
+              <button
+                className="text-sm text-slate-600 hover:text-slate-800 border border-slate-300 rounded px-2 py-1"
+                type="button"
+                onClick={() =>
+                  setReadLater((prev) => addReadLater(prev, title))
+                }
+              >
+                Add to read later
+              </button>
+            );
+          }}
+          dragWrapper={(card: any) => {
+            const title = card.title || '';
+
+            return {
+              className: 'relative group cursor-grab active:cursor-grabbing',
+              draggable: true,
+              onDragStart: (e: any) => {
+                onDragStart(e, title);
+              },
+            };
+          }}
+        />
 
         {filteredRoms.length !== 0 ? (
           <Pagination
