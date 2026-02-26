@@ -1,9 +1,23 @@
+// types
+import type Filter from '../../types/Filter';
 // components
 import Form from '../forms/Form';
 import Input from '../ui/Input';
 
-const FilterForm = ({ filter, setFilter, yearMinimum, yearMaximum }: any) => {
-  const updateFilter = (part: any) => {
+type FilterFormProps = {
+  filter: Filter;
+  setFilter: React.Dispatch<React.SetStateAction<Filter>>;
+  yearMinimum: number;
+  yearMaximum: number;
+};
+
+const FilterForm: React.FC<FilterFormProps> = ({
+  filter,
+  setFilter,
+  yearMinimum,
+  yearMaximum,
+}): React.JSX.Element => {
+  const updateFilter = (part: Partial<Filter>) => {
     setFilter((prev: any) => ({ ...prev, ...part }));
   };
 

@@ -1,10 +1,22 @@
+// types
+import type Rom from '../../types/Rom';
 // helpers
 import { addReadLater, removeReadLater, onDragStart } from './helpers/aside';
 // components
 import Card from '../card/card';
 
-const CardListDirectory = ({ card, readLater, setReadLater }: any) => {
-  const title = card.title || "";
+type CardListDirectoryProps = {
+  card: Rom;
+  readLater: string[];
+  setReadLater: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const CardListDirectory: React.FC<CardListDirectoryProps> = ({
+  card,
+  readLater,
+  setReadLater,
+}): React.JSX.Element => {
+  const title = card.title || '';
   const list = readLater.includes(title);
 
   return (

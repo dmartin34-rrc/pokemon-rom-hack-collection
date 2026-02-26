@@ -10,14 +10,9 @@ import CardListDirectory from './CardListDirectory';
 import Pagination from './Pagination';
 import Aside from './Aside';
 
-type Props = {
-  sharedMessage: string;
-  setSharedMessage: React.Dispatch<React.SetStateAction<string>>;
-};
-
 const roms = cardData as Rom[];
 
-const RomDirectory = ({ sharedMessage, setSharedMessage }: Props) => {
+const RomDirectory = (): React.JSX.Element => {
   const yearRange = getYearRange(roms);
 
   const [filter, setFilter] = useState<Filter>({
@@ -42,23 +37,6 @@ const RomDirectory = ({ sharedMessage, setSharedMessage }: Props) => {
         onDragOver={handleDragOver}
         onDrop={handleRemoveDrop(setReadLater)}
       >
-        <div className="mb-4">
-          <p>
-            You are feeling: <strong>{sharedMessage || 'not sure yet'}</strong>
-          </p>
-
-          <label>
-            How are you feeling today?
-            <input
-              type="text"
-              value={sharedMessage}
-              onChange={(e) => setSharedMessage(e.target.value)}
-              className="ml-2 border px-2 py-1"
-              placeholder="Happy, excited, tired..."
-            />
-          </label>
-        </div>
-
         <FilterForm
           filter={filter}
           setFilter={setFilter}

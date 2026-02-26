@@ -56,15 +56,7 @@ function App() {
           }
         />
 
-        <Route
-          path="directory"
-          element={
-            <RomDirectory
-              sharedMessage={sharedMessage}
-              setSharedMessage={setSharedMessage}
-            />
-          }
-        />
+        <Route path="directory" element={<RomDirectory />} />
 
         <Route
           path="tracker"
