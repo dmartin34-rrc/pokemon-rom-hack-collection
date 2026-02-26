@@ -1,5 +1,3 @@
-export const PAGE_LIMIT = 6;
-
 export const getTotalPages = (totalItems: number, perPage: number): number =>
   Math.max(1, Math.ceil(totalItems / perPage));
 

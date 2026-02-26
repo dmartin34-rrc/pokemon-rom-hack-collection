@@ -3,10 +3,9 @@ import { useState } from 'react';
 import cardData from '../../data/cardData.json';
 // types
 import type Filter from '../../types/Filter';
-import type Rom from '../../types/Rom';
 // helpers
 import { filterRoms, getYearRange } from './helpers/filterRoms';
-import { PAGE_LIMIT, getTotalPages, getPage } from './helpers/pages';
+import { getPage } from './helpers/pages';
 import {
   handleDragOver,
   handleRemoveDrop,
@@ -18,27 +17,27 @@ import {
 import FilterForm from './FilterForm';
 import CardList from '../card/CardList';
 import Pagination from './Pagination';
-import Aside from './Aside';
+import RomDirectoryAside from './Aside';
+import Button from '../ui/Button';
 
-const roms = cardData as Rom[];
+const roms = cardData;
+const year = getYearRange(roms);
+const PER_PAGE = 4;
 
 const RomDirectory = (): React.JSX.Element => {
-  const yearRange = getYearRange(roms);
-
   const [filter, setFilter] = useState<Filter>({
     title: '',
     tags: '',
-    yearMinimum: yearRange.min,
-    yearMaximum: yearRange.max,
+    yearMinimum: year.min,
+    yearMaximum: year.max,
     filterMultiplayer: null,
     filterCompleted: null,
   });
-  const filteredRoms = filterRoms(roms, filter);
   const [readLater, setReadLater] = useState<string[]>([]);
   const [page, setPage] = useState(1);
 
-  const totalPages = getTotalPages(filteredRoms.length, PAGE_LIMIT);
-  const pageRoms = getPage(filteredRoms, page, PAGE_LIMIT);
+  const filteredRoms = filterRoms(roms, filter);
+  const currentPage = getPage(filteredRoms, page, PER_PAGE);
 
   return (
     <div className="flex gap-6 p-4">
@@ -50,18 +49,18 @@ const RomDirectory = (): React.JSX.Element => {
         <FilterForm
           filter={filter}
           setFilter={setFilter}
-          yearMinimum={yearRange.min}
-          yearMaximum={yearRange.max}
+          yearMinimum={year.min}
+          yearMaximum={year.max}
         />
 
         <CardList
-          cards={pageRoms}
+          cards={currentPage}
           readLaterWrapper={(card) => {
             const title = card.title || '';
             const inList = readLater.includes(title);
 
             return inList ? (
-              <button
+              <Button
                 className="text-sm text-slate-600 hover:text-red-600 border border-slate-300 rounded px-2 py-1"
                 type="button"
                 onClick={() =>
@@ -69,9 +68,9 @@ const RomDirectory = (): React.JSX.Element => {
                 }
               >
                 Remove from read later
-              </button>
+              </Button>
             ) : (
-              <button
+              <Button
                 className="text-sm text-slate-600 hover:text-slate-800 border border-slate-300 rounded px-2 py-1"
                 type="button"
                 onClick={() =>
@@ -79,7 +78,7 @@ const RomDirectory = (): React.JSX.Element => {
                 }
               >
                 Add to read later
-              </button>
+              </Button>
             );
           }}
           dragWrapper={(card: any) => {
@@ -98,15 +97,14 @@ const RomDirectory = (): React.JSX.Element => {
         {filteredRoms.length !== 0 ? (
           <Pagination
             page={page}
-            totalPages={totalPages}
-            onPageChange={(page: any) =>
-              setPage(Math.max(1, Math.min(totalPages, page)))
-            }
+            totalItems={filteredRoms.length}
+            perPage={PER_PAGE}
+            onPageChange={setPage}
           />
         ) : null}
       </div>
 
-      <Aside readLater={readLater} setReadLater={setReadLater} />
+      <RomDirectoryAside readLater={readLater} setReadLater={setReadLater} />
     </div>
   );
 };

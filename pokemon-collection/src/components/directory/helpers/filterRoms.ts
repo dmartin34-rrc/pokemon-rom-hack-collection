@@ -2,8 +2,15 @@
 import type Rom from '../../../types/Rom';
 import type Filter from '../../../types/Filter';
 
-export const getYearRange = (roms: Rom[]): { min: number; max: number } => {
-  const years = roms.map((r) => r.year).filter((y) => typeof y == 'number');
+type YearRange = {
+  min: number;
+  max: number;
+};
+
+export const getYearRange = (roms: Rom[]): YearRange => {
+  const years = roms
+    .map((rom) => rom.year)
+    .filter((year) => typeof year == 'number');
 
   if (!years.length) {
     return { min: 0, max: new Date().getFullYear() };
@@ -47,7 +54,7 @@ const filterTags = (tags: string[] | undefined, query: string): boolean => {
 const filterYear = (
   year: number | undefined,
   minimum: number,
-  maximum: number
+  maximum: number,
 ): boolean => {
   year = year ?? 0;
 
@@ -56,7 +63,7 @@ const filterYear = (
 
 const filterCheckbox = (
   value: boolean | undefined,
-  filter: boolean | null
+  filter: boolean | null,
 ): boolean => {
   if (filter == null) {
     return true;

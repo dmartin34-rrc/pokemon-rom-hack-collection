@@ -1,17 +1,23 @@
+// helpers
+import { getTotalPages } from './helpers/pages';
 // components
 import Button from '../ui/Button';
 
 type PaginationProps = {
   page: number;
-  totalPages: number;
+  totalItems: number;
+  perPage: number;
   onPageChange: (page: number) => void;
 };
 
 const Pagination: React.FC<PaginationProps> = ({
   page,
-  totalPages,
+  totalItems,
+  perPage,
   onPageChange,
 }): React.JSX.Element => {
+  const totalPages = getTotalPages(totalItems, perPage);
+
   return (
     <div className="flex items-center gap-2 mt-6">
       <Button
