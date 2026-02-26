@@ -1,7 +1,17 @@
 // components
 import Button from '../ui/Button';
 
-const Pagination = ({ page, totalPages, onPageChange }: any) => {
+type PaginationProps = {
+  page: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+};
+
+const Pagination: React.FC<PaginationProps> = ({
+  page,
+  totalPages,
+  onPageChange,
+}): React.JSX.Element => {
   return (
     <div className="flex items-center gap-2 mt-6">
       <Button
