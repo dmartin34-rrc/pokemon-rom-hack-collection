@@ -3,7 +3,7 @@ import type Rom from '../../types/Rom';
 // helpers
 import { addReadLater, removeReadLater, onDragStart } from './helpers/aside';
 // components
-import Card from '../card/card';
+import Card from '../card/Card';
 
 type CardListDirectoryProps = {
   card: Rom;

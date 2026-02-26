@@ -1,8 +1,11 @@
+// data
 import cardData from '../../data/cardData.json';
-import Card from './card';
+import type CardType from '../../types/Card';
+// components
+import Card from './Card';
 
 type CardListProps = {
-  cards: {}[];
+  cards: CardType[];
   favorites: string[];
   onUpdateFavorites: (title: string) => void;
   sharedMessage: string;
@@ -10,38 +13,18 @@ type CardListProps = {
 };
 
 const CardList: React.FC<CardListProps> = ({
-  cards = cardData,
   favorites,
   onUpdateFavorites,
-  sharedMessage,
-  setSharedMessage,
 }): React.JSX.Element => {
   return (
     <>
-      <div className="mb-4">
-        <p>
-          You are feeling: <strong>{sharedMessage || 'not sure yet'}</strong>\
-        </p>
-
-        <label>
-          How are you feeling today?
-          <input
-            type="text"
-            value={sharedMessage}
-            onChange={(e) => setSharedMessage(e.target.value)}
-            className="ml-2 border px-2 py-1"
-            placeholder="Happy, excited, tired..."
-          />
-        </label>
-      </div>
-
       <div className="flex flex-wrap gap-6 justify-center">
-        {cards.map((c: any) => {
+        {cardData.map((card) => {
           return (
             <Card
-              card={c}
-              key={c.title}
-              isFavorite={favorites.includes(c.title)}
+              card={card}
+              key={card.title}
+              isFavorite={favorites.includes(card.title)}
               onUpdateFavorites={onUpdateFavorites}
             />
           );
