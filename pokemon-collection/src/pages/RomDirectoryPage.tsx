@@ -27,7 +27,6 @@ const PER_PAGE = 4;
 
 const RomDirectory = (): React.JSX.Element => {
   const [filter, setFilter] = useState<Filter>({
-    title: '',
     tags: '',
     yearMinimum: year.min,
     yearMaximum: year.max,

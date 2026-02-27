@@ -26,16 +26,6 @@ const FilterForm: React.FC<FilterFormProps> = ({
       <Input
         type="text"
         className="border border-slate-300 rounded px-2 py-1 min-w-[160px]"
-        placeholder="PokeSouls"
-        value={filter.title}
-        onChange={(e) => updateFilter({ title: e.target.value })}
-        labelClassName="flex flex-col gap-1"
-        actions={<span className="text-sm font-medium">Title</span>}
-      />
-
-      <Input
-        type="text"
-        className="border border-slate-300 rounded px-2 py-1 min-w-[160px]"
         placeholder="X, Red, Beta"
         value={filter.tags}
         onChange={(e) => updateFilter({ tags: e.target.value })}
