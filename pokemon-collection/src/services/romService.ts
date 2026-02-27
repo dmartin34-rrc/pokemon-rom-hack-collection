@@ -1,23 +1,18 @@
-// types
-import type Rom from '../../../types/Rom';
-import type Filter from '../../../types/Filter';
+import type Rom from '../types/Rom';
+import type Filter from '../types/Filter';
 
-type YearRange = {
-  min: number;
-  max: number;
-};
+// Filter ROM Logic
+export function getYearRange(roms: Rom[]) {
+    const years = roms
+      .map((rom) => rom.year)
+      .filter((year) => typeof year == 'number');
 
-export const getYearRange = (roms: Rom[]): YearRange => {
-  const years = roms
-    .map((rom) => rom.year)
-    .filter((year) => typeof year == 'number');
-
-  if (!years.length) {
-    return { min: 0, max: new Date().getFullYear() };
+    if (!years.length) {
+      return { min: 0, max: new Date().getFullYear() };
   }
 
-  return { min: Math.min(...years), max: Math.max(...years) };
-};
+    return { min: Math.min(...years), max: Math.max(...years) };
+}
 
 const filterTitle = (title: string | undefined, query: string): boolean => {
   if (!query) {
@@ -86,3 +81,34 @@ export const filterRoms = (roms: Rom[], filter: Filter): Rom[] => {
     return true;
   });
 };
+
+// Page Logic
+export const getTotalPages = (totalItems: number, perPage: number): number =>
+  Math.max(1, Math.ceil(totalItems / perPage));
+
+export const getPage = <T>(items: T[], page: number, perPage: number): T[] => {
+  const startPage = (page - 1) * perPage;
+  return items.slice(startPage, startPage + perPage);
+};
+
+// Array Logic
+export function checkIsDuplicate(currentRoms: Rom[], titleToCheck: string): boolean {
+  if (!titleToCheck) return false;
+  return currentRoms.some((r) => {
+    if (!r.title) return false;
+    return r.title.toLowerCase() === titleToCheck.toLowerCase();
+  });
+}
+
+export function addRom(currentRoms: Rom[], newTitle: string): Rom[] {
+  const newRom: Rom = {
+    title: newTitle,
+    percentComplete: 0,
+  } as Rom;
+
+  return [...currentRoms, newRom];
+}
+
+export async function deleteRom(currentRoms: Rom[], idToRemove: any) {
+  return currentRoms.filter((c: any) => c.id !== idToRemove);
+}

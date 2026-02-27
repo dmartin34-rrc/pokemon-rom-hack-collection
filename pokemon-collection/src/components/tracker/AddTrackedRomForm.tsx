@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 // types
 import type Rom from '../../types/Rom';
+// services
+import * as RomService from '../../services/romService';
 // components
 import Form from '../form/Form';
 import Button from '../ui/Button';
@@ -21,12 +23,7 @@ const AddTrackedRomForm: React.FC<AddTrackedRomFormProps> = ({
   const cleanedTitle = useMemo(() => title.trim(), [title]);
 
   const isDuplicate = useMemo(() => {
-    if (!cleanedTitle) return false;
-
-    return trackedRoms.some((r) => {
-      if (!r.title) return false;
-      return r.title.toLowerCase() === cleanedTitle.toLowerCase();
-    });
+    return RomService.checkIsDuplicate(trackedRoms, cleanedTitle);
   }, [trackedRoms, cleanedTitle]);
 
   function validate(): boolean {
@@ -46,12 +43,9 @@ const AddTrackedRomForm: React.FC<AddTrackedRomFormProps> = ({
     e.preventDefault();
     if (!validate()) return;
 
-    const newRom: Rom = {
-      title: cleanedTitle,
-      percentComplete: 0,
-    } as Rom;
+    const updatedRoms = RomService.addRom(trackedRoms, cleanedTitle)
 
-    setTrackedRoms((prev) => [...prev, newRom]);
+    setTrackedRoms(updatedRoms);
     setTitle('');
   }
 
