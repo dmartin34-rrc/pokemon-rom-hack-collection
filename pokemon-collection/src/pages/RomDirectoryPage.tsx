@@ -3,12 +3,10 @@ import { useState } from 'react';
 import cardData from '../data/cardData.json';
 // types
 import type Filter from '../types/Filter';
+import type Rom from '../types/Rom';
+// services
+import * as RomService from '../services/romService';
 // helpers
-import {
-  filterRoms,
-  getYearRange,
-} from '../components/directory/helpers/filterRoms';
-import { getPage } from '../components/directory/helpers/pages';
 import {
   handleDragOver,
   handleRemoveDrop,
@@ -23,8 +21,8 @@ import Pagination from '../components/directory/Pagination';
 import RomDirectoryAside from '../components/directory/RomDirectoryAside';
 import Button from '../components/ui/Button';
 
-const roms = cardData;
-const year = getYearRange(roms);
+const roms = cardData as Rom[];
+const year = RomService.getYearRange(roms);
 const PER_PAGE = 4;
 
 const RomDirectory = (): React.JSX.Element => {
@@ -39,8 +37,8 @@ const RomDirectory = (): React.JSX.Element => {
   const [readLater, setReadLater] = useState<string[]>([]);
   const [page, setPage] = useState(1);
 
-  const filteredRoms = filterRoms(roms, filter);
-  const currentPage = getPage(filteredRoms, page, PER_PAGE);
+  const filteredRoms = RomService.filterRoms(roms, filter);
+  const currentPage = RomService.getPage(filteredRoms, page, PER_PAGE);
 
   return (
     <div className="flex gap-6 p-4">
