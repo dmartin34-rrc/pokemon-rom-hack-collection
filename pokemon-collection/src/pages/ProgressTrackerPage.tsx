@@ -1,7 +1,11 @@
-import AddTrackedRomForm from "../tracker/AddTrackedRomForm";
-import type Rom from "../../types/Rom";
+// types
+import type Rom from '../types/Rom';
+// components
+import AddTrackedRomForm from '../components/tracker/AddTrackedRomForm';
+import Input from '../components/ui/Input';
+import Button from '../components/ui/Button';
 
-type Props = {
+type ProgressTrackerPageProps = {
   trackedRoms: Rom[];
   setTrackedRoms: React.Dispatch<React.SetStateAction<Rom[]>>;
 
@@ -9,12 +13,12 @@ type Props = {
   setSharedMessage: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function ProgressTrackerPage({
+const ProgressTrackerPage: React.FC<ProgressTrackerPageProps> = ({
   trackedRoms,
   setTrackedRoms,
   sharedMessage,
   setSharedMessage,
-}: Props) {
+}): React.JSX.Element => {
   function removeRom(title: string) {
     setTrackedRoms((prev) => prev.filter((r) => r.title !== title));
   }
@@ -24,8 +28,8 @@ export default function ProgressTrackerPage({
 
     setTrackedRoms((prev) =>
       prev.map((r) =>
-        r.title === title ? { ...r, percentComplete: clamped } : r
-      )
+        r.title === title ? { ...r, percentComplete: clamped } : r,
+      ),
     );
   }
 
@@ -35,59 +39,61 @@ export default function ProgressTrackerPage({
 
       <div style={{ marginBottom: 12 }}>
         <p>
-          You are feeling: <strong>{sharedMessage || "not sure yet"}</strong>
+          You are feeling: <strong>{sharedMessage || 'not sure yet'}</strong>
         </p>
 
-        <label>
-          How are you feeling today?
-          <input
-            type="text"
-            value={sharedMessage}
-            onChange={(e) => setSharedMessage(e.target.value)}
-            placeholder="Happy, excited, tired..."
-            style={{ marginLeft: 8 }}
-          />
-        </label>
+        <Input
+          type="text"
+          value={sharedMessage}
+          onChange={(e) => setSharedMessage(e.target.value)}
+          placeholder="Happy, excited, tired..."
+          style={{ marginLeft: 8 }}
+          label="How are you feeling today?"
+        />
       </div>
 
       <p>Tracked ROMs: {trackedRoms.length}</p>
 
-      <AddTrackedRomForm trackedRoms={trackedRoms} setTrackedRoms={setTrackedRoms} />
+      <AddTrackedRomForm
+        trackedRoms={trackedRoms}
+        setTrackedRoms={setTrackedRoms}
+      />
 
       {trackedRoms.length === 0 ? (
         <p>No ROMs tracked yet.</p>
       ) : (
         <ul>
           {trackedRoms.map((rom) => {
-            const title = rom.title ?? "";
-            const key = rom.title ?? "unknown-title";
+            const title = rom.title ?? '';
+            const key = rom.title ?? 'unknown-title';
 
             return (
               <li key={key} style={{ marginBottom: 12 }}>
-                <strong>{title || "Untitled ROM"}</strong>
+                <strong>{title || 'Untitled ROM'}</strong>
 
                 <div>
                   Progress:
-                  <input
+                  <Input
                     type="number"
                     min={0}
                     max={100}
                     value={rom.percentComplete ?? 0}
-                    onChange={(e) => updateProgress(title, Number(e.target.value))}
+                    onChange={(e) =>
+                      updateProgress(title, Number(e.target.value))
+                    }
                     style={{ marginLeft: 8, width: 60 }}
                     disabled={!title}
                   />
                   %
                 </div>
 
-                <button
-                  type="button"
+                <Button
                   onClick={() => removeRom(title)}
                   style={{ marginTop: 6 }}
                   disabled={!title}
                 >
                   Remove
-                </button>
+                </Button>
               </li>
             );
           })}
@@ -95,4 +101,5 @@ export default function ProgressTrackerPage({
       )}
     </div>
   );
-}
+};
+export default ProgressTrackerPage;

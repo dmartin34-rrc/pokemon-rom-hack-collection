@@ -1,18 +1,20 @@
+import Input from '../../components/ui/Input';
+
 interface SearchBarProps {
-    value: string;
-    onChange: (value: string) => void;
-    placeholder?: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
 }
 
-const SearchBar = ({ 
-    value, 
-    onChange, 
-    placeholder = "Search..." 
-}: SearchBarProps) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  value,
+  onChange,
+  placeholder = 'Search...',
+}): React.JSX.Element => {
   return (
     <div className="mb-6">
       <div className="relative">
-        <input
+        <Input
           type="text"
           className="w-full border border-slate-300 rounded px-4 py-2 focus:outline-none focus:border-blue-500 transition-colors"
           placeholder={placeholder}

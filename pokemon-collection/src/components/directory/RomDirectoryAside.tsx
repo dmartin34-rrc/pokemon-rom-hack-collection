@@ -6,7 +6,15 @@ import {
   handleAddDrop,
 } from './helpers/aside';
 
-const Aside = ({ readLater, setReadLater }: any) => {
+type RomDirectoryAsideProps = {
+  readLater: string[];
+  setReadLater: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const RomDirectoryAside: React.FC<RomDirectoryAsideProps> = ({
+  readLater,
+  setReadLater,
+}): React.JSX.Element => {
   const remove = (title: string) => {
     return setReadLater((prev: any) => removeReadLater(prev, title));
   };
@@ -30,7 +38,7 @@ const Aside = ({ readLater, setReadLater }: any) => {
               draggable
               onDragStart={(e) => handleDragStart(e, title)}
             >
-              <span className="truncate flex-1">{title} </span>
+              <span className="truncate flex-1">{title}</span>
 
               <button
                 className="text-slate-500 hover:text-red-600 shrink-0"
@@ -47,4 +55,4 @@ const Aside = ({ readLater, setReadLater }: any) => {
   );
 };
 
-export default Aside;
+export default RomDirectoryAside;
