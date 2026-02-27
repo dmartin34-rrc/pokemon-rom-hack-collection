@@ -91,3 +91,24 @@ export const getPage = <T>(items: T[], page: number, perPage: number): T[] => {
   return items.slice(startPage, startPage + perPage);
 };
 
+// Array Logic
+export function checkIsDuplicate(currentRoms: Rom[], titleToCheck: string): boolean {
+  if (!titleToCheck) return false;
+  return currentRoms.some((r) => {
+    if (!r.title) return false;
+    return r.title.toLowerCase() === titleToCheck.toLowerCase();
+  });
+}
+
+export function addRom(currentRoms: Rom[], newTitle: string): Rom[] {
+  const newRom: Rom = {
+    title: newTitle,
+    percentComplete: 0,
+  } as Rom;
+
+  return [...currentRoms, newRom];
+}
+
+export async function deleteRom(currentRoms: Rom[], idToRemove: any) {
+  return currentRoms.filter((c: any) => c.id !== idToRemove);
+}
