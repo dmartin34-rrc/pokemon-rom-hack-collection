@@ -1,7 +1,7 @@
 // types
 import type CardType from '../../types/Card';
 // components
-import Card from './Card';
+import Card from './card';
 
 type CardListProps = {
   cards: CardType[];

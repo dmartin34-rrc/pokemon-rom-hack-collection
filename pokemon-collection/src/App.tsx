@@ -38,8 +38,6 @@ function App() {
               cards={cardData}
               favorites={favorites}
               onUpdateFavorites={updateFavorites}
-              sharedMessage={sharedMessage}
-              setSharedMessage={setSharedMessage}
             />
           }
         />
@@ -50,8 +48,6 @@ function App() {
             <Favorites
               favorites={favorites}
               onUpdateFavorites={updateFavorites}
-              sharedMessage={sharedMessage}
-              setSharedMessage={setSharedMessage}
             />
           }
         />
