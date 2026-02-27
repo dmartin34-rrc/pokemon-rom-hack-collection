@@ -14,8 +14,6 @@ const Card: React.FC<CardProps> = ({
   isFavorite,
   onUpdateFavorites,
 }): React.JSX.Element => {
-  isFavorite = false;
-
   return (
     <>
       <div className="w-[500px]">
@@ -29,7 +27,7 @@ const Card: React.FC<CardProps> = ({
           {onUpdateFavorites && (
             <div className="absolute top-3 right-3 z-10">
               <FavoriteButton
-                isFavorite={isFavorite}
+                isFavorite={isFavorite ?? false}
                 onClick={() => onUpdateFavorites(card.title!)}
               />
             </div>
