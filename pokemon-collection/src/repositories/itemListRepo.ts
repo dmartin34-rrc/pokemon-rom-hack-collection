@@ -15,17 +15,22 @@ const getRoms = (): Rom[] => {
 };
 
 const getItems = (page: string): ItemList => {
+  console.log('getItems', { page, items: item.get(page) ?? [] });
+
   return { page, items: item.get(page) ?? [] };
 };
 
 // create + update
 const saveItems = (list: ItemList): void => {
+  console.log('saveItems', list);
+
   item.set(list.page, [...list.items]);
 };
 
-const removeItems = (page: string): void => {
+// clears list
+const clearItems = (page: string): void => {
   item.delete(page);
 };
 
-export { getItems, saveItems, removeItems, getRoms };
+export { getItems, saveItems, clearItems, getRoms };
 export type { ItemList };

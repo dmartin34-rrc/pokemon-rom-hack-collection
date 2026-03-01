@@ -30,7 +30,12 @@ const addItem = (page: string, title: string): string[] => {
 const removeItem = (page: string, title: string): string[] => {
   const currentItems = getItems(page);
 
-  const newItems = currentItems.filter((items) => items !== title);
+  const newItems = currentItems.filter((item) => item !== title);
+
+  console.log('removeItem', {
+    before: currentItems,
+    after: newItems,
+  });
 
   itemListRepo.saveItems({ page, items: newItems });
 
