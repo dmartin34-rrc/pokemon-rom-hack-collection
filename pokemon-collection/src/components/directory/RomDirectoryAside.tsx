@@ -7,6 +7,12 @@ type RomDirectoryAsideProps = {
   handleDragStart: (e: React.DragEvent, title: string) => void;
 };
 
+/**
+ * The RomDirectoryAside uses the hook-service-repository architecture by:
+ *
+ * Indirectory implementing the use of the architecture through props. It receives onRemove and onClear as callbacks from its parent, RomDirectoryPage.
+ * The callbacks come from useItemList (hook), the methods clearItems and removeItem, which are invoked from the itemListService and further invoked from itemListRepo.
+ */
 const RomDirectoryAside: React.FC<RomDirectoryAsideProps> = ({
   items,
   onRemove,
