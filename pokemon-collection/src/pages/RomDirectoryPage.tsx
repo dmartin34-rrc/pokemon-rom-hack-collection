@@ -14,12 +14,15 @@ import {
   removeReadLater,
   onDragStart,
 } from '../components/directory/helpers/aside';
+// hooks
+import useSearchFilter from '../hooks/useSearchFilter';
 // components
 import FilterForm from '../components/directory/FilterForm';
 import CardList from '../components/card/CardList';
 import Pagination from '../components/directory/Pagination';
 import RomDirectoryAside from '../components/directory/RomDirectoryAside';
 import Button from '../components/ui/Button';
+import SearchBar from '../layouts/header/SearchBar';
 
 const roms = cardData as Rom[];
 const year = RomService.getYearRange(roms);
@@ -27,7 +30,6 @@ const PER_PAGE = 4;
 
 const RomDirectory = (): React.JSX.Element => {
   const [filter, setFilter] = useState<Filter>({
-    title: '',
     tags: '',
     yearMinimum: year.min,
     yearMaximum: year.max,
@@ -38,7 +40,17 @@ const RomDirectory = (): React.JSX.Element => {
   const [page, setPage] = useState(1);
 
   const filteredRoms = RomService.filterRoms(roms, filter);
-  const currentPage = RomService.getPage(filteredRoms, page, PER_PAGE);
+
+  const {
+    searchQuery,
+    setSearchQuery,
+    filteredItems: searchedRoms,
+  } = useSearchFilter<Rom>({
+    items: filteredRoms,
+    searchText: (rom) => rom.title ?? '',
+  });
+
+  const currentPage = RomService.getPage(searchedRoms, page, PER_PAGE);
 
   return (
     <div className="flex gap-6 p-4">
@@ -47,6 +59,12 @@ const RomDirectory = (): React.JSX.Element => {
         onDragOver={handleDragOver}
         onDrop={handleRemoveDrop(setReadLater)}
       >
+        <SearchBar
+          value={searchQuery}
+          onChange={setSearchQuery}
+          placeholder="Search ROMs..."
+        />
+
         <FilterForm
           filter={filter}
           setFilter={setFilter}

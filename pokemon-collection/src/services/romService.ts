@@ -3,28 +3,16 @@ import type Filter from '../types/Filter';
 
 // Filter ROM Logic
 export function getYearRange(roms: Rom[]) {
-    const years = roms
-      .map((rom) => rom.year)
-      .filter((year) => typeof year == 'number');
+  const years = roms
+    .map((rom) => rom.year)
+    .filter((year) => typeof year == 'number');
 
-    if (!years.length) {
-      return { min: 0, max: new Date().getFullYear() };
+  if (!years.length) {
+    return { min: 0, max: new Date().getFullYear() };
   }
 
-    return { min: Math.min(...years), max: Math.max(...years) };
+  return { min: Math.min(...years), max: Math.max(...years) };
 }
-
-const filterTitle = (title: string | undefined, query: string): boolean => {
-  if (!query) {
-    return true;
-  }
-
-  if (!title) {
-    return false;
-  }
-
-  return title.toLowerCase().includes(query.toLowerCase().trim());
-};
 
 const filterTags = (tags: string[] | undefined, query: string): boolean => {
   if (!query) {
@@ -69,7 +57,6 @@ const filterCheckbox = (
 export const filterRoms = (roms: Rom[], filter: Filter): Rom[] => {
   return roms.filter((rom) => {
     if (
-      !filterTitle(rom.title, filter.title) ||
       !filterTags(rom.tags, filter.tags) ||
       !filterYear(rom.year, filter.yearMinimum, filter.yearMaximum) ||
       !filterCheckbox(rom.multiplayer, filter.filterMultiplayer) ||
@@ -92,7 +79,10 @@ export const getPage = <T>(items: T[], page: number, perPage: number): T[] => {
 };
 
 // Array Logic
-export function checkIsDuplicate(currentRoms: Rom[], titleToCheck: string): boolean {
+export function checkIsDuplicate(
+  currentRoms: Rom[],
+  titleToCheck: string,
+): boolean {
   if (!titleToCheck) return false;
   return currentRoms.some((r) => {
     if (!r.title) return false;
