@@ -6,16 +6,9 @@ import type Filter from '../types/Filter';
 import type Rom from '../types/Rom';
 // services
 import * as RomService from '../services/romService';
-// helpers
-import {
-  handleDragOver,
-  handleRemoveDrop,
-  addReadLater,
-  removeReadLater,
-  onDragStart,
-} from '../components/directory/helpers/aside';
 // hooks
 import useSearchFilter from '../hooks/useSearchFilter';
+import useItemList from '../hooks/useItemList';
 // components
 import FilterForm from '../components/directory/FilterForm';
 import CardList from '../components/card/CardList';
@@ -36,8 +29,18 @@ const RomDirectory = (): React.JSX.Element => {
     filterMultiplayer: null,
     filterCompleted: null,
   });
-  const [readLater, setReadLater] = useState<string[]>([]);
   const [page, setPage] = useState(1);
+
+  const {
+    items: readLater,
+    addItem: addReadLater,
+    removeItem: removeReadLater,
+    handleDragOver,
+    addDrop,
+    removeDrop,
+    handleDragStart,
+    onDragStart,
+  } = useItemList({ page: 'readLater' });
 
   const filteredRoms = RomService.filterRoms(roms, filter);
 
@@ -57,7 +60,7 @@ const RomDirectory = (): React.JSX.Element => {
       <div
         className="flex-1 min-w-0"
         onDragOver={handleDragOver}
-        onDrop={handleRemoveDrop(setReadLater)}
+        onDrop={removeDrop}
       >
         <SearchBar
           value={searchQuery}
@@ -82,9 +85,7 @@ const RomDirectory = (): React.JSX.Element => {
               <Button
                 className="text-sm text-slate-600 hover:text-red-600 border border-slate-300 rounded px-2 py-1"
                 type="button"
-                onClick={() =>
-                  setReadLater((prev) => removeReadLater(prev, title))
-                }
+                onClick={() => removeReadLater(title)}
               >
                 Remove from read later
               </Button>
@@ -92,9 +93,7 @@ const RomDirectory = (): React.JSX.Element => {
               <Button
                 className="text-sm text-slate-600 hover:text-slate-800 border border-slate-300 rounded px-2 py-1"
                 type="button"
-                onClick={() =>
-                  setReadLater((prev) => addReadLater(prev, title))
-                }
+                onClick={() => addReadLater(title)}
               >
                 Add to read later
               </Button>
@@ -123,7 +122,13 @@ const RomDirectory = (): React.JSX.Element => {
         ) : null}
       </div>
 
-      <RomDirectoryAside readLater={readLater} setReadLater={setReadLater} />
+      <RomDirectoryAside
+        items={readLater}
+        onRemove={removeReadLater}
+        handleDragOver={handleDragOver}
+        handleAddDrop={addDrop}
+        handleDragStart={handleDragStart}
+      />
     </div>
   );
 };
