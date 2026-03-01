@@ -72,6 +72,15 @@ const RomDirectory = (): React.JSX.Element => {
         <FilterForm
           filter={filter}
           setFilter={setFilter}
+          onReset={() =>
+            setFilter({
+              tags: '',
+              yearMinimum: year.min,
+              yearMaximum: year.max,
+              filterMultiplayer: null,
+              filterCompleted: null,
+            })
+          }
           yearMinimum={year.min}
           yearMaximum={year.max}
         />
