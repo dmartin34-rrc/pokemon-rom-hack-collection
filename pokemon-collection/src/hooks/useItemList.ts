@@ -18,6 +18,7 @@ type UseItemListReturn = {
   items: string[];
   addItem: (title: string) => void;
   removeItem: (title: string) => void;
+  clearItems: () => void;
   handleDragOver: (e: React.DragEvent) => void;
   addDrop: (e: React.DragEvent) => void;
   removeDrop: (e: React.DragEvent) => void;
@@ -38,6 +39,10 @@ const useItemList = ({ page }: UseItemListProps): UseItemListReturn => {
     setItems(ItemListService.removeItem(page, title));
   };
 
+  const clearItems = (): void => {
+    setItems(ItemListService.clearItems(page));
+  };
+
   const addDrop = handleAddDrop(addItem);
   const removeDrop = handleRemoveDrop(removeItem);
 
@@ -45,6 +50,7 @@ const useItemList = ({ page }: UseItemListProps): UseItemListReturn => {
     items,
     addItem,
     removeItem,
+    clearItems,
     handleDragOver,
     addDrop,
     removeDrop,

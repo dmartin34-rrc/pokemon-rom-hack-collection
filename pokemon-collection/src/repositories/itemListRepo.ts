@@ -29,6 +29,10 @@ const saveItems = (list: ItemList): void => {
 
 // clears list
 const clearItems = (page: string): void => {
+  console.log('clearItems', {
+    cleared: item.get(page) ?? [],
+  });
+
   item.delete(page);
 };
 

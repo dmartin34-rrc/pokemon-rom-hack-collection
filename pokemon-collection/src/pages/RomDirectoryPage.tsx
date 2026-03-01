@@ -35,6 +35,7 @@ const RomDirectory = (): React.JSX.Element => {
     items: readLater,
     addItem: addReadLater,
     removeItem: removeReadLater,
+    clearItems: clearReadLater,
     handleDragOver,
     addDrop,
     removeDrop,
@@ -125,6 +126,7 @@ const RomDirectory = (): React.JSX.Element => {
       <RomDirectoryAside
         items={readLater}
         onRemove={removeReadLater}
+        onClear={clearReadLater}
         handleDragOver={handleDragOver}
         handleAddDrop={addDrop}
         handleDragStart={handleDragStart}

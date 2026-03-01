@@ -42,4 +42,10 @@ const removeItem = (page: string, title: string): string[] => {
   return newItems;
 };
 
-export { getItems, addItem, removeItem };
+const clearItems = (page: string): string[] => {
+  itemListRepo.clearItems(page);
+
+  return [];
+};
+
+export { getItems, addItem, removeItem, clearItems };

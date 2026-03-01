@@ -1,6 +1,7 @@
 type RomDirectoryAsideProps = {
   items: string[];
   onRemove: (title: string) => void;
+  onClear: () => void;
   handleDragOver: (e: React.DragEvent) => void;
   handleAddDrop: (e: React.DragEvent) => void;
   handleDragStart: (e: React.DragEvent, title: string) => void;
@@ -9,6 +10,7 @@ type RomDirectoryAsideProps = {
 const RomDirectoryAside: React.FC<RomDirectoryAsideProps> = ({
   items,
   onRemove,
+  onClear,
   handleDragOver,
   handleAddDrop,
   handleDragStart,
@@ -19,13 +21,25 @@ const RomDirectoryAside: React.FC<RomDirectoryAsideProps> = ({
       onDragOver={handleDragOver}
       onDrop={handleAddDrop}
     >
-      <h3 className="font-semibold mb-3 text-sm">Read Later</h3>
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="font-semibold text-sm">Read Later</h3>
+
+        {items.length > 0 && onClear ? (
+          <button
+            type="button"
+            onClick={onClear}
+            className="text-xs text-slate-500 hover:text-red-600"
+          >
+            Clear all
+          </button>
+        ) : null}
+      </div>
 
       <ul className="space-y-2">
         {items.length == 0 ? (
           <li className="text-slate-500 text-sm">Drop ROMs here</li>
         ) : (
-          items.map((title: any) => (
+          items.map((title: string) => (
             <li
               className="flex items-center justify-between gap-2 bg-white border border-slate-200 rounded px-2 py-1.5 text-sm cursor-grab active:cursor-grabbing"
               key={title}
