@@ -14,13 +14,13 @@ const getRoms = (): Rom[] => {
   return cardData as Rom[];
 };
 
-const getItems = (page: string): string[] => {
-  return item.get(page) ?? [];
+const getItems = (page: string): ItemList => {
+  return { page, items: item.get(page) ?? [] };
 };
 
 // create + update
-const saveItems = (page: string, items: string[]): void => {
-  item.set(page, [...items]);
+const saveItems = (list: ItemList): void => {
+  item.set(list.page, [...list.items]);
 };
 
 const removeItems = (page: string): void => {
@@ -28,3 +28,4 @@ const removeItems = (page: string): void => {
 };
 
 export { getItems, saveItems, removeItems, getRoms };
+export type { ItemList };
