@@ -1,11 +1,11 @@
 import { useState } from 'react';
-// data
-import cardData from '../data/cardData.json';
 // types
 import type Filter from '../types/Filter';
 import type Rom from '../types/Rom';
 // services
 import * as RomService from '../services/romService';
+// repositories
+import * as ItemListRepo from '../repositories/itemListRepo';
 // hooks
 import useSearchFilter from '../hooks/useSearchFilter';
 import useItemList from '../hooks/useItemList';
@@ -17,7 +17,7 @@ import RomDirectoryAside from '../components/directory/RomDirectoryAside';
 import Button from '../components/ui/Button';
 import SearchBar from '../layouts/header/SearchBar';
 
-const roms = cardData as Rom[];
+const roms = ItemListRepo.getRoms();
 const year = RomService.getYearRange(roms);
 const PER_PAGE = 4;
 
