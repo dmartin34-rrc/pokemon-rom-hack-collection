@@ -17,6 +17,16 @@ import useFavorites from './hooks/useFavorites.ts';
 // types
 import type Rom from './types/Rom';
 
+/**
+ * App uses the hook-service-repository architecture by:
+ * 
+ * useFavorites() being a custom hook that manages favorites state in the form of a list of favorite ROM Titles.
+ * 
+ * This custom hook calls favoritesService to handle business logic for toggling favorites, and generating unique id's and timestamps.
+ * 
+ * favoritesRepo temporarily uses in-memory test data from favoriteData.json
+ * and handles basic CRUD methods. This provides the service layer with data to keep shared state synced across the Home, Favorites, and Directory pages.
+ */
 function App() {
   const { favoriteTitles, toggleFavorite } = useFavorites();
 
