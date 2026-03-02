@@ -5,7 +5,7 @@ const Navbar = () => {
     `px-2 py-2 font-medium text-xl cursor-pointer border-b-2 ${
       isActive
         ? 'text-slate-900 border-slate-500'
-        : 'text-slate-400 border-transparent hover:text-slate-600 hover:border-slate-200 active:border-red-300'
+        : 'text-slate-600 border-transparent hover:text-slate-700 hover:border-slate-200 active:border-red-300'
     }`;
 
   return (
