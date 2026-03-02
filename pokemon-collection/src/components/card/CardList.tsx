@@ -19,7 +19,7 @@ const CardList: React.FC<CardListProps> = ({
   dragWrapper,
 }): React.JSX.Element => {
   return (
-    <div className="flex flex-wrap gap-6 justify-center">
+    <div className="flex flex-wrap gap-6">
       {cards.map((card) => {
         const dragWrapperProps = dragWrapper ? dragWrapper(card) : {};
 
