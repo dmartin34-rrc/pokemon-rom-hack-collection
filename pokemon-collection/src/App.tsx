@@ -11,16 +11,14 @@ import ProgressTrackerPage from './pages/ProgressTrackerPage.tsx';
 // data
 import cardData from './data/cardData.json';
 
+// hooks
+import useFavorites from './hooks/useFavorites.ts';
+
 // types
 import type Rom from './types/Rom';
 
 function App() {
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const updateFavorites = (title: string) => {
-    setFavorites((prev) =>
-      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title],
-    );
-  };
+  const { favoriteTitles, toggleFavorite } = useFavorites();
 
   // tracker
   const [trackedRoms, setTrackedRoms] = useState<Rom[]>([]);
@@ -36,8 +34,8 @@ function App() {
           element={
             <CardList
               cards={cardData}
-              favorites={favorites}
-              onUpdateFavorites={updateFavorites}
+              favorites={favoriteTitles}
+              onUpdateFavorites={toggleFavorite}
             />
           }
         />
@@ -46,8 +44,8 @@ function App() {
           path="favorites"
           element={
             <Favorites
-              favorites={favorites}
-              onUpdateFavorites={updateFavorites}
+              favorites={favoriteTitles}
+              onUpdateFavorites={toggleFavorite}
             />
           }
         />

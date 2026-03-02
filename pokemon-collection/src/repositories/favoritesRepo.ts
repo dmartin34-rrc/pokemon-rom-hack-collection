@@ -7,17 +7,17 @@ let mockFavoritesDB: Favorite[] = [...favoriteData];
 
 // Read
 export const getFavorites = (): Favorite[] => {
-    return [...mockFavoritesDB];
+  return [...mockFavoritesDB];
 };
 
 // Create
 export const addFavorite = (newFav: Favorite): Favorite => {
-    mockFavoritesDB = [...mockFavoritesDB, newFav];
+  mockFavoritesDB = [...mockFavoritesDB, newFav];
 
-    return newFav;
+  return newFav;
 };
 
 // Delete
 export const removeFavorite = (id: string): void => {
-    mockFavoritesDB = mockFavoritesDB.filter((fav) => fav.id !== id);
+  mockFavoritesDB = mockFavoritesDB.filter((fav) => fav.id !== id);
 };
