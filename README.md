@@ -40,3 +40,29 @@ Full Stack Development Project
 - T.5: App Stylesheet and Style Guide
 - 1.1: High-Level Component (Card)
 - 1.2: Styling (Card)
+
+## Sprint 3
+
+### Dean Martin
+
+- T.2: Service Definitions (`romService`)
+- I.1: Repository Definitions & Integration
+- I.2: Test Data
+- I.3: New / Refactored Components
+- I.4: Architectural Layout Document
+
+### Efe Onota
+
+- T.4: Shared-page-state Refactor
+- I.1: Repository Definitions & Integration
+- I.2: Test Data
+- I.3: New / Refactored Components
+- I.4: Architectural Layout Document
+
+### Zachary Lam
+
+- T.1: Hook Definitions (`useSearchFilter`, `useItemList`)
+- I.1: Repository Definitions & Integration (`itemListRepo.ts`)
+- I.2: Test Data (`cardData.json`, `itemListRepo`)
+- I.3: New / Refactored Components (`RomDirectoryPage.tsx` uses `useItemList.ts`, `itemListService.ts`, `itemListRepo.ts` & `Favorites.tsx` / `RomDirectoryPage.tsx` uses `useSearchFilter.ts`)
+- I.4: Architectural Layout Document (`/docs/architecture-zl.md`)
