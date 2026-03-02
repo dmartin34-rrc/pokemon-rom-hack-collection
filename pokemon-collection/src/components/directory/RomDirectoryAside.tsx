@@ -23,7 +23,7 @@ const RomDirectoryAside: React.FC<RomDirectoryAsideProps> = ({
 }): React.JSX.Element => {
   return (
     <aside
-      className="w-64 border border-slate-300 rounded-lg p-4 bg-slate-50 min-h-[200px]"
+      className="w-64 shrink-0 border border-slate-300 rounded-lg p-4 bg-slate-50 min-h-[200px] sticky top-2 self-start"
       onDragOver={handleDragOver}
       onDrop={handleAddDrop}
     >
