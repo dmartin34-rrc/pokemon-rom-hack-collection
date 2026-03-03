@@ -45,11 +45,11 @@ Full Stack Development Project
 
 ### Dean Martin
 
-- T.2: Service Definitions (`romService`)
-- I.1: Repository Definitions & Integration
-- I.2: Test Data
-- I.3: New / Refactored Components
-- I.4: Architectural Layout Document
+- T.2: Service Definitions (`romService.ts`, `favoritesService.ts`)
+- I.1: Repository Definitions & Integration (`favoritesRepo.ts`)
+- I.2: Test Data ('favouriteData.json`, `favouritesRepo.ts`)
+- I.3: New / Refactored Components (`App.tsx` uses `useFavorites.ts` -> `favoritesService.ts` -> `favoritesRepo.ts`)
+- I.4: Architectural Layout Document (`/docs/architecture-dm.md`)
 
 ### Efe Onota
 
@@ -61,7 +61,7 @@ Full Stack Development Project
 
 ### Zachary Lam
 
-- T.1: Hook Definitions (`useSearchFilter`, `useItemList`)
+- T.1: Hook Definitions (`useSearchFilter.ts`, `useItemList.ts`)
 - I.1: Repository Definitions & Integration (`itemListRepo.ts`)
 - I.2: Test Data (`cardData.json`, `itemListRepo`)
 - I.3: New / Refactored Components (`RomDirectoryPage.tsx` uses `useItemList.ts`, `itemListService.ts`, `itemListRepo.ts` & `Favorites.tsx` / `RomDirectoryPage.tsx` uses `useSearchFilter.ts`)
