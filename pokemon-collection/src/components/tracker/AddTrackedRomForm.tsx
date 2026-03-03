@@ -1,22 +1,20 @@
 import { useMemo, useState } from 'react';
-// types
-import type Rom from '../../types/Rom';
+
 // services
 import * as RomService from '../../services/romService';
+
+// shared state hook
+import { useSharedPageState } from '../sharedPageState/useSharedPageState';
+
 // components
 import Form from '../form/Form';
 import Button from '../ui/Button';
 import Input from '../ui/Input';
 
-type AddTrackedRomFormProps = {
-  trackedRoms: Rom[];
-  setTrackedRoms: React.Dispatch<React.SetStateAction<Rom[]>>;
-};
+const AddTrackedRomForm: React.FC = (): React.JSX.Element => {
+  const { state, actions } = useSharedPageState();
+  const trackedRoms = state.trackedRoms;
 
-const AddTrackedRomForm: React.FC<AddTrackedRomFormProps> = ({
-  trackedRoms,
-  setTrackedRoms,
-}): React.JSX.Element => {
   const [title, setTitle] = useState('');
   const [error, setError] = useState<string>('');
 
@@ -43,9 +41,7 @@ const AddTrackedRomForm: React.FC<AddTrackedRomFormProps> = ({
     e.preventDefault();
     if (!validate()) return;
 
-    const updatedRoms = RomService.addRom(trackedRoms, cleanedTitle)
-
-    setTrackedRoms(updatedRoms);
+    actions.addTrackedRom(cleanedTitle);
     setTitle('');
   }
 

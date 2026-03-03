@@ -1,63 +1,23 @@
-// types
-import type Rom from '../types/Rom';
+// shared state hook
+import { useSharedPageState } from '../components/sharedPageState/useSharedPageState';
+
 // components
 import AddTrackedRomForm from '../components/tracker/AddTrackedRomForm';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 
-type ProgressTrackerPageProps = {
-  trackedRoms: Rom[];
-  setTrackedRoms: React.Dispatch<React.SetStateAction<Rom[]>>;
+const ProgressTrackerPage: React.FC = (): React.JSX.Element => {
+  const { state, actions } = useSharedPageState();
 
-  sharedMessage: string;
-  setSharedMessage: React.Dispatch<React.SetStateAction<string>>;
-};
-
-const ProgressTrackerPage: React.FC<ProgressTrackerPageProps> = ({
-  trackedRoms,
-  setTrackedRoms,
-  sharedMessage,
-  setSharedMessage,
-}): React.JSX.Element => {
-  function removeRom(title: string) {
-    setTrackedRoms((prev) => prev.filter((r) => r.title !== title));
-  }
-
-  function updateProgress(title: string, percent: number) {
-    const clamped = Math.max(0, Math.min(100, percent));
-
-    setTrackedRoms((prev) =>
-      prev.map((r) =>
-        r.title === title ? { ...r, percentComplete: clamped } : r,
-      ),
-    );
-  }
+  const trackedRoms = state.trackedRoms;
 
   return (
     <div style={{ padding: 16 }}>
       <h2>Progress Tracker</h2>
 
-      <div style={{ marginBottom: 12 }}>
-        <p>
-          You are feeling: <strong>{sharedMessage || 'not sure yet'}</strong>
-        </p>
-
-        <Input
-          type="text"
-          value={sharedMessage}
-          onChange={(e) => setSharedMessage(e.target.value)}
-          placeholder="Happy, excited, tired..."
-          style={{ marginLeft: 8 }}
-          label="How are you feeling today?"
-        />
-      </div>
-
       <p>Tracked ROMs: {trackedRoms.length}</p>
 
-      <AddTrackedRomForm
-        trackedRoms={trackedRoms}
-        setTrackedRoms={setTrackedRoms}
-      />
+      <AddTrackedRomForm />
 
       {trackedRoms.length === 0 ? (
         <p>No ROMs tracked yet.</p>
@@ -79,7 +39,7 @@ const ProgressTrackerPage: React.FC<ProgressTrackerPageProps> = ({
                     max={100}
                     value={rom.percentComplete ?? 0}
                     onChange={(e) =>
-                      updateProgress(title, Number(e.target.value))
+                      actions.updateProgress(title, Number(e.target.value))
                     }
                     style={{ marginLeft: 8, width: 60 }}
                     disabled={!title}
@@ -88,7 +48,7 @@ const ProgressTrackerPage: React.FC<ProgressTrackerPageProps> = ({
                 </div>
 
                 <Button
-                  onClick={() => removeRom(title)}
+                  onClick={() => actions.removeTrackedRom(title)}
                   style={{ marginTop: 6 }}
                   disabled={!title}
                 >
@@ -102,4 +62,5 @@ const ProgressTrackerPage: React.FC<ProgressTrackerPageProps> = ({
     </div>
   );
 };
+
 export default ProgressTrackerPage;
