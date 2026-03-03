@@ -47,7 +47,7 @@ Full Stack Development Project
 
 - T.2: Service Definitions (`romService.ts`, `favoritesService.ts`)
 - I.1: Repository Definitions & Integration (`favoritesRepo.ts`)
-- I.2: Test Data ('favouriteData.json`, `favouritesRepo.ts`)
+- I.2: Test Data (`favouriteData.json`, `favouritesRepo.ts`)
 - I.3: New / Refactored Components (`App.tsx` uses `useFavorites.ts` -> `favoritesService.ts` -> `favoritesRepo.ts`)
 - I.4: Architectural Layout Document (`/docs/architecture-dm.md`)
 
