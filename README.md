@@ -79,11 +79,11 @@ Full Stack Development Project
 
 ### Efe Onota
 
-- T.4: Shared-page-state Refactor
-- I.1: Repository Definitions & Integration
-- I.2: Test Data
-- I.3: New / Refactored Components
-- I.4: Architectural Layout Document
+- T.4: Shared-page-state Refactor (`useSharedPageState.ts`, `sharedPageStateService.ts`, `sharedPageStateRepo.ts`)
+- I.1: Repository Definitions & Integration (`sharedPageStateRepo.ts`)
+- I.2: Test Data (`trackedData.json`, `sharedPageStateRepo.ts`)
+- I.3: New / Refactored Components (L`ayout.tsx` uses `SharedMessageBarContainer.tsx`, u`seSharedPageState.ts` & `ProgressTrackerPage.tsx` / `FavoritesPage.tsx` uses `useSharedPageState.ts`)
+- I.4: Architectural Layout Document (`/docs/architecture-eo.md`)
 
 ### Zachary Lam
 
