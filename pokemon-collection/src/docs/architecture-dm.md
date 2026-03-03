@@ -18,7 +18,7 @@ I ensured that only Presentation logic is in the hook, keeping business logic in
 
 ### Where is this implementation made use of in the project and how?
 
-**`src/App.tsx`**: The top-level component calls `useFavorites()` to get `favoriteTitles` and `toggleFavorite`. It passes these down as props to child routes (CardList, Favorites, RomDirectory) so the application can manage a synchronized list without re-implementing the favorite logic on every page.
+**`src/App.tsx`**: The top-level component calls `useFavorites()` to get `favoriteTitles` and `toggleFavorite`. It passes these down as props to child routes (CardList, Favorites) so the application can manage a synchronized list without re-implementing the favorite logic on every page.
 
 **`src/pages/Favorites.tsx`**: Uses the `favorites` data provided by the hook (passed via props from App) to filter the full list of ROMs down to just the items the user has favorited.
 
