@@ -1,5 +1,5 @@
 import type Rom from "../types/Rom";
-import { sharedPageStateRepository } from "../components/sharedPageState/sharedPageState.repository";
+import { sharedPageStateRepository } from "../repositories/sharedPageState.repository";
 
 class SharedPageStateService {
   setSharedMessage(message: string) {
@@ -22,7 +22,7 @@ class SharedPageStateService {
     if (exists) return;
 
     const newRom: Rom = {
-      // CardType fields: at minimum we know "title" exists because you use it everywhere
+      
       title: cleanedTitle,
       percentComplete: 0,
     };

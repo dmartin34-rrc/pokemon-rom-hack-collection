@@ -1,5 +1,5 @@
 // shared state hook
-import { useSharedPageState } from '../components/sharedPageState/useSharedPageState';
+import { useSharedPageState } from '../hooks/useSharedPageState';
 
 // components
 import AddTrackedRomForm from '../components/tracker/AddTrackedRomForm';

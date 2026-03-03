@@ -1,5 +1,5 @@
 // types
-import type Rom from '../../types/Rom'; // adjust path if needed
+import type Rom from '../types/Rom';
 
 export type SharedPageState = {
   sharedMessage: string;

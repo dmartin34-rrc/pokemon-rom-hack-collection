@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import * as RomService from '../../services/romService';
 
 // shared state hook
-import { useSharedPageState } from '../sharedPageState/useSharedPageState';
+import { useSharedPageState } from '../../hooks/useSharedPageState';
 
 // components
 import Form from '../form/Form';

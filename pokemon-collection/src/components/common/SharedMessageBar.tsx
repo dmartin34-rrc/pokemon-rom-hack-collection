@@ -1,54 +1,42 @@
-import { useMemo } from 'react';
-// components
-import Input from '../ui/Input';
-import Button from '../ui/Button';
+import Input from "../ui/Input";
 
-type SharedMessageBarProps = {
+export type SharedMessageBarProps = {
   sharedMessage: string;
-  setSharedMessage: React.Dispatch<React.SetStateAction<string>>;
-  label?: string;
-  maxLength?: number;
+  setSharedMessage: (next: string) => void;
 };
 
-const SharedMessageBar: React.FC<SharedMessageBarProps> = ({
+export function SharedMessageBar({
   sharedMessage,
   setSharedMessage,
-  label = 'You are feeling: ',
-  maxLength = 80,
-}): React.JSX.Element => {
-  const remaining = useMemo(
-    () => maxLength - sharedMessage.length,
-    [maxLength, sharedMessage],
-  );
-
-  const tooLong = sharedMessage.length > maxLength;
-
+}: SharedMessageBarProps) {
   return (
-    <section
-      style={{ marginBottom: 16, padding: 12, border: '1px solid #ccc' }}
-    >
-      <div style={{ marginBottom: 8 }}>
-        <strong>{label}:</strong> {sharedMessage || '(empty)'}
+    <div className="border-b border-gray-200 bg-white py-3">
+      <div className="mx-auto flex max-w-md flex-col gap-2 px-4">
+        
+        {/* Prompt */}
+        <label
+          htmlFor="shared-message"
+          className="text-sm font-medium text-gray-700"
+        >
+          How are you feeling today?
+        </label>
+
+        <Input
+          id="shared-message"
+          type="text"
+          value={sharedMessage}
+          onChange={(e) => setSharedMessage(e.target.value)}
+          placeholder="Happy, excited, tired..."
+          className="h-9 text-sm"
+        />
+
+        {/* Display current feeling */}
+        <p className="text-sm text-gray-600">
+          {sharedMessage
+            ? `You're feeling: ${sharedMessage}`
+            : "You're feeling: (not sure yet)"}
+        </p>
       </div>
-
-      <Input
-        type="text"
-        value={sharedMessage}
-        onChange={(e) => setSharedMessage(e.target.value)}
-        style={{ marginLeft: 8 }}
-        label="Edit"
-      />
-
-      <div style={{ marginTop: 8 }}>
-        <small>Characters left: {remaining}</small>
-        {tooLong ? <p>Message is too long (max {maxLength}).</p> : null}
-      </div>
-
-      <Button onClick={() => setSharedMessage('')} style={{ marginTop: 8 }}>
-        Clear
-      </Button>
-    </section>
+    </div>
   );
-};
-
-export default SharedMessageBar;
+}

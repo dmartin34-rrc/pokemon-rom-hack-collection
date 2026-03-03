@@ -1,12 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
-// components
+// layouts / pages
 import Layout from './layouts/Layout';
-import CardList from './components/card/CardList';
 import RomDirectory from './pages/RomDirectoryPage';
 import Favorites from './pages/Favorites';
 import ProgressTrackerPage from './pages/ProgressTrackerPage';
+
+// components
+import CardList from './components/card/CardList';
 
 // service
 import { cardService } from './services/cardService';
