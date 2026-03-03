@@ -2,31 +2,23 @@ import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
 // components
-import Layout from './layouts/Layout.tsx';
-import CardList from './components/card/CardList.tsx';
-import RomDirectory from './pages/RomDirectoryPage.tsx';
-import Favorites from './pages/Favorites.tsx';
-import ProgressTrackerPage from './pages/ProgressTrackerPage.tsx';
+import Layout from './layouts/Layout';
+import CardList from './components/card/CardList';
+import RomDirectory from './pages/RomDirectoryPage';
+import Favorites from './pages/Favorites';
+import ProgressTrackerPage from './pages/ProgressTrackerPage';
 
-// data
-import cardData from './data/cardData.json';
-
-// types
-import type Rom from './types/Rom';
+// service
+import { cardService } from './services/cardService';
 
 function App() {
   const [favorites, setFavorites] = useState<string[]>([]);
+
   const updateFavorites = (title: string) => {
     setFavorites((prev) =>
       prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title],
     );
   };
-
-  // tracker
-  const [trackedRoms, setTrackedRoms] = useState<Rom[]>([]);
-
-  // shared message across all pages
-  const [sharedMessage, setSharedMessage] = useState<string>('');
 
   return (
     <Routes>
@@ -35,7 +27,7 @@ function App() {
           index
           element={
             <CardList
-              cards={cardData}
+              cards={cardService.getCards()}
               favorites={favorites}
               onUpdateFavorites={updateFavorites}
             />
@@ -54,17 +46,7 @@ function App() {
 
         <Route path="directory" element={<RomDirectory />} />
 
-        <Route
-          path="tracker"
-          element={
-            <ProgressTrackerPage
-              trackedRoms={trackedRoms}
-              setTrackedRoms={setTrackedRoms}
-              sharedMessage={sharedMessage}
-              setSharedMessage={setSharedMessage}
-            />
-          }
-        />
+        <Route path="tracker" element={<ProgressTrackerPage />} />
       </Route>
     </Routes>
   );
