@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 
-// components
 import Header from "./header/Header";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -11,7 +10,7 @@ const Layout = () => {
     <>
       <Header />
       <Navbar />
-      <main className="p-5">
+      <main>
         <Outlet />
       </main>
       <Footer />

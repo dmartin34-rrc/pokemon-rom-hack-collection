@@ -4,19 +4,17 @@ type InputProps = {
   label?: string;
   labelClassName?: string;
   actions?: React.ReactNode;
+  wrapperClassName?: string;
 } & React.ComponentPropsWithoutRef<"input">;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, labelClassName, actions, id, className, ...props }, ref) => {
+  ({ label, labelClassName, actions, wrapperClassName, id, className, ...props }, ref) => {
     return (
-      <div className="w-full">
-        {(label || actions) ? (
+      <div className={wrapperClassName ?? ""}>
+        {label || actions ? (
           <div className="mb-1 flex items-center justify-between gap-2">
             {label ? (
-              <label
-                htmlFor={id}
-                className={labelClassName ?? "text-sm font-medium"}
-              >
+              <label htmlFor={id} className={labelClassName ?? "text-sm font-medium"}>
                 {label}
               </label>
             ) : (
