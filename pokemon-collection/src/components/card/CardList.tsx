@@ -3,6 +3,14 @@ import type CardType from '../../types/Card';
 // components
 import Card from './card';
 
+/**
+ * Uses the service → repository pattern.
+ * The component requests card data from CardService,
+ * which retrieves it via CardRepository from test data (cardData.json).
+ * This prepares the app for swapping the repository to a real backend later.
+ */
+
+
 type CardListProps = {
   cards: CardType[];
   favorites?: string[];
@@ -19,7 +27,7 @@ const CardList: React.FC<CardListProps> = ({
   dragWrapper,
 }): React.JSX.Element => {
   return (
-    <div className="flex flex-wrap gap-6">
+    <div className="flex flex-wrap gap-6 justify-center">
       {cards.map((card) => {
         const dragWrapperProps = dragWrapper ? dragWrapper(card) : {};
 

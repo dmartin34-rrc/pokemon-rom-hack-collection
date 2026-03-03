@@ -1,52 +1,58 @@
-import { useMemo, useState } from 'react';
-// types
-import type Rom from '../../types/Rom';
-// services
-import * as RomService from '../../services/romService';
-// components
-import Form from '../form/Form';
-import Button from '../ui/Button';
-import Input from '../ui/Input';
+import { useMemo, useState } from "react";
 
-type AddTrackedRomFormProps = {
-  trackedRoms: Rom[];
-  setTrackedRoms: React.Dispatch<React.SetStateAction<Rom[]>>;
+// components
+import Form from "../form/Form";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+
+type Props = {
+  onAdd: (title: string) => Promise<{ isValid: boolean; errorMessages?: string[] }>;
+  existingTitles?: string[];
 };
 
-const AddTrackedRomForm: React.FC<AddTrackedRomFormProps> = ({
-  trackedRoms,
-  setTrackedRoms,
+const AddTrackedRomForm: React.FC<Props> = ({
+  onAdd,
+  existingTitles = [],
 }): React.JSX.Element => {
-  const [title, setTitle] = useState('');
-  const [error, setError] = useState<string>('');
+  const [title, setTitle] = useState("");
+  const [error, setError] = useState<string>("");
 
   const cleanedTitle = useMemo(() => title.trim(), [title]);
 
   const isDuplicate = useMemo(() => {
-    return RomService.checkIsDuplicate(trackedRoms, cleanedTitle);
-  }, [trackedRoms, cleanedTitle]);
+    const needle = cleanedTitle.toLowerCase();
+    return (
+      !!needle &&
+      existingTitles.some((t) => t.trim().toLowerCase() === needle)
+    );
+  }, [existingTitles, cleanedTitle]);
 
   function validate(): boolean {
     if (!cleanedTitle) {
-      setError('Title is required.');
+      setError("Title is required.");
       return false;
     }
     if (isDuplicate) {
-      setError('That ROM is already being tracked.');
+      setError("That ROM is already being tracked.");
       return false;
     }
-    setError('');
+    setError("");
     return true;
   }
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!validate()) return;
 
-    const updatedRoms = RomService.addRom(trackedRoms, cleanedTitle)
+    const result = await onAdd(cleanedTitle);
 
-    setTrackedRoms(updatedRoms);
-    setTitle('');
+    if (!result.isValid) {
+      setError(result.errorMessages?.[0] ?? "Failed to add ROM.");
+      return;
+    }
+
+    setTitle("");
+    setError("");
   }
 
   return (
@@ -56,7 +62,7 @@ const AddTrackedRomForm: React.FC<AddTrackedRomFormProps> = ({
         value={title}
         onChange={(e) => {
           setTitle(e.target.value);
-          if (error) setError('');
+          if (error) setError("");
         }}
         placeholder="Enter a ROM title"
         style={{ marginLeft: 8 }}

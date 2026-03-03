@@ -4,4 +4,7 @@ export default interface CardType {
   tags?: string[];
   img?: string;
   bookmark?: boolean;
+  year?: number;
+  completed?: boolean;
+  multiplayer?: boolean;
 }
