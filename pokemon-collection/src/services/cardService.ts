@@ -1,5 +1,5 @@
 import type CardType from "../types/Card";
-import { cardRepository } from "../repositories/CardRepository"
+import { cardRepository } from "../repositories/cardRepository"
 
 class CardService {
   getCards(): CardType[] {
