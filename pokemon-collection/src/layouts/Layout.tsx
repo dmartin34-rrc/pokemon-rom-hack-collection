@@ -10,7 +10,9 @@ const Layout = () => {
     <>
       <Header />
       <Navbar />
-      <Outlet />
+      <main className="p-5">
+        <Outlet />
+      </main>
       <Footer />
       <SharedMessageBar />
     </>

@@ -1,12 +1,24 @@
-import { useState } from 'react';
 // data
 import cardData from '../data/cardData.json';
 // types
 import type CardType from '../types/Card';
+// hooks
+import useSearchFilter from '../hooks/useSearchFilter';
 // components
 import CardList from '../components/card/CardList';
 import SearchBar from '../layouts/header/SearchBar';
 
+/**
+ * The Favorites page uses the hook-service-repository architecture by:
+ * 
+ * Having the useFavorites() custom hook passed down via props to access the synced list of favorite ROM titles.
+ * 
+ * This custom hook also relies on favoritesService to handle business logic for toggling favorites and generating metadata. 
+ * 
+ * The favoritesRepo provides the saved test data so this page can just simply display the user's favorites.
+ * 
+ * Additionally, useSearchFilter() is used as a custom hook to handle presentation logic and state for the search bar.
+ */
 type FavoritesProps = {
   favorites: string[];
   onUpdateFavorites: (title: string) => void;
@@ -16,15 +28,18 @@ const Favorites: React.FC<FavoritesProps> = ({
   favorites,
   onUpdateFavorites,
 }): React.JSX.Element => {
-  const [searchQuery, setSearchQuery] = useState('');
-
   const favoriteCards = cardData.filter(
     (card: CardType) => card.title && favorites.includes(card.title),
   );
 
-  const displayedCards = favoriteCards.filter((card) =>
-    card.title?.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+  const {
+    searchQuery,
+    setSearchQuery,
+    filteredItems: displayedCards,
+  } = useSearchFilter<CardType>({
+    items: favoriteCards,
+    searchText: (card) => card.title ?? '',
+  });
 
   return (
     <main className="max-w-[1100px] mx-auto p-4">

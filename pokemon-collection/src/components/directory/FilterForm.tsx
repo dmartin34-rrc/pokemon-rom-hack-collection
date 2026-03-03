@@ -3,10 +3,12 @@ import type Filter from '../../types/Filter';
 // components
 import Form from '../form/Form';
 import Input from '../ui/Input';
+import Button from '../ui/Button';
 
 type FilterFormProps = {
   filter: Filter;
   setFilter: React.Dispatch<React.SetStateAction<Filter>>;
+  onReset: () => void;
   yearMinimum: number;
   yearMaximum: number;
 };
@@ -14,6 +16,7 @@ type FilterFormProps = {
 const FilterForm: React.FC<FilterFormProps> = ({
   filter,
   setFilter,
+  onReset,
   yearMinimum,
   yearMaximum,
 }): React.JSX.Element => {
@@ -23,16 +26,6 @@ const FilterForm: React.FC<FilterFormProps> = ({
 
   return (
     <Form className="flex flex-wrap gap-4 items-end mb-6">
-      <Input
-        type="text"
-        className="border border-slate-300 rounded px-2 py-1 min-w-[160px]"
-        placeholder="PokeSouls"
-        value={filter.title}
-        onChange={(e) => updateFilter({ title: e.target.value })}
-        labelClassName="flex flex-col gap-1"
-        actions={<span className="text-sm font-medium">Title</span>}
-      />
-
       <Input
         type="text"
         className="border border-slate-300 rounded px-2 py-1 min-w-[160px]"
@@ -100,6 +93,13 @@ const FilterForm: React.FC<FilterFormProps> = ({
         labelClassName="flex items-center gap-2 cursor-pointer"
         actions={<span className="text-sm">Completed</span>}
       />
+
+      <Button
+        className="self-end text-slate-600 hover:text-red-600 px-3 py-1"
+        onClick={onReset}
+      >
+        <span className="text-3xl leading-none align-middle">⟳</span>
+      </Button>
     </Form>
   );
 };

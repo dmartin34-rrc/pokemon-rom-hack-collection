@@ -1,5 +1,4 @@
 export default interface Filter {
-  title: string;
   tags: string;
   yearMinimum: number;
   yearMaximum: number;
