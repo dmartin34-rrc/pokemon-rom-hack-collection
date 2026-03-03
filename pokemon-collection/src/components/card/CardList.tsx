@@ -1,45 +1,51 @@
-import cardData from '../../data/cardData.json';
+// types
+import type CardType from '../../types/Card';
+// components
 import Card from './card';
 
-const CardList = ({
-  cards = cardData,
-  favorites = [],
+/**
+ * Uses the service → repository pattern.
+ * The component requests card data from CardService,
+ * which retrieves it via CardRepository from test data (cardData.json).
+ * This prepares the app for swapping the repository to a real backend later.
+ */
+
+
+type CardListProps = {
+  cards: CardType[];
+  favorites?: string[];
+  onUpdateFavorites?: (title: string) => void;
+  readLaterWrapper?: (card: CardType) => React.ReactNode;
+  dragWrapper?: (card: CardType) => React.HTMLAttributes<HTMLDivElement>;
+};
+
+const CardList: React.FC<CardListProps> = ({
+  cards,
+  favorites,
   onUpdateFavorites,
-  sharedMessage,
-  setSharedMessage
-}: any) => {
+  readLaterWrapper,
+  dragWrapper,
+}): React.JSX.Element => {
   return (
-    <>
-      <div className="mb-4">
-        <p>
-          You are feeling: <strong>{sharedMessage || "not sure yet"}</strong>
-        </p>
+    <div className="flex flex-wrap gap-6 justify-center">
+      {cards.map((card) => {
+        const dragWrapperProps = dragWrapper ? dragWrapper(card) : {};
 
-        <label>
-          How are you feeling today?
-          <input
-            type="text"
-            value={sharedMessage}
-            onChange={(e) => setSharedMessage(e.target.value)}
-            className="ml-2 border px-2 py-1"
-            placeholder="Happy, excited, tired..."
-          />
-        </label>
-      </div>
-
-      <div className="flex flex-wrap gap-6 justify-center">
-        {cards.map((c: any) => {
-          return (
+        return (
+          <div key={card.title} {...dragWrapperProps}>
             <Card
-              card={c}
-              key={c.title}
-              isFavorite={favorites.includes(c.title)}
+              card={card}
+              isFavorite={favorites?.includes(card.title)}
               onUpdateFavorites={onUpdateFavorites}
             />
-          );
-        })}
-      </div>
-    </>
+
+            {readLaterWrapper && (
+              <div className="mt-2">{readLaterWrapper(card)}</div>
+            )}
+          </div>
+        );
+      })}
+    </div>
   );
 };
 

@@ -66,3 +66,29 @@ Full Stack Development Project
 - I.1 : Feature Page (Directory)
 - I.2 : Form Component (Filtering)
 - I.3 : Element Addition/Removal (Aside)
+
+## Sprint 3
+
+### Dean Martin
+
+- T.2: Service Definitions (`romService.ts`, `favoritesService.ts`)
+- I.1: Repository Definitions & Integration (`favoritesRepo.ts`)
+- I.2: Test Data (`favoriteData.json`, `favoritesRepo.ts`)
+- I.3: New / Refactored Components (`App.tsx` uses `useFavorites.ts`, `favoritesService.ts`, `favoritesRepo.ts` & `RomDirectoryPage.tsx` / `AddTrackedRomForm.tsx` uses `romService.ts`)
+- I.4: Architectural Layout Document (`/docs/architecture-dm.md`)
+
+### Efe Onota
+
+- T.4: Shared-page-state Refactor (`useSharedPageState.ts`, `sharedPageStateService.ts`, `sharedPageStateRepo.ts`)
+- I.1: Repository Definitions & Integration (`sharedPageStateRepo.ts`)
+- I.2: Test Data (`trackedData.json`, `sharedPageStateRepo.ts`)
+- I.3: New / Refactored Components (L`ayout.tsx` uses `SharedMessageBarContainer.tsx`, u`seSharedPageState.ts` & `ProgressTrackerPage.tsx` / `FavoritesPage.tsx` uses `useSharedPageState.ts`)
+- I.4: Architectural Layout Document (`/docs/architecture-eo.md`)
+
+### Zachary Lam
+
+- T.1: Hook Definitions (`useSearchFilter`, `useItemList`)
+- I.1: Repository Definitions & Integration (`itemListRepo.ts`)
+- I.2: Test Data (`cardData.json`, `itemListRepo`)
+- I.3: New / Refactored Components (`RomDirectoryPage.tsx` uses `useItemList.ts`, `itemListService.ts`, `itemListRepo.ts` & `Favorites.tsx` / `RomDirectoryPage.tsx` uses `useSearchFilter.ts`)
+- I.4: Architectural Layout Document (`/docs/architecture-zl.md`)

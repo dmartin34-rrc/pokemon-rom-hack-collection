@@ -1,32 +1,33 @@
-import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { Routes, Route } from 'react-router-dom';
+
+// layouts / pages
+import Layout from './layouts/Layout';
+import RomDirectory from './pages/RomDirectoryPage';
+import Favorites from './pages/Favorites';
+import ProgressTrackerPage from './pages/ProgressTrackerPage';
 
 // components
-import Layout from "./components/common/Layout.tsx";
-import CardList from "./components/card/CardList.tsx";
-import RomDirectory from "./components/directory/RomDirectory.tsx";
-import Favorites from "./components/pages/Favorites.tsx";
-import ProgressTrackerPage from "./components/pages/ProgressTrackerPage.tsx";
+import CardList from './components/card/CardList';
 
-// data
-import cardData from "./data/cardData.json";
+// service
+import { cardService } from './services/cardService';
 
-// types
-import type Rom from "./types/Rom";
+// hooks
+import useFavorites from './hooks/useFavorites.ts';
 
+
+/**
+ * App uses the hook-service-repository architecture by:
+ * 
+ * useFavorites() being a custom hook that manages favorites state in the form of a list of favorite ROM Titles.
+ * 
+ * This custom hook calls favoritesService to handle business logic for toggling favorites, and generating unique id's and timestamps.
+ * 
+ * favoritesRepo temporarily uses in-memory test data from favoriteData.json
+ * and handles basic CRUD methods. This provides the service layer with data to keep shared state synced across the Home, Favorites, and Directory pages.
+ */
 function App() {
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const updateFavorites = (title: string) => {
-    setFavorites((prev) =>
-      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title]
-    );
-  };
-
-  // tracker
-  const [trackedRoms, setTrackedRoms] = useState<Rom[]>([]);
-
-  // shared message across all pages
-  const [sharedMessage, setSharedMessage] = useState<string>("");
+  const { favoriteTitles, toggleFavorite } = useFavorites();
 
   return (
     <Routes>
@@ -35,11 +36,9 @@ function App() {
           index
           element={
             <CardList
-              cards={cardData}
-              favorites={favorites}
-              onUpdateFavorites={updateFavorites}
-              sharedMessage={sharedMessage}
-              setSharedMessage={setSharedMessage}
+              cards={cardService.getCards()}
+              favorites={favoriteTitles}
+              onUpdateFavorites={toggleFavorite}
             />
           }
         />
@@ -48,35 +47,15 @@ function App() {
           path="favorites"
           element={
             <Favorites
-              favorites={favorites}
-              onUpdateFavorites={updateFavorites}
-              sharedMessage={sharedMessage}
-              setSharedMessage={setSharedMessage}
+              favorites={favoriteTitles}
+              onUpdateFavorites={toggleFavorite}
             />
           }
         />
 
-        <Route
-          path="directory"
-          element={
-            <RomDirectory
-              sharedMessage={sharedMessage}
-              setSharedMessage={setSharedMessage}
-            />
-          }
-        />
+        <Route path="directory" element={<RomDirectory />} />
 
-        <Route
-          path="tracker"
-          element={
-            <ProgressTrackerPage
-              trackedRoms={trackedRoms}
-              setTrackedRoms={setTrackedRoms}
-              sharedMessage={sharedMessage}
-              setSharedMessage={setSharedMessage}
-            />
-          }
-        />
+        <Route path="tracker" element={<ProgressTrackerPage />} />
       </Route>
     </Routes>
   );

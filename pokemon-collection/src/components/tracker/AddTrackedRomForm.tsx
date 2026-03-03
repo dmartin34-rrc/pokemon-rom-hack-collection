@@ -1,25 +1,31 @@
 import { useMemo, useState } from "react";
-import type Rom from "../../types/Rom";
+
+// components
+import Form from "../form/Form";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
 
 type Props = {
-  trackedRoms: Rom[];
-  setTrackedRoms: React.Dispatch<React.SetStateAction<Rom[]>>;
+  onAdd: (title: string) => Promise<{ isValid: boolean; errorMessages?: string[] }>;
+  existingTitles?: string[];
 };
 
-export default function AddTrackedRomForm({ trackedRoms, setTrackedRoms }: Props) {
+const AddTrackedRomForm: React.FC<Props> = ({
+  onAdd,
+  existingTitles = [],
+}): React.JSX.Element => {
   const [title, setTitle] = useState("");
   const [error, setError] = useState<string>("");
 
   const cleanedTitle = useMemo(() => title.trim(), [title]);
 
   const isDuplicate = useMemo(() => {
-    if (!cleanedTitle) return false;
-
-    return trackedRoms.some((r) => {
-      if (!r.title) return false;
-      return r.title.toLowerCase() === cleanedTitle.toLowerCase();
-    });
-  }, [trackedRoms, cleanedTitle]);
+    const needle = cleanedTitle.toLowerCase();
+    return (
+      !!needle &&
+      existingTitles.some((t) => t.trim().toLowerCase() === needle)
+    );
+  }, [existingTitles, cleanedTitle]);
 
   function validate(): boolean {
     if (!cleanedTitle) {
@@ -34,41 +40,49 @@ export default function AddTrackedRomForm({ trackedRoms, setTrackedRoms }: Props
     return true;
   }
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!validate()) return;
 
-    const newRom: Rom = {
-      title: cleanedTitle,
-      percentComplete: 0,
-    } as Rom;
+    const result = await onAdd(cleanedTitle);
 
-    setTrackedRoms((prev) => [...prev, newRom]);
+    if (!result.isValid) {
+      setError(result.errorMessages?.[0] ?? "Failed to add ROM.");
+      return;
+    }
+
     setTitle("");
+    setError("");
   }
 
   return (
-    <form onSubmit={onSubmit} style={{ marginBottom: 16 }}>
-      <label>
-        Add ROM:
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-            if (error) setError("");
-          }}
-          placeholder="Enter a ROM title"
-          style={{ marginLeft: 8 }}
-        />
-      </label>
+    <Form onSubmit={onSubmit} style={{ marginBottom: 16 }}>
+      <Input
+        type="text"
+        value={title}
+        onChange={(e) => {
+          setTitle(e.target.value);
+          if (error) setError("");
+        }}
+        placeholder="Enter a ROM title"
+        style={{ marginLeft: 8 }}
+        label="Add ROM:"
+      />
 
-      <button type="submit" style={{ marginLeft: 8 }} disabled={!cleanedTitle || isDuplicate}>
+      <Button
+        type="submit"
+        style={{ marginLeft: 8 }}
+        disabled={!cleanedTitle || isDuplicate}
+      >
         Add
-      </button>
+      </Button>
 
       {error ? <p style={{ marginTop: 8 }}>{error}</p> : null}
-      {!error && isDuplicate ? <p style={{ marginTop: 8 }}>Already tracked.</p> : null}
-    </form>
+      {!error && isDuplicate ? (
+        <p style={{ marginTop: 8 }}>Already tracked.</p>
+      ) : null}
+    </Form>
   );
-}
+};
+
+export default AddTrackedRomForm;

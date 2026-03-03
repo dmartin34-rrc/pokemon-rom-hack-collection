@@ -4,7 +4,5 @@ export default interface Rom extends CardType {
   year?: number;
   completed?: boolean;
   multiplayer?: boolean;
-
-  percentComplete?: number;   // 0–100
-  notes?: string;             // optional tracker notes
+  percentComplete?: number;
 }
