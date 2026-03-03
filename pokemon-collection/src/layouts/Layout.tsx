@@ -8,17 +8,15 @@ import SharedMessageBarContainer from "../components/sharedPageState/SharedMessa
 
 const Layout = () => {
   return (
-    <div className="flex min-h-screen flex-col">
+    <>
       <Header />
       <Navbar />
-      <SharedMessageBarContainer />
-
-      <main className="flex-1 p-5">
+      <main className="p-5">
         <Outlet />
       </main>
-
       <Footer />
-    </div>
+      <SharedMessageBarContainer />
+    </>
   );
 };
 

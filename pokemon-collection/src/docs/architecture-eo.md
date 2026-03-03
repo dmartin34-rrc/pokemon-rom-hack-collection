@@ -1,32 +1,47 @@
-# Architecture Notes (Hook-Service-Repository)
+# Architecture Notes (Hook–Service–Repository)
+
+---
 
 ## Hook: `useSharedPageState`
 
 ### What does this hook do?
 
-`useSharedPageState` provides access to shared cross-page state (ie. shared message, tracked ROMs, favorites). It allows multiple pages (ie. Favorites, Progress Tracker, Layout) to read and update shared application state without prop drilling.
+`useSharedPageState` provides access to shared cross-page state (ie. shared message and tracked ROMs).
+
+It allows multiple pages (ie. Layout, Progress Tracker) to read and update shared application state without prop drilling.
 
 The hook exposes:
 
 - `state`
 - `actions`
 
-State contains the full shared application state, while actions provide controlled mutation methods.
+`state` contains the full shared application state.
+
+`actions` provides controlled mutation methods for updating that state.
+
+Currently, tracked ROMs are stored directly in shared state and include:
+
+- `title`
+- `percentComplete`
 
 ---
 
-### How is separation of concerns addressed to decide what logic to include?
+### How is separation of concerns addressed?
 
-- The hook subscribes to state changes using `useSyncExternalStore`.
+- The hook subscribes to repository updates using `useSyncExternalStore`.
 - It does not implement business rules.
 - It delegates all mutation logic to `sharedPageStateService`.
-- It does not store data directly.
+- It does not store or validate data directly.
 
-This ensures UI logic remains separate from business logic and storage.
+This ensures:
+
+- UI logic remains in components.
+- Business logic remains in the service.
+- Storage logic remains in the repository.
 
 ---
 
-### Where is this implementation made use of in the project and how?
+### Where is this implementation used in the project?
 
 **`src/components/sharedPageState/SharedMessageBarContainer.tsx`**  
 Reads and updates the shared message.
@@ -38,34 +53,52 @@ Reads tracked ROMs and invokes:
 - `removeTrackedRom`
 - `updateProgress`
 
+The Progress Tracker page renders directly from the tracked ROM data stored in shared state.
+
 ---
 
 ## Service: `sharedPageStateService`
 
 ### What does this service do?
 
-Handles business logic for shared state mutations:
+Handles all business logic for shared state mutations.
 
-- Prevents duplicate ROMs.
-- Trims invalid titles.
-- Clamps progress between 0–100.
-- Updates shared message safely.
+Responsibilities include:
+
+- Preventing duplicate tracked ROMs
+- Trimming and normalizing titles
+- Clamping progress between 0–100
+- Returning a new immutable `SharedPageState`
+
+The service receives the current state and returns a new updated state.
 
 ---
 
 ### How is separation of concerns addressed?
 
-- Does not render UI.
-- Does not manage subscriptions.
-- Does not store state directly.
+The service:
 
-It reads current state from the repository and writes updated state back.
+- Does not render UI
+- Does not manage subscriptions
+- Does not directly modify repository state
+- Does not store data
+
+It acts as a pure business logic layer:
+
+
+This makes the logic easier to test and maintain.
 
 ---
 
 ### Where is this implementation used?
 
-Called exclusively by `useSharedPageState` hook.
+Called exclusively by `useSharedPageState`.
+
+The hook:
+
+1. Reads current state from the repository
+2. Calls the service to compute the updated state
+3. Writes the new state back to the repository
 
 ---
 
@@ -73,19 +106,26 @@ Called exclusively by `useSharedPageState` hook.
 
 ### What does this repository do?
 
-Handles data storage for shared state:
+Handles in-memory storage of shared application state.
 
-- Holds in-memory `SharedPageState`
-- Provides `getState`
-- Provides `setState`
-- Provides `subscribe`
+Responsibilities:
+
+- Holds `SharedPageState`
+- Provides `getState()`
+- Provides `setState(nextState)`
+- Provides `subscribe(listener)`
+
+It acts as the single source of truth for shared state across pages.
 
 ---
 
 ### How is separation of concerns addressed?
 
-- No validation logic.
-- No business rules.
-- Only storage and retrieval.
+The repository:
 
-This ensures future changes (localStorage or backend) would only require repository modification.
+- Contains no business rules
+- Performs no validation
+- Does not render UI
+- Only manages storage and subscriptions
+
+This design ensures that future enhancements (ie. adding localStorage persistence or backend integration) would only require repository changes without modifying the hook or service layers.

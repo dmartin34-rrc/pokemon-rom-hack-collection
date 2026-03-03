@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 
 // layouts / pages
 import Layout from './layouts/Layout';
@@ -13,14 +12,22 @@ import CardList from './components/card/CardList';
 // service
 import { cardService } from './services/cardService';
 
-function App() {
-  const [favorites, setFavorites] = useState<string[]>([]);
+// hooks
+import useFavorites from './hooks/useFavorites.ts';
 
-  const updateFavorites = (title: string) => {
-    setFavorites((prev) =>
-      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title],
-    );
-  };
+
+/**
+ * App uses the hook-service-repository architecture by:
+ * 
+ * useFavorites() being a custom hook that manages favorites state in the form of a list of favorite ROM Titles.
+ * 
+ * This custom hook calls favoritesService to handle business logic for toggling favorites, and generating unique id's and timestamps.
+ * 
+ * favoritesRepo temporarily uses in-memory test data from favoriteData.json
+ * and handles basic CRUD methods. This provides the service layer with data to keep shared state synced across the Home, Favorites, and Directory pages.
+ */
+function App() {
+  const { favoriteTitles, toggleFavorite } = useFavorites();
 
   return (
     <Routes>
@@ -30,8 +37,8 @@ function App() {
           element={
             <CardList
               cards={cardService.getCards()}
-              favorites={favorites}
-              onUpdateFavorites={updateFavorites}
+              favorites={favoriteTitles}
+              onUpdateFavorites={toggleFavorite}
             />
           }
         />
@@ -40,8 +47,8 @@ function App() {
           path="favorites"
           element={
             <Favorites
-              favorites={favorites}
-              onUpdateFavorites={updateFavorites}
+              favorites={favoriteTitles}
+              onUpdateFavorites={toggleFavorite}
             />
           }
         />

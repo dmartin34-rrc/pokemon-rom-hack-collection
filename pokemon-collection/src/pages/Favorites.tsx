@@ -8,6 +8,17 @@ import useSearchFilter from '../hooks/useSearchFilter';
 import CardList from '../components/card/CardList';
 import SearchBar from '../layouts/header/SearchBar';
 
+/**
+ * The Favorites page uses the hook-service-repository architecture by:
+ * 
+ * Having the useFavorites() custom hook passed down via props to access the synced list of favorite ROM titles.
+ * 
+ * This custom hook also relies on favoritesService to handle business logic for toggling favorites and generating metadata. 
+ * 
+ * The favoritesRepo provides the saved test data so this page can just simply display the user's favorites.
+ * 
+ * Additionally, useSearchFilter() is used as a custom hook to handle presentation logic and state for the search bar.
+ */
 type FavoritesProps = {
   favorites: string[];
   onUpdateFavorites: (title: string) => void;
