@@ -1,5 +1,5 @@
-import type CardType from "../types/Card";
-import { cardRepository } from "../repositories/cardRepository"
+import type CardType from '../../../../../../pokemon-collection/src/types/Card';
+import { cardRepository } from '../../../../../../pokemon-collection/src/repositories/cardRepository';
 
 class CardService {
   getCards(): CardType[] {
