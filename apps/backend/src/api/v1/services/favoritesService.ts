@@ -1,5 +1,5 @@
 import type Favorite from '../../../../../../pokemon-collection/src/types/Favorite';
-import * as favoritesRepo from '../../../../../../pokemon-collection/src/repositories/favoritesRepo';
+import * as favoritesRepo from '../repositories/favoritesRepo';
 
 // Fetch all the current Favorites from repo
 export const getAllFavorites = (): Favorite[] => {

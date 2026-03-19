@@ -2,9 +2,9 @@ import type {
   TrackedRom,
   CreateTrackedRomInput,
   UpdateTrackedRomInput,
-} from "../types/Tracked";
+} from '../../../../../../pokemon-collection/src/types/Tracked';
 
-import trackedData from "../data/trackedData.json";
+import trackedData from '../../../../../../pokemon-collection/src/data/trackedData.json';
 
 // Type the JSON once (cleaner than repeating `as TrackedRom[]`)
 const seedData = trackedData as TrackedRom[];
@@ -37,7 +37,7 @@ export const trackedRomRepo = {
 
   async update(
     id: string,
-    patch: UpdateTrackedRomInput
+    patch: UpdateTrackedRomInput,
   ): Promise<TrackedRom | null> {
     const index = trackedRoms.findIndex((r) => r.id === id);
     if (index === -1) return null;

@@ -3,7 +3,7 @@ import type {
   TrackedRom,
   UpdateTrackedRomInput,
 } from '../../../../../../pokemon-collection/src/types/Tracked';
-import { trackedRomRepo } from '../../../../../../pokemon-collection/src/repositories/trackedRomRepo';
+import { trackedRomRepo } from '../repositories/trackedRomRepo';
 
 export type ServiceResult<T> =
   | { isValid: true; data: T }

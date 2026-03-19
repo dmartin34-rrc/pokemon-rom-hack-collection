@@ -1,5 +1,5 @@
-import type CardType from "../types/Card";
-import cardData from "../data/cardData.json";
+import type CardType from '../../../../../../pokemon-collection/src/types/Card';
+import cardData from '../../../../../../pokemon-collection/src/data/cardData.json';
 
 class CardRepository {
   private cards: CardType[] = [...(cardData as CardType[])];
@@ -21,7 +21,7 @@ class CardRepository {
   // UPDATE
   update(title: string, updated: Partial<CardType>): void {
     this.cards = this.cards.map((c) =>
-      c.title === title ? { ...c, ...updated } : c
+      c.title === title ? { ...c, ...updated } : c,
     );
   }
 

@@ -1,5 +1,5 @@
 // repositories
-import * as itemListRepo from '../../../../../../pokemon-collection/src/repositories/itemListRepo';
+import * as itemListRepo from '../repositories/itemListRepo';
 
 const getValidTitles = (): string[] => {
   return itemListRepo

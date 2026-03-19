@@ -1,7 +1,7 @@
 // data
-import favoriteData from '../data/favoriteData.json';
+import favoriteData from '../../../../../../pokemon-collection/src/data/favoriteData.json';
 // types
-import type Favorite from '../types/Favorite';
+import type Favorite from '../../../../../../pokemon-collection/src/types/Favorite';
 
 let mockFavoritesDB: Favorite[] = [...favoriteData];
 
