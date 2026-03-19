@@ -4,7 +4,7 @@ import type {
   UpdateTrackedRomInput,
 } from '../types/Tracked';
 
-import trackedData from '../data/trackedData.json';
+import trackedData from '../../../../../../shared/data/trackedData.json';
 
 // Type the JSON once (cleaner than repeating `as TrackedRom[]`)
 const seedData = trackedData as TrackedRom[];
