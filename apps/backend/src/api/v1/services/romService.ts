@@ -1,5 +1,5 @@
 import type Rom from '../../../../../../shared/types/Rom';
-import type Filter from '../../../../../../shared/types/Filter';
+import type Filter from '../types/Filter';
 
 // Filter ROM Logic
 export function getYearRange(roms: Rom[]) {

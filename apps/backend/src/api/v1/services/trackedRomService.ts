@@ -2,7 +2,7 @@ import type {
   CreateTrackedRomInput,
   TrackedRom,
   UpdateTrackedRomInput,
-} from '../../../../../../shared/types/Tracked';
+} from '../types/Tracked';
 import { trackedRomRepo } from '../repositories/trackedRomRepo';
 
 export type ServiceResult<T> =

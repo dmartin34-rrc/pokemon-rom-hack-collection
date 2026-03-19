@@ -2,7 +2,7 @@ import type {
   TrackedRom,
   CreateTrackedRomInput,
   UpdateTrackedRomInput,
-} from '../../../../../../shared/types/Tracked';
+} from '../types/Tracked';
 
 import trackedData from '../../../../../frontend/pokemon-collection/src/data/trackedData.json';
 
