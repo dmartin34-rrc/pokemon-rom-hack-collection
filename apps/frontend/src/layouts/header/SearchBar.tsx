@@ -1,4 +1,4 @@
-import Input from '../../components/ui/Input';
+import Input from '../../../src/components/ui/Input';
 
 interface SearchBarProps {
   value: string;

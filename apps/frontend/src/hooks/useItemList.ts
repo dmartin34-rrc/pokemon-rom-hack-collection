@@ -8,7 +8,7 @@ import {
   onDragStart,
   handleAddDrop,
   handleRemoveDrop,
-} from '../utils/itemListDrag';
+} from '../../pokemon-collection/utils/itemListDrag';
 
 /**
  * Props for the {@link useItemList} hook.
