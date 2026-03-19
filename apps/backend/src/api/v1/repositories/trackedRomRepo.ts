@@ -2,7 +2,7 @@ import type {
   TrackedRom,
   CreateTrackedRomInput,
   UpdateTrackedRomInput,
-} from '../types/Tracked';
+} from '../../../../../../shared/types/Tracked';
 
 import trackedData from '../../../../../../shared/data/trackedData.json';
 

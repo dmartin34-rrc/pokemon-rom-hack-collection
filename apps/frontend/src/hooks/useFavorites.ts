@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 // services
-import * as favoritesService from '../services/favoritesService';
-// types 
-import type Favorite from "../types/Favorite";
+import * as favoritesService from '../../../backend/src/api/v1/services/favoritesService';
+// types
+import type Favorite from '../../../../shared/types/Favorite';
 
 /**
  * Return value of the {@link useFavorites} hook.
@@ -41,7 +41,7 @@ type UseFavoritesReturn = {
  */
 const useFavorites = (): UseFavoritesReturn => {
   const [favorites, setFavorites] = useState<Favorite[]>(() =>
-    favoritesService.getAllFavorites()
+    favoritesService.getAllFavorites(),
   );
 
   const toggleFavorite = (title: string): void => {

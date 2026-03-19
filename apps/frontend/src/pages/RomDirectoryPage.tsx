@@ -1,11 +1,11 @@
 import { useState } from 'react';
 // types
-import type Filter from '../types/Filter';
-import type Rom from '../types/Rom';
+import type Filter from '../../../../shared/types/Filter';
+import type Rom from '../../../../shared/types/Rom';
 // services
-import * as RomService from '../services/romService';
+import * as RomService from '../../../backend/src/api/v1/services/romService';
 // repositories
-import * as ItemListRepo from '../repositories/itemListRepo';
+import * as ItemListRepo from '../../../backend/src/api/v1/repositories/itemListRepo';
 // hooks
 import useSearchFilter from '../hooks/useSearchFilter';
 import useItemList from '../hooks/useItemList';

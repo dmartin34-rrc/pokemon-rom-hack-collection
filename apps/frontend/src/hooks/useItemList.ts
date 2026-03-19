@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // services
-import * as ItemListService from '../services/itemListService';
+import * as ItemListService from '../../../backend/src/api/v1/services/itemListService';
 // utils
 import {
   handleDragOver,
@@ -8,7 +8,7 @@ import {
   onDragStart,
   handleAddDrop,
   handleRemoveDrop,
-} from '../../pokemon-collection/utils/itemListDrag';
+} from '../utils/itemListDrag';
 
 /**
  * Props for the {@link useItemList} hook.

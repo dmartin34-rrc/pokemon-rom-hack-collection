@@ -13,6 +13,13 @@
       "*": ["*"]
     }
   },
-  "include": ["src/**/*", "tests/**/*", "../../shared/*"],
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "../../shared/*",
+    "../../shared/types/Filter.ts",
+    "../../shared/types/Favorite.ts",
+    "../../shared/types/Tracked.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }

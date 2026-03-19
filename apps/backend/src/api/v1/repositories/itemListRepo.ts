@@ -1,7 +1,7 @@
 // data
 import cardData from '../../../../../../shared/data/cardData.json';
 // types
-import type Rom from '../types/Rom';
+import type Rom from '../../../../../../shared/types/Rom';
 
 interface ItemList {
   page: string;

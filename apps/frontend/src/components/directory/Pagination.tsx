@@ -1,5 +1,5 @@
 // helpers
-import { getTotalPages } from '../../services/romService';
+import { getTotalPages } from '../../../../backend/src/api/v1/services/romService';
 // components
 import Button from '../ui/Button';
 

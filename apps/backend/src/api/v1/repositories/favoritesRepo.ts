@@ -1,7 +1,7 @@
 // data
 import favoriteData from '../../../../../../shared/data/favoriteData.json';
 // types
-import type Favorite from '../types/Favorite';
+import type Favorite from '../../../../../../shared/types/Favorite';
 
 let mockFavoritesDB: Favorite[] = [...favoriteData];
 

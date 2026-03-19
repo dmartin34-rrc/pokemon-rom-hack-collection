@@ -1,5 +1,5 @@
-import type Rom from '../types/Rom';
-import type { SharedPageState } from '../repositories/sharedPageState.repository';
+import type Rom from '../../../../../../shared/types/Rom';
+import type { SharedPageState } from '../repositories/sharedPageStateRepo';
 
 const normalize = (t: string) => t.trim();
 

@@ -10,19 +10,18 @@ import ProgressTrackerPage from './pages/ProgressTrackerPage';
 import CardList from './components/card/CardList';
 
 // service
-import { cardService } from './services/cardService';
+import { cardService } from '../../backend/src/api/v1/services/cardService.ts';
 
 // hooks
 import useFavorites from './hooks/useFavorites.ts';
 
-
 /**
  * App uses the hook-service-repository architecture by:
- * 
+ *
  * useFavorites() being a custom hook that manages favorites state in the form of a list of favorite ROM Titles.
- * 
+ *
  * This custom hook calls favoritesService to handle business logic for toggling favorites, and generating unique id's and timestamps.
- * 
+ *
  * favoritesRepo temporarily uses in-memory test data from favoriteData.json
  * and handles basic CRUD methods. This provides the service layer with data to keep shared state synced across the Home, Favorites, and Directory pages.
  */

@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
-import type { TrackedRom, UpdateTrackedRomInput } from "../types/Tracked";
-import { trackedRomService } from "../services/trackedRomService";
+import { useEffect, useState } from 'react';
+import type {
+  TrackedRom,
+  UpdateTrackedRomInput,
+} from '../../../../shared/types/Tracked';
+import { trackedRomService } from '../../../backend/src/api/v1/services/trackedRomService';
 
 /**
  * Return value of the {@link useTrackedRoms} hook.
@@ -58,13 +61,13 @@ export const useTrackedRoms = (userId: string): UseTrackedRomsReturn => {
       const data = await trackedRomService.listByUser(userId);
 
       const sorted = [...data].sort((a, b) =>
-        b.lastUpdated.localeCompare(a.lastUpdated)
+        b.lastUpdated.localeCompare(a.lastUpdated),
       );
 
       setItems(sorted);
       setErrorMessages([]);
     } catch {
-      setErrorMessages(["Failed to load tracked ROMs."]);
+      setErrorMessages(['Failed to load tracked ROMs.']);
     } finally {
       setIsLoading(false);
     }
@@ -79,7 +82,7 @@ export const useTrackedRoms = (userId: string): UseTrackedRomsReturn => {
       userId,
       title,
       hoursPlayed: 0,
-      status: "planned",
+      status: 'planned',
     });
 
     if (!result.isValid) {

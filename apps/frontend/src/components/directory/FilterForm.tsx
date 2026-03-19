@@ -1,5 +1,5 @@
 // types
-import type Filter from '../../types/Filter';
+import type Filter from '../../../../../shared/types/Filter';
 // components
 import Form from '../form/Form';
 import Input from '../ui/Input';
