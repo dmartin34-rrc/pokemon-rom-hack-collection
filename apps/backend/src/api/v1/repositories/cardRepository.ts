@@ -1,4 +1,4 @@
-import type CardType from '../../../../../../pokemon-collection/src/types/Card';
+import type CardType from '../../../../../../shared/types/Card';
 import cardData from '../../../../../../pokemon-collection/src/data/cardData.json';
 
 class CardRepository {

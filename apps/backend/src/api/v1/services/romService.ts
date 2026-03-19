@@ -1,5 +1,5 @@
-import type Rom from '../../../../../../pokemon-collection/src/types/Rom';
-import type Filter from '../../../../../../pokemon-collection/src/types/Filter';
+import type Rom from '../../../../../../shared/types/Rom';
+import type Filter from '../../../../../../shared/types/Filter';
 
 // Filter ROM Logic
 export function getYearRange(roms: Rom[]) {

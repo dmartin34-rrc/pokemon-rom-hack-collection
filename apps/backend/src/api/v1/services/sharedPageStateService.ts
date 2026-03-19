@@ -1,4 +1,4 @@
-import type Rom from '../../../../../../pokemon-collection/src/types/Rom';
+import type Rom from '../../../../../../shared/types/Rom';
 import type { SharedPageState } from '../repositories/sharedPageState.repository';
 
 const normalize = (t: string) => t.trim();

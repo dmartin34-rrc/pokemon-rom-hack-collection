@@ -2,7 +2,7 @@ import type {
   CreateTrackedRomInput,
   TrackedRom,
   UpdateTrackedRomInput,
-} from '../../../../../../pokemon-collection/src/types/Tracked';
+} from '../../../../../../shared/types/Tracked';
 import { trackedRomRepo } from '../repositories/trackedRomRepo';
 
 export type ServiceResult<T> =

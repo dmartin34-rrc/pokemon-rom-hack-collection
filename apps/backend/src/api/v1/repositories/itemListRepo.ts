@@ -1,7 +1,7 @@
 // data
 import cardData from '../../../../../../pokemon-collection/src/data/cardData.json';
 // types
-import type Rom from '../../../../../../pokemon-collection/src/types/Rom';
+import type Rom from '../../../../../../shared/types/Rom';
 
 interface ItemList {
   page: string;

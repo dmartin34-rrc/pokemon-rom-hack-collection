@@ -1,4 +1,4 @@
-import type Favorite from '../../../../../../pokemon-collection/src/types/Favorite';
+import type Favorite from '../../../../../../shared/types/Favorite';
 import * as favoritesRepo from '../repositories/favoritesRepo';
 
 // Fetch all the current Favorites from repo
