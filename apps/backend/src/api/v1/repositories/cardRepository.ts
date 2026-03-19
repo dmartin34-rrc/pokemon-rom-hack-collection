@@ -1,5 +1,5 @@
-import type CardType from '../../../../../../shared/types/Card';
-import cardData from '../../../../../frontend/pokemon-collection/src/data/cardData.json';
+import type CardType from '../types/CardType';
+import cardData from '../data/cardData.json';
 
 class CardRepository {
   private cards: CardType[] = [...(cardData as CardType[])];

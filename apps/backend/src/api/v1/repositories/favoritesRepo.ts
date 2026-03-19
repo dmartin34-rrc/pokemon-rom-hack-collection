@@ -1,5 +1,5 @@
 // data
-import favoriteData from '../../../../../frontend/pokemon-collection/src/data/favoriteData.json';
+import favoriteData from '../data/favoriteData.json';
 // types
 import type Favorite from '../types/Favorite';
 

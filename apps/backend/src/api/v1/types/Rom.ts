@@ -1,4 +1,4 @@
-import type CardType from './Card';
+import type CardType from './CardType';
 
 export default interface Rom extends CardType {
   year?: number;

@@ -1,4 +1,4 @@
-import type CardType from '../../../../../../shared/types/Card';
+import type CardType from '../types/CardType';
 import { cardRepository } from '../repositories/cardRepository';
 
 class CardService {

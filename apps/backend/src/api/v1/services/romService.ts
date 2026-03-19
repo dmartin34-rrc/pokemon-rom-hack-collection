@@ -1,4 +1,4 @@
-import type Rom from '../../../../../../shared/types/Rom';
+import type Rom from '../types/Rom';
 import type Filter from '../types/Filter';
 
 // Filter ROM Logic
