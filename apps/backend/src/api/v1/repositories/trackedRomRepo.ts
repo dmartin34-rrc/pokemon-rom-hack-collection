@@ -4,7 +4,7 @@ import type {
   UpdateTrackedRomInput,
 } from '../../../../../../shared/types/Tracked';
 
-import trackedData from '../../../../../../pokemon-collection/src/data/trackedData.json';
+import trackedData from '../../../../../frontend/pokemon-collection/src/data/trackedData.json';
 
 // Type the JSON once (cleaner than repeating `as TrackedRom[]`)
 const seedData = trackedData as TrackedRom[];

@@ -1,5 +1,5 @@
 // data
-import cardData from '../../../../../../pokemon-collection/src/data/cardData.json';
+import cardData from '../../../../../frontend/pokemon-collection/src/data/cardData.json';
 // types
 import type Rom from '../../../../../../shared/types/Rom';
 
