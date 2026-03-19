@@ -1,7 +1,7 @@
 // types
-import type CardType from '../../types/Card';
+import type CardType from '../../../../../shared/types/CardType';
 // components
-import Card from './card';
+import Card from './Card';
 
 /**
  * Uses the service → repository pattern.
@@ -9,7 +9,6 @@ import Card from './card';
  * which retrieves it via CardRepository from test data (cardData.json).
  * This prepares the app for swapping the repository to a real backend later.
  */
-
 
 type CardListProps = {
   cards: CardType[];

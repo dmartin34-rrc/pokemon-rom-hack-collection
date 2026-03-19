@@ -1,5 +1,5 @@
-import type CardType from '../types/CardType';
-import cardData from '../data/cardData.json';
+import type CardType from '../../../../../../shared/types/CardType';
+import cardData from '../../../../../../shared/data/cardData.json';
 
 class CardRepository {
   private cards: CardType[] = [...(cardData as CardType[])];

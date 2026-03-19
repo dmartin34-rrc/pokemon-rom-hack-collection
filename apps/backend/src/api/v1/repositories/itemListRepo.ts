@@ -1,5 +1,5 @@
 // data
-import cardData from '../data/cardData.json';
+import cardData from '../../../../../../shared/data/cardData.json';
 // types
 import type Rom from '../types/Rom';
 

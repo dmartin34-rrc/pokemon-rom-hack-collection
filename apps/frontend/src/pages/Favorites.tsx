@@ -1,7 +1,7 @@
 // data
-import cardData from '../data/cardData.json';
+import cardData from '../../../../shared/data/cardData.json';
 // types
-import type CardType from '../types/Card';
+import type CardType from '../../../../shared/types/CardType';
 // hooks
 import useSearchFilter from '../hooks/useSearchFilter';
 // components

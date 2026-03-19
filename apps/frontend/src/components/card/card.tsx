@@ -1,5 +1,5 @@
 // types
-import type CardType from '../../types/Card';
+import type CardType from '../../../../../shared/types/CardType';
 // components
 import FavoriteButton from '../common/FavoriteButton';
 
