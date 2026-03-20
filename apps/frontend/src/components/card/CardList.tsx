@@ -1,7 +1,7 @@
 // types
 import type CardType from '../../../../../shared/types/CardType';
 // components
-import Card from './Card';
+import Card from './card';
 
 /**
  * Uses the service → repository pattern.
