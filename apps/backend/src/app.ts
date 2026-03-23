@@ -10,6 +10,7 @@ dotenv.config();
 // configs
 import corsOptions from '../config/cors';
 import setupSwagger from '../config/swagger';
+import errorHandler from './api/v1/middleware/errorHandler';
 
 // routes
 
@@ -39,5 +40,7 @@ app.get('/api/v1/health', (_req, res) => {
     version: '1.0.0',
   });
 });
+
+app.use(errorHandler); // MUST BE AT THE END
 
 export default app;

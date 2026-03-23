@@ -1,7 +1,7 @@
 {
-  "name": "@pokemon/monorepo",
+  "name": "Pokemon Rom Hack Collection",
   "version": "1.0.0",
-  "description": "Backend dependencies for Pokemon ROM Hack Project",
+  "description": "Pokemon ROM Hack Project",
   "private": true,
   "license": "ISC",
   "main": "index.js",
