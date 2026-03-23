@@ -1,5 +1,5 @@
 {
-  "name": "@pokemon/backend",
+  "name": "@pokemon/monorepo",
   "version": "1.0.0",
   "description": "Backend dependencies for Pokemon ROM Hack Project",
   "private": true,

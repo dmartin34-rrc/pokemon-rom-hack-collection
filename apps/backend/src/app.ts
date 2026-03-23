@@ -1,12 +1,14 @@
 // dependencies
 import express, { Express } from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
 import dotenv from 'dotenv';
 
 // load environment variables BEFORE internal imports
 dotenv.config();
 
 // configs
+import corsOptions from '../config/cors';
 import setupSwagger from '../config/swagger';
 
 // routes
@@ -16,6 +18,8 @@ const app: Express = express();
 setupSwagger(app);
 app.use(morgan('combined'));
 app.use(express.json());
+
+app.use(cors(corsOptions));
 
 /**
  * @openapi
