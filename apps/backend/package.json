@@ -11,6 +11,7 @@
     "build": "tsc"
   },
   "dependencies": {
+    "@prisma/client": "^7.5.0",
     "@types/morgan": "^1.9.10",
     "cors": "^2.8.6",
     "express": "^5.2.1",
@@ -26,6 +27,8 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "prisma": "^7.5.0",
+    "dotenv": "^17.3.1"
   }
 }
