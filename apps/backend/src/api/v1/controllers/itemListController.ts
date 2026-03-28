@@ -65,11 +65,11 @@ export const removeItem = async (
   try {
     const { page, title } = req.body as { page: string; title: string };
 
-    await itemListService.removeItem(page, title);
+    const roms = await itemListService.removeItem(page, title);
 
     res
       .status(HTTP_STATUS.OK)
-      .json(successResponse<string[]>(undefined, 'ROM Removed'));
+      .json(successResponse<string[]>(roms, 'ROM Removed'));
   } catch (err) {
     next(err);
   }
