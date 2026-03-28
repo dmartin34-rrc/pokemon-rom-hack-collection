@@ -13,6 +13,7 @@ import setupSwagger from '../config/swagger';
 import errorHandler from './api/v1/middleware/errorHandler';
 
 // routes
+import itemListRouter from './api/v1/routes/itemListRoutes';
 
 const app: Express = express();
 
@@ -40,6 +41,8 @@ app.get('/api/v1/health', (_req, res) => {
     version: '1.0.0',
   });
 });
+
+app.use('/api/v1/romdirectory', itemListRouter);
 
 app.use(errorHandler); // MUST BE AT THE END
 
