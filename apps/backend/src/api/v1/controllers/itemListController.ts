@@ -6,6 +6,11 @@ import type { ItemList } from '../repositories/itemListRepo';
 
 type Roms = ItemList['items'];
 
+/**
+ * @description Get all ROMs.
+ * @route GET /
+ * @returns {Promise<void>}
+ */
 export const getItems = async (
   req: Request,
   res: Response,
@@ -24,6 +29,11 @@ export const getItems = async (
   }
 };
 
+/**
+ * @description Add a ROM.
+ * @route POST /roms
+ * @returns {Promise<void>}
+ */
 export const addItem = async (
   req: Request,
   res: Response,
@@ -42,6 +52,11 @@ export const addItem = async (
   }
 };
 
+/**
+ * @description Remove a ROM.
+ * @route DELETE /roms
+ * @returns {Promise<void>}
+ */
 export const removeItem = async (
   req: Request,
   res: Response,
@@ -60,6 +75,11 @@ export const removeItem = async (
   }
 };
 
+/**
+ * @description Clear ROMs.
+ * @route DELETE /
+ * @returns {Promise<void>}
+ */
 export const clearItems = async (
   req: Request,
   res: Response,
