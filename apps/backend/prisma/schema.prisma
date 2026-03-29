@@ -6,15 +6,25 @@ datasource db {
   provider = "postgresql"
 }
 
-model PokemonCard {
-  id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
+model ROM {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String
+  tags          String[]
+  img           String
+  completed     Boolean
+  multiplayer   Boolean
+  createdAt     DateTime  @default(now())
+
+  itemLists     ItemList[]
 }
 
 model ItemList {
   id        Int      @id @default(autoincrement())
   page      String
-  title     String
+  romId     Int
+  rom       ROM      @relation(fields: [romId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
+  
+  @@unique([page, romId])
 }
