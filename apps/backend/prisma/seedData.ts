@@ -1,6 +1,6 @@
 import { ROM } from '@prisma/client';
 
-export const romSeedData: Omit<ROM, 'id'>[] = [
+export const romSeedData: Omit<ROM, 'id' | 'createdAt'>[] = [
   {
     title: 'PokeSouls',
     description:
