@@ -11,3 +11,10 @@ model PokemonCard {
   name      String
   createdAt DateTime @default(now())
 }
+
+model ItemList {
+  id        Int      @id @default(autoincrement())
+  page      String
+  title     String
+  createdAt DateTime @default(now())
+}
