@@ -1,6 +1,6 @@
-import { useState } from 'react';
-// services
-import * as ItemListService from '../../../backend/src/api/v1/services/itemListService';
+import { useState, useEffect } from 'react';
+// apis
+import * as itemListRepo from '../apis/itemListRepo';
 // utils
 import {
   handleDragOver,
@@ -100,20 +100,34 @@ type UseItemListReturn = {
  * readLaterList.clearItems();
  */
 const useItemList = ({ page }: UseItemListProps): UseItemListReturn => {
-  const [items, setItems] = useState<string[]>(() =>
-    ItemListService.getItems(page),
-  );
+  const [items, setItems] = useState<string[]>([]);
 
-  const addItem = (title: string): void => {
-    setItems(ItemListService.addItem(page, title));
+  useEffect(() => {
+    itemListRepo.getItems(page).then(setItems);
+  }, [page]);
+
+  const addItem = async (title: string): Promise<string[]> => {
+    const items = await itemListRepo.addItem(page, title);
+
+    setItems(items);
+
+    return items;
   };
 
-  const removeItem = (title: string): void => {
-    setItems(ItemListService.removeItem(page, title));
+  const removeItem = async (title: string): Promise<string[]> => {
+    const items = await itemListRepo.removeItem(page, title);
+
+    setItems(items);
+
+    return items;
   };
 
-  const clearItems = (): void => {
-    setItems(ItemListService.clearItems(page));
+  const clearItems = async (): Promise<string[]> => {
+    const items = await itemListRepo.clearItems(page);
+
+    setItems(items);
+
+    return items;
   };
 
   const addDrop = handleAddDrop(addItem);

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import * as itemListService from '../services/itemListService';
-import { HTTP_STATUS } from 'src/constants/httpConstants';
+import { HTTP_STATUS } from '../../../constants/httpConstants';
 import { successResponse } from '../models/responseModel';
 import type { ItemList } from '../repositories/itemListRepo';
 
