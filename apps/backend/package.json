@@ -8,7 +8,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "vercel-build": "prisma migrate deploy && prisma db seed && npm run build",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^7.5.0",
