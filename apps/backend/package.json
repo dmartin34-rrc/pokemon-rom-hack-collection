@@ -12,6 +12,9 @@
     "vercel-build": "prisma migrate deploy && prisma db seed && npm run build",
     "postinstall": "prisma generate"
   },
+  "prisma": {
+    "seed": "ts-node --transpile-only prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "^7.5.0",
     "@types/morgan": "^1.9.10",
