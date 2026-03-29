@@ -5,6 +5,7 @@ CREATE TABLE "ROM" (
     "description" TEXT NOT NULL,
     "tags" TEXT[],
     "img" TEXT NOT NULL,
+    "year" INTEGER NOT NULL,
     "completed" BOOLEAN NOT NULL,
     "multiplayer" BOOLEAN NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

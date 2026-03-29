@@ -12,6 +12,7 @@ model ROM {
   description   String
   tags          String[]
   img           String
+  year          Int
   completed     Boolean
   multiplayer   Boolean
   createdAt     DateTime  @default(now())
