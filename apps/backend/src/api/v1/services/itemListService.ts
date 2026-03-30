@@ -1,49 +1,73 @@
-// repositories
-import * as itemListRepo from '../repositories/itemListRepo';
+import prisma from '../../../../prisma/client';
 
-const getValidTitles = (): string[] => {
-  return itemListRepo
-    .getRoms()
-    .map((rom) => rom.title)
-    .filter(Boolean);
+const getValidTitles = async (): Promise<string[]> => {
+  const roms = await prisma.rOM.findMany({
+    select: { title: true },
+  });
+
+  return roms.map((rom) => rom.title).filter(Boolean);
 };
 
-const getItems = (page: string): string[] => {
-  return itemListRepo.getItems(page).items;
+const getItems = async (page: string): Promise<string[]> => {
+  const roms = await prisma.itemList.findMany({
+    where: { page },
+    include: {
+      rom: {
+        select: { title: true },
+      },
+    },
+  });
+
+  return roms.map((r) => r.rom.title).filter(Boolean);
 };
 
-const addItem = (page: string, title: string): string[] => {
-  const currentItems = getItems(page);
-  const validTitles = getValidTitles();
+const addItem = async (page: string, title: string): Promise<string[]> => {
+  const currentItems = await getItems(page);
+  const validTitles = await getValidTitles();
 
   if (currentItems.includes(title) || !validTitles.includes(title)) {
     return currentItems;
   }
 
-  const newItems = [...currentItems, title];
-
-  itemListRepo.saveItems({ page, items: newItems });
-
-  return newItems;
-};
-
-const removeItem = (page: string, title: string): string[] => {
-  const currentItems = getItems(page);
-
-  const newItems = currentItems.filter((item) => item !== title);
-
-  console.log('removeItem', {
-    before: currentItems,
-    after: newItems,
+  const rom = await prisma.rOM.findFirst({
+    where: { title },
+    select: { id: true },
   });
 
-  itemListRepo.saveItems({ page, items: newItems });
+  if (!rom) {
+    return currentItems;
+  }
 
-  return newItems;
+  await prisma.itemList.createMany({
+    data: [{ page, romId: rom.id }],
+  });
+
+  return getItems(page);
 };
 
-const clearItems = (page: string): string[] => {
-  itemListRepo.clearItems(page);
+const removeItem = async (page: string, title: string): Promise<string[]> => {
+  const currentItems = await getItems(page);
+
+  const rom = await prisma.rOM.findFirst({
+    where: { title },
+    select: { id: true },
+  });
+
+  if (!rom) {
+    return currentItems;
+  }
+
+  await prisma.itemList.deleteMany({
+    where: { page, romId: rom.id },
+  });
+
+  return getItems(page);
+};
+
+const clearItems = async (page: string): Promise<string[]> => {
+  await prisma.itemList.deleteMany({
+    where: { page },
+  });
 
   return [];
 };
