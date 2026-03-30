@@ -14,6 +14,7 @@ import errorHandler from './api/v1/middleware/errorHandler';
 
 // routes
 import itemListRouter from './api/v1/routes/itemListRoutes';
+import favoritesRoutes from './api/v1/routes/favoritesRoutes';
 
 const app: Express = express();
 
@@ -43,7 +44,7 @@ app.get('/api/v1/health', (_req, res) => {
 });
 
 app.use('/api/v1/romdirectory', itemListRouter);
-
+app.use('/api/v1/favorites', favoritesRoutes);
 app.use(errorHandler); // MUST BE AT THE END
 
 export default app;
