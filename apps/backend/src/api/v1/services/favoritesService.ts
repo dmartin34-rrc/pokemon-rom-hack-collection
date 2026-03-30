@@ -1,35 +1,35 @@
-import type Favorite from '../../../../../../shared/types/Favorite';
-import * as favoritesRepo from '../repositories/favoritesRepo';
+import { Favorites } from "@prisma/client";
+import prisma from '../../../../prisma/client';
 
-// Fetch all the current Favorites from repo
-export const getAllFavorites = (): Favorite[] => {
-  return favoritesRepo.getFavorites();
+// Fetch all the current Favorites from database
+export const getAllFavorites = async (): Promise<Favorites[]> => {
+  return prisma.favorites.findMany();
 };
 
 // Logic for adding or removing a favorite
-export const toggleFavorite = (
-  title: string,
-  userId: string = 'test-user',
-): void => {
-  const currentFavorites = favoritesRepo.getFavorites();
+export const toggleFavorite = async (romId: number): Promise<Favorites | null> => {
+  try {
+    // Check if already a favorite
+    const existingFavorite = await prisma.favorites.findUnique({
+      where: { romId: romId }
+    });
+  
+    // Remove favorite if it already exists
+    if (existingFavorite) {
+      await prisma.favorites.delete({
+        where: { id: existingFavorite.id }
+      });
+      return null;
+    } 
 
-  // Check if already a favorite
-  const existingFavorite = currentFavorites.find(
-    (fav) => fav.title === title && fav.userId === userId,
-  );
-
-  // Remove favorite if it already exists
-  if (existingFavorite) {
-    favoritesRepo.removeFavorite(existingFavorite.id);
     // Add to favorites if it doesn't exist
-  } else {
-    const newFav: Favorite = {
-      id: `fav-${Date.now()}`,
-      userId: userId,
-      title: title,
-      timeAdded: new Date().toISOString(),
-    };
+    const newFavorite: Favorites = await prisma.favorites.create({
+      data: { romId: romId }
+    });
 
-    favoritesRepo.addFavorite(newFav);
+    return newFavorite;
+
+  } catch(error) {
+    throw new Error(`Failed to toggle favorite for romId ${romId}`);
   }
 };
