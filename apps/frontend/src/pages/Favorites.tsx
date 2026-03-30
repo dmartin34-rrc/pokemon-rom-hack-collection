@@ -20,16 +20,16 @@ import SearchBar from '../layouts/header/SearchBar';
  * Additionally, useSearchFilter() is used as a custom hook to handle presentation logic and state for the search bar.
  */
 type FavoritesProps = {
-  favorites: string[];
-  onUpdateFavorites: (title: string) => void;
+  favoriteRomIds: number[];
+  onUpdateFavorites: (romId: number) => void;
 };
 
 const Favorites: React.FC<FavoritesProps> = ({
-  favorites,
+  favoriteRomIds,
   onUpdateFavorites,
 }): React.JSX.Element => {
   const favoriteCards = cardData.filter(
-    (card: CardType) => card.title && favorites.includes(card.title),
+    (card: CardType) => card.id !== undefined && favoriteRomIds.includes(card.id),
   );
 
   const {
@@ -50,14 +50,14 @@ const Favorites: React.FC<FavoritesProps> = ({
         placeholder="Search favorites..."
       />
 
-      {favorites.length === 0 ? (
+      {favoriteRomIds.length === 0 ? (
         <p className="text-gray-500 mt-4">You have no favorites.</p>
       ) : displayedCards.length === 0 ? (
         <p className="text-gray-500 mt-4">No favorites match.</p>
       ) : (
         <CardList
           cards={displayedCards}
-          favorites={favorites}
+          favoriteRomIds={favoriteRomIds}
           onUpdateFavorites={onUpdateFavorites}
         />
       )}

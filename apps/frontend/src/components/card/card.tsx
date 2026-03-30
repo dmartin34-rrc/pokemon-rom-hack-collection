@@ -6,7 +6,7 @@ import FavoriteButton from '../common/FavoriteButton';
 type CardProps = {
   card: CardType;
   isFavorite?: boolean;
-  onUpdateFavorites?: (title: string) => void;
+  onUpdateFavorites?: (romId: number) => void;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -28,7 +28,7 @@ const Card: React.FC<CardProps> = ({
             <div className="absolute top-3 right-3 z-10">
               <FavoriteButton
                 isFavorite={isFavorite ?? false}
-                onClick={() => onUpdateFavorites(card.title!)}
+                onClick={() => onUpdateFavorites(card.id!)}
               />
             </div>
           )}

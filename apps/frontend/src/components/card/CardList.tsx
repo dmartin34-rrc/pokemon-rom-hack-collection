@@ -12,15 +12,15 @@ import Card from './card';
 
 type CardListProps = {
   cards: CardType[];
-  favorites?: string[];
-  onUpdateFavorites?: (title: string) => void;
+  favoriteRomIds?: number[];
+  onUpdateFavorites?: (romId: number) => void;
   readLaterWrapper?: (card: CardType) => React.ReactNode;
   dragWrapper?: (card: CardType) => React.HTMLAttributes<HTMLDivElement>;
 };
 
 const CardList: React.FC<CardListProps> = ({
   cards,
-  favorites,
+  favoriteRomIds,
   onUpdateFavorites,
   readLaterWrapper,
   dragWrapper,
@@ -31,10 +31,10 @@ const CardList: React.FC<CardListProps> = ({
         const dragWrapperProps = dragWrapper ? dragWrapper(card) : {};
 
         return (
-          <div key={card.title} {...dragWrapperProps}>
+          <div key={card.id} {...dragWrapperProps}>
             <Card
               card={card}
-              isFavorite={favorites?.includes(card.title)}
+              isFavorite={favoriteRomIds?.includes(card.id!)}
               onUpdateFavorites={onUpdateFavorites}
             />
 
