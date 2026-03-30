@@ -1,6 +1,6 @@
-import { useState } from 'react';
-// services
-import * as favoritesService from '../../../backend/src/api/v1/services/favoritesService';
+import { useState, useEffect } from 'react';
+// apis
+import * as favoritesRepo from '../apis/favoritesRepo';
 // types
 import type Favorite from '../../../../shared/types/Favorite';
 
@@ -10,16 +10,16 @@ import type Favorite from '../../../../shared/types/Favorite';
  * @type {UseFavoritesReturn}
  *
  * @property {Favorite[]} favorites - The array of full Favorite objects.
- * @property {string[]} favoriteTitles - An array of just the favorited ROM titles.
- * @property {(title: string) => void} toggleFavorite - Toggles a ROM's favorite status.
+ * @property {number[]} favoriteRomIds - An array of just the favorited ROM IDs.
+ * @property {(romId: number) => Promise<void>} toggleFavorite - Toggles a ROM's favorite status.
  *
  * @example
- * const { favoriteTitles, toggleFavorite } = useFavorites();
+ * const { favoriteRomIds, toggleFavorite } = useFavorites();
  */
 type UseFavoritesReturn = {
   favorites: Favorite[];
-  favoriteTitles: string[];
-  toggleFavorite: (title: string) => void;
+  favoriteRomIds: number[];
+  toggleFavorite: (romId: number) => Promise <void>;
 };
 
 /**
@@ -27,33 +27,37 @@ type UseFavoritesReturn = {
  * Automatically loads initial favorites from the data layer on the first render and
  * keeps the local React state synchronized with the service.
  *
- * @returns {UseFavoritesReturn} The current favorites, titles, and toggle function.
+ * @returns {UseFavoritesReturn} The current favorites, rom IDs, and toggle function.
  *
  * @example
- * const { favoriteTitles, toggleFavorite } = useFavorites();
+ * const { favoriteRomIds, toggleFavorite } = useFavorites();
  * return (
  * <CardList
  * cards={cardData}
- * favorites={favoriteTitles}
+ * favorites={favoriteRomIds}
  * onUpdateFavorites={toggleFavorite}
  * />
  * );
  */
 const useFavorites = (): UseFavoritesReturn => {
-  const [favorites, setFavorites] = useState<Favorite[]>(() =>
-    favoritesService.getAllFavorites(),
-  );
+  const [favorites, setFavorites] = useState<Favorite[]>([]);
 
-  const toggleFavorite = (title: string): void => {
-    favoritesService.toggleFavorite(title);
-    setFavorites(favoritesService.getAllFavorites());
+  useEffect(() => {
+    favoritesRepo.getFavorites().then(setFavorites);
+  }, []);
+
+  const toggleFavorite = async (romId: number): Promise <void> => {
+    await favoritesRepo.toggleFavorite(romId);
+
+    const updatedFavorites = await favoritesRepo.getFavorites();
+    setFavorites(updatedFavorites);
   };
 
-  const favoriteTitles = favorites.map((fav) => fav.title);
+  const favoriteRomIds = favorites.map((fav) => fav.romId);
 
   return {
     favorites,
-    favoriteTitles,
+    favoriteRomIds,
     toggleFavorite,
   };
 };
