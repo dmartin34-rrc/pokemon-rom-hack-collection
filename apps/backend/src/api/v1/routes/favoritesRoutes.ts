@@ -12,9 +12,9 @@ import * as favoritesController from "../controllers/favoritesController";
 const router: Router = express.Router();
 
 // Fetch all favorites
-router.get("/favorites", favoritesController.getFavorites);
+router.get("/", favoritesController.getFavorites);
 
 // Toggle a favorite, invokes validateRequest middleware tested against favoriteSchema
-router.post("/favorites", validateRequest(favoriteSchema), favoritesController.toggleFavorite);
+router.post("/", validateRequest(favoriteSchema), favoritesController.toggleFavorite);
 
 export default router;
