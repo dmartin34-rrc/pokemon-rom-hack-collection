@@ -26,7 +26,7 @@ import useFavorites from './hooks/useFavorites.ts';
  * and handles basic CRUD methods. This provides the service layer with data to keep shared state synced across the Home, Favorites, and Directory pages.
  */
 function App() {
-  const { favoriteTitles, toggleFavorite } = useFavorites();
+  const { favoriteRomIds, toggleFavorite } = useFavorites();
 
   return (
     <Routes>
@@ -36,7 +36,7 @@ function App() {
           element={
             <CardList
               cards={cardService.getCards()}
-              favorites={favoriteTitles}
+              favoriteRomIds={favoriteRomIds}
               onUpdateFavorites={toggleFavorite}
             />
           }
@@ -46,7 +46,7 @@ function App() {
           path="favorites"
           element={
             <Favorites
-              favorites={favoriteTitles}
+              favoriteRomIds={favoriteRomIds}
               onUpdateFavorites={toggleFavorite}
             />
           }
