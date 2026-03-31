@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import type { CreateTrackedRomInput } from "../../../../../shared/types/Tracked";
 
 // components
 import Form from "../form/Form";
@@ -6,7 +7,9 @@ import Button from "../ui/Button";
 import Input from "../ui/Input";
 
 type Props = {
-  onAdd: (title: string) => Promise<{ isValid: boolean; errorMessages?: string[] }>;
+  onAdd: (
+    input: CreateTrackedRomInput
+  ) => Promise<{ isValid: boolean; errorMessages?: string[] }>;
   existingTitles?: string[];
 };
 
@@ -44,7 +47,12 @@ const AddTrackedRomForm: React.FC<Props> = ({
     e.preventDefault();
     if (!validate()) return;
 
-    const result = await onAdd(cleanedTitle);
+    const result = await onAdd({
+      userId: "demo-user",
+      title: cleanedTitle,
+      hoursPlayed: 0,
+      status: "planned",
+    });
 
     if (!result.isValid) {
       setError(result.errorMessages?.[0] ?? "Failed to add ROM.");

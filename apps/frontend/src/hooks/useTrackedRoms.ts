@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type {
+  CreateTrackedRomInput,
   TrackedRom,
   UpdateTrackedRomInput,
 } from '../../../../shared/types/Tracked';
@@ -13,9 +14,16 @@ type UseTrackedRomsReturn = {
   isLoading: boolean;
   errorMessages: string[];
   refresh: () => Promise<void>;
-  add: (title: string) => Promise<any>;
-  update: (id: string, patch: UpdateTrackedRomInput) => Promise<any>;
-  remove: (id: string) => Promise<any>;
+  add: (
+    input: CreateTrackedRomInput
+  ) => Promise<{ isValid: boolean; errorMessages?: string[]; data?: TrackedRom }>;
+  update: (
+    id: string,
+    patch: UpdateTrackedRomInput
+  ) => Promise<{ isValid: boolean; errorMessages?: string[]; data?: TrackedRom }>;
+  remove: (
+    id: string
+  ) => Promise<{ isValid: boolean; errorMessages?: string[]; data?: { removed: true } }>;
 };
 
 /**
@@ -67,16 +75,16 @@ export const useTrackedRoms = (userId: string): UseTrackedRomsReturn => {
   /**
    * Adds a new tracked ROM for the current user.
    *
-   * @param title - ROM title to track
+   * @param input - Full tracked ROM input
    * @returns Result from the API repository
    */
-  const add = async (title: string) => {
+  const add = async (input: CreateTrackedRomInput) => {
     try {
       const created = await trackedRomRepo.create({
+        ...input,
         userId,
-        title,
-        hoursPlayed: 0,
-        status: 'planned',
+        hoursPlayed: input.hoursPlayed ?? 0,
+        status: input.status ?? 'planned',
       });
 
       setItems((prev) => [created, ...prev]);

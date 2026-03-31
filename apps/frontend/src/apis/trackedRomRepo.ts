@@ -4,30 +4,9 @@ import type {
   UpdateTrackedRomInput,
 } from '../../../../shared/types/Tracked';
 
-/**
- * Base API URL for tracked ROM endpoints.
- */
-const API_URL = 'http://localhost:3000/api/tracked-roms';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/v1/tracked-roms`;
 
-/**
- * trackedRomRepo
- *
- * Handles all HTTP requests related to tracked ROMs.
- * Acts as the data access layer for the frontend.
- *
- * This repository is responsible for:
- * - sending requests to the back-end API
- * - unpacking API responses
- * - throwing errors when validation fails
- */
 export const trackedRomRepo = {
-  /**
-   * Fetch all tracked ROMs for a specific user.
-   *
-   * @param userId - The ID of the user
-   * @returns Array of tracked ROMs
-   * @throws Error when the request fails or the API returns validation errors
-   */
   async listByUser(userId: string): Promise<TrackedRom[]> {
     const response = await fetch(`${API_URL}?userId=${encodeURIComponent(userId)}`);
     const result = await response.json();
@@ -41,13 +20,6 @@ export const trackedRomRepo = {
     return result.data;
   },
 
-  /**
-   * Create a new tracked ROM.
-   *
-   * @param input - New tracked ROM data
-   * @returns The created tracked ROM
-   * @throws Error when the request fails or the API returns validation errors
-   */
   async create(input: CreateTrackedRomInput): Promise<TrackedRom> {
     const response = await fetch(API_URL, {
       method: 'POST',
@@ -68,14 +40,6 @@ export const trackedRomRepo = {
     return result.data;
   },
 
-  /**
-   * Update an existing tracked ROM.
-   *
-   * @param id - ID of the tracked ROM
-   * @param patch - Partial update data
-   * @returns The updated tracked ROM
-   * @throws Error when the request fails or the API returns validation errors
-   */
   async update(
     id: string,
     patch: UpdateTrackedRomInput,
@@ -99,13 +63,6 @@ export const trackedRomRepo = {
     return result.data;
   },
 
-  /**
-   * Delete a tracked ROM.
-   *
-   * @param id - ID of the tracked ROM
-   * @returns True if the tracked ROM was removed successfully
-   * @throws Error when the request fails or the API returns validation errors
-   */
   async remove(id: string): Promise<boolean> {
     const response = await fetch(`${API_URL}/${id}`, {
       method: 'DELETE',

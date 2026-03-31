@@ -19,15 +19,22 @@ export const trackedRomService = {
   async add(input: CreateTrackedRomInput): Promise<ServiceResult<TrackedRom>> {
     const errors: string[] = [];
 
-    if (!input.userId.trim()) errors.push('userId is required.');
-    if (!input.title.trim()) errors.push('title is required.');
-    if (input.hoursPlayed < 0) errors.push('hoursPlayed cannot be negative.');
+    const userId = input.userId?.trim() ?? '';
+    const title = input.title?.trim() ?? '';
+    const hoursPlayed = input.hoursPlayed ?? 0;
+    const status = input.status ?? 'planned';
 
-    if (errors.length) return { isValid: false, errorMessages: errors };
+    if (!userId) errors.push('userId is required.');
+    if (!title) errors.push('title is required.');
+    if (hoursPlayed < 0) errors.push('hoursPlayed cannot be negative.');
 
-    const existing = await trackedRomRepo.listByUser(input.userId);
+    if (errors.length) {
+      return { isValid: false, errorMessages: errors };
+    }
+
+    const existing = await trackedRomRepo.listByUser(userId);
     const alreadyTracked = existing.some(
-      (r) => normalize(r.title) === normalize(input.title),
+      (r) => normalize(r.title) === normalize(title),
     );
 
     if (alreadyTracked) {
@@ -39,7 +46,10 @@ export const trackedRomService = {
 
     const created = await trackedRomRepo.create({
       ...input,
-      title: input.title.trim(),
+      userId,
+      title,
+      hoursPlayed,
+      status,
     });
 
     return { isValid: true, data: created };
@@ -52,12 +62,16 @@ export const trackedRomService = {
     const errors: string[] = [];
 
     if (!id.trim()) errors.push('id is required.');
-    if (patch.title !== undefined && !patch.title.trim())
+    if (patch.title !== undefined && !patch.title.trim()) {
       errors.push('title cannot be empty.');
-    if (patch.hoursPlayed !== undefined && patch.hoursPlayed < 0)
+    }
+    if (patch.hoursPlayed !== undefined && patch.hoursPlayed < 0) {
       errors.push('hoursPlayed cannot be negative.');
+    }
 
-    if (errors.length) return { isValid: false, errorMessages: errors };
+    if (errors.length) {
+      return { isValid: false, errorMessages: errors };
+    }
 
     const updated = await trackedRomRepo.update(id, patch);
     if (!updated) {
@@ -68,12 +82,14 @@ export const trackedRomService = {
   },
 
   async remove(id: string): Promise<ServiceResult<{ removed: true }>> {
-    if (!id.trim())
+    if (!id.trim()) {
       return { isValid: false, errorMessages: ['id is required.'] };
+    }
 
     const ok = await trackedRomRepo.remove(id);
-    if (!ok)
+    if (!ok) {
       return { isValid: false, errorMessages: ['Tracked ROM not found.'] };
+    }
 
     return { isValid: true, data: { removed: true } };
   },

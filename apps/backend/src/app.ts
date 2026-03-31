@@ -46,7 +46,7 @@ app.get('/api/v1/health', (_req, res) => {
 
 app.use('/api/v1/romdirectory', itemListRouter);
 app.use('/api/v1/favorites', favoritesRoutes);
-app.use('/api/tracked-roms', trackedRomRoutes);
+app.use('/api/v1/tracked-roms', trackedRomRoutes);
 app.use(errorHandler); // MUST BE AT THE END
 
 export default app;
