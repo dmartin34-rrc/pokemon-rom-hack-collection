@@ -1,0 +1,25 @@
+{
+  // Use the root directory for configuration
+  // any overriding configs defined here
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "sourceMap": true,
+    "lib": ["ESNext"],
+    "paths": {
+      "*": ["*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "../../shared/*",
+    "../../shared/types/Filter.ts",
+    "../../shared/types/Favorite.ts",
+    "../../shared/types/Tracked.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}
