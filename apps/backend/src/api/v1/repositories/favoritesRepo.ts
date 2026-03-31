@@ -1,23 +1,28 @@
-// data
-import favoriteData from '../../../../../../shared/data/favoriteData.json';
+import { PrismaClient } from '@prisma/client';
 // types
 import type Favorite from '../../../../../../shared/types/Favorite';
 
-let mockFavoritesDB: Favorite[] = [...favoriteData];
+const prisma = new PrismaClient();
 
 // Read
-export const getFavorites = (): Favorite[] => {
-  return [...mockFavoritesDB];
+export const getFavorites = async (): Promise<Favorite[]> => {
+  return await prisma.favorites.findMany();
 };
 
 // Create
-export const addFavorite = (newFav: Favorite): Favorite => {
-  mockFavoritesDB = [...mockFavoritesDB, newFav];
-
-  return newFav;
+export const addFavorite = async (romId: number): Promise<Favorite> => {
+  return await prisma.favorites.create({
+    data: {
+      romId: romId,
+    }
+  });
 };
 
 // Delete
-export const removeFavorite = (id: string): void => {
-  mockFavoritesDB = mockFavoritesDB.filter((fav) => fav.id !== id);
+export const removeFavorite = async (romId: number): Promise<void> => {
+  await prisma.favorites.deleteMany({
+    where: {
+      romId: romId,
+    }
+  });
 };
