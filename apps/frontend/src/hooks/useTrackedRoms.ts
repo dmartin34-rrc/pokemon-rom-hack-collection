@@ -136,7 +136,7 @@ export const useTrackedRoms = (userId: string): UseTrackedRomsReturn => {
    * @param id - Tracked ROM ID
    * @returns Result indicating whether removal succeeded
    */
-  const remove = async (id: string) => {
+  const remove: UseTrackedRomsReturn["remove"] = async (id) => {
     try {
       const ok = await trackedRomRepo.remove(id);
 
@@ -149,7 +149,7 @@ export const useTrackedRoms = (userId: string): UseTrackedRomsReturn => {
       setItems((prev) => prev.filter((r) => r.id !== id));
       setErrorMessages([]);
 
-      return { isValid: true, data: { removed: true } };
+      return { isValid: true, data: { removed: true as const } };
     } catch (error) {
       const message =
         error instanceof Error ? error.message : 'Failed to remove tracked ROM.';
