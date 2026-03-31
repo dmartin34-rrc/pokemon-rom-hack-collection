@@ -38,3 +38,13 @@ model Favorites {
   rom       ROM      @relation(fields: [romId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 }
+
+model TrackedRom {
+  id           String   @id @default(uuid())
+  userId       String
+  title        String
+  hoursPlayed  Int
+  status       String
+  dateAdded    DateTime @default(now())
+  lastUpdated  DateTime @updatedAt
+}

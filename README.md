@@ -111,7 +111,7 @@ Full Stack Development Project
 
 ### Efe Onota
 - T.3: Prisma Installation and Client Initialization
-- I.1: Back-end Resource Endpoint
-- I.2: Resource Database Schema
-- I.3: Front-end Repository sends requests to back-end
+- I.1: Back-end Resource Endpoint (trackedRom: `trackedRomRoutes`, `trackedRomController`, `trackedRomService`, `listByUser`, `add`, `update`, `remove`)
+- I.2: Resource Database Schema (model: `TrackedRom`)
+- I.3: Front-end Repository sends requests to back-end (source: `frontend/src/apis/trackedRomRepo`)
 - I.4: Application State Persistence
