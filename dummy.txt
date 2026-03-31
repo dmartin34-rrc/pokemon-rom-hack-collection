@@ -1,0 +1,3 @@
+Just dummy text to have an open PR. Since there is nothing to compare, a PR can't automatically be opened.
+
+Delete this file later.

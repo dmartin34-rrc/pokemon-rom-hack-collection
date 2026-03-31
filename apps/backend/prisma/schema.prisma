@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ROM {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String
+  tags          String[]
+  img           String
+  year          Int
+  completed     Boolean
+  multiplayer   Boolean
+  createdAt     DateTime  @default(now())
+
+  itemLists     ItemList[]
+  favorites     Favorites[]
+}
+
+model ItemList {
+  id        Int      @id @default(autoincrement())
+  page      String
+  romId     Int
+  rom       ROM      @relation(fields: [romId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  
+  @@unique([page, romId])
+}
+
+model Favorites {
+  id        Int      @id @default(autoincrement())
+  romId     Int      @unique
+  rom       ROM      @relation(fields: [romId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}

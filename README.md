@@ -92,3 +92,26 @@ Full Stack Development Project
 - I.2: Test Data (`cardData.json`, `itemListRepo`)
 - I.3: New / Refactored Components (`RomDirectoryPage.tsx` uses `useItemList.ts`, `itemListService.ts`, `itemListRepo.ts` & `Favorites.tsx` / `RomDirectoryPage.tsx` uses `useSearchFilter.ts`)
 - I.4: Architectural Layout Document (`/docs/architecture-zl.md`)
+
+## Sprint 4
+### Dean Martin
+- T.2: Development SQL Database
+- T.4: Back-end CORS Configuration
+- I.1: Back-end Resource Endpoint (favorites: `favoritesRoutes, favoritesController, favoritesService, getFavorites, toggleFavorites`)
+- I.2: Resource Database Schema (model: `Favorites`)
+- I.3: Front-end Repository sends requests to back-end (source: `frontend/src/apis/favoritesRepo`)
+- I.4: Application State Persistence 
+
+### Zachary Lam
+- T.1: Back-end App Initialization
+- I.1: Back-end Resource Endpoint (itemList: `itemListRoutes, itemListController, itemListService getItems, addItem, removeItem, clearItems`)
+- I.2: Resource Database Schema (model: `ItemList`)
+- I.3: Front-end Repository sends requests to back-end (source: `frontend/src/apis/itemListRepo`)
+- I.4: Application State Persistence
+
+### Efe Onota
+- T.3: Prisma Installation and Client Initialization
+- I.1: Back-end Resource Endpoint
+- I.2: Resource Database Schema
+- I.3: Front-end Repository sends requests to back-end
+- I.4: Application State Persistence

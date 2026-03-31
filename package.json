@@ -1,0 +1,25 @@
+{
+  "name": "Pokemon Rom Hack Collection",
+  "version": "1.0.0",
+  "description": "Pokemon ROM Hack Project",
+  "private": true,
+  "license": "ISC",
+  "main": "index.js",
+  "type": "commonjs",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm:start:frontend\" \"npm:start:backend\"",
+    "migrate:backend": "npx --workspace=@pokemon/backend prisma migrate dev",
+    "start:frontend": "npm run dev --workspace=@pokemon/frontend",
+    "start:backend": "npm start --workspace=@pokemon/backend"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "typescript": "^5.9.3"
+  }
+}
