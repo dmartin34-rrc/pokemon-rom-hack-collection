@@ -28,6 +28,7 @@ export const sharedPageStateService = {
     if (exists) return state;
 
     const newRom: Rom = {
+      id: Date.now(),
       title: cleaned,
       percentComplete: 0,
     };
