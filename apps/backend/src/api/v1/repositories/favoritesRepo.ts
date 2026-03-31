@@ -6,12 +6,12 @@ const prisma = new PrismaClient();
 
 // Read
 export const getFavorites = async (): Promise<Favorite[]> => {
-  return await prisma.favorite.findMany();
+  return await prisma.favorites.findMany();
 };
 
 // Create
 export const addFavorite = async (romId: number): Promise<Favorite> => {
-  return await prisma.favorite.create({
+  return await prisma.favorites.create({
     data: {
       romId: romId,
     }
@@ -20,7 +20,7 @@ export const addFavorite = async (romId: number): Promise<Favorite> => {
 
 // Delete
 export const removeFavorite = async (romId: number): Promise<void> => {
-  await prisma.favorite.deleteMany({
+  await prisma.favorites.deleteMany({
     where: {
       romId: romId,
     }
