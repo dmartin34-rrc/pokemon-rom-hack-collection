@@ -1,4 +1,5 @@
 // dependencies
+import { clerkMiddleware } from '@clerk/express';
 import express, { Express } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
@@ -23,6 +24,7 @@ app.use(morgan('combined'));
 app.use(express.json());
 
 app.use(cors(corsOptions));
+app.use(clerkMiddleware());
 
 /**
  * @openapi
