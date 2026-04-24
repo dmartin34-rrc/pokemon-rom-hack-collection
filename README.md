@@ -115,3 +115,11 @@ Full Stack Development Project
 - I.2: Resource Database Schema
 - I.3: Front-end Repository sends requests to back-end
 - I.4: Application State Persistence
+
+## Sprint 5
+### Dean Martin
+- T.1: Clerk Auth Setup
+- T.2: Team Vercel Account/Management
+- T.4: User Login/Registration
+- I.1: Custom User-Associated Data and Session Management (Favorites auth validation)
+- 1.2: Project Retrospective
