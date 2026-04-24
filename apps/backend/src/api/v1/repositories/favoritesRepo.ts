@@ -1,19 +1,26 @@
-import { PrismaClient } from '@prisma/client';
-// types
-import type Favorite from '../../../../../../shared/types/Favorite';
+import { Favorites } from '@prisma/client';
+import prisma from '../../../../prisma/client';
 
-const prisma = new PrismaClient();
-
-// Read
-export const getFavorites = async (userId: number): Promise<Favorite[]> => {
+// Fetch all favorites for a specific user
+export const getFavorites = async (userId: number): Promise<Favorites[]> => {
   return await prisma.favorites.findMany({ where: { userId } });
 };
 
-// Create
+// Check if a specific favorite exists for a user
+export const checkFavoriteExists = async (
+  romId: number,
+  userId: number,
+): Promise<Favorites | null> => {
+  return await prisma.favorites.findFirst({
+    where: { romId, userId },
+  });
+};
+
+// Create a new favorite
 export const addFavorite = async (
   romId: number,
   userId: number,
-): Promise<Favorite> => {
+): Promise<Favorites> => {
   return await prisma.favorites.create({
     data: {
       romId,
@@ -22,7 +29,7 @@ export const addFavorite = async (
   });
 };
 
-// Delete
+// Delete existing favorite
 export const removeFavorite = async (
   romId: number,
   userId: number,

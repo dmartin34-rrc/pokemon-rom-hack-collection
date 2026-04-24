@@ -10,3 +10,11 @@ export const findUserIdByClerkId = async (
 
   return user?.id ?? null;
 };
+
+export const createUser = async (clerkId: string): Promise<number> => {
+  const newUser = await prisma.user.create({
+    data: { clerkId },
+  });
+
+  return newUser.id;
+};
