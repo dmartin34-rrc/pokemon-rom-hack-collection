@@ -8,9 +8,9 @@ const getValidTitles = async (): Promise<string[]> => {
   return roms.map((rom) => rom.title).filter(Boolean);
 };
 
-const getItems = async (page: string): Promise<string[]> => {
+const getItems = async (page: string, userId: number): Promise<string[]> => {
   const roms = await prisma.itemList.findMany({
-    where: { page },
+    where: { page, userId },
     include: {
       rom: {
         select: { title: true },
@@ -21,8 +21,12 @@ const getItems = async (page: string): Promise<string[]> => {
   return roms.map((r) => r.rom.title).filter(Boolean);
 };
 
-const addItem = async (page: string, title: string): Promise<string[]> => {
-  const currentItems = await getItems(page);
+const addItem = async (
+  page: string,
+  title: string,
+  userId: number,
+): Promise<string[]> => {
+  const currentItems = await getItems(page, userId);
   const validTitles = await getValidTitles();
 
   if (currentItems.includes(title) || !validTitles.includes(title)) {
@@ -39,14 +43,18 @@ const addItem = async (page: string, title: string): Promise<string[]> => {
   }
 
   await prisma.itemList.createMany({
-    data: [{ page, romId: rom.id }],
+    data: [{ page, romId: rom.id, userId }],
   });
 
-  return getItems(page);
+  return getItems(page, userId);
 };
 
-const removeItem = async (page: string, title: string): Promise<string[]> => {
-  const currentItems = await getItems(page);
+const removeItem = async (
+  page: string,
+  title: string,
+  userId: number,
+): Promise<string[]> => {
+  const currentItems = await getItems(page, userId);
 
   const rom = await prisma.rOM.findFirst({
     where: { title },
@@ -58,15 +66,15 @@ const removeItem = async (page: string, title: string): Promise<string[]> => {
   }
 
   await prisma.itemList.deleteMany({
-    where: { page, romId: rom.id },
+    where: { page, romId: rom.id, userId },
   });
 
-  return getItems(page);
+  return getItems(page, userId);
 };
 
-const clearItems = async (page: string): Promise<string[]> => {
+const clearItems = async (page: string, userId: number): Promise<string[]> => {
   await prisma.itemList.deleteMany({
-    where: { page },
+    where: { page, userId },
   });
 
   return [];

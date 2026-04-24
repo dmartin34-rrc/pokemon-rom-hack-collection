@@ -5,24 +5,32 @@ import type Favorite from '../../../../../../shared/types/Favorite';
 const prisma = new PrismaClient();
 
 // Read
-export const getFavorites = async (): Promise<Favorite[]> => {
-  return await prisma.favorites.findMany();
+export const getFavorites = async (userId: number): Promise<Favorite[]> => {
+  return await prisma.favorites.findMany({ where: { userId } });
 };
 
 // Create
-export const addFavorite = async (romId: number): Promise<Favorite> => {
+export const addFavorite = async (
+  romId: number,
+  userId: number,
+): Promise<Favorite> => {
   return await prisma.favorites.create({
     data: {
-      romId: romId,
-    }
+      romId,
+      userId,
+    },
   });
 };
 
 // Delete
-export const removeFavorite = async (romId: number): Promise<void> => {
+export const removeFavorite = async (
+  romId: number,
+  userId: number,
+): Promise<void> => {
   await prisma.favorites.deleteMany({
     where: {
-      romId: romId,
-    }
+      romId,
+      userId,
+    },
   });
 };

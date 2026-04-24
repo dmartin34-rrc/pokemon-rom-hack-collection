@@ -5,6 +5,7 @@ import Layout from './layouts/Layout';
 import RomDirectory from './pages/RomDirectoryPage';
 import Favorites from './pages/Favorites';
 import ProgressTrackerPage from './pages/ProgressTrackerPage';
+import SignInPage from './pages/SignIn.tsx';
 
 // components
 import CardList from './components/card/CardList';
@@ -55,6 +56,9 @@ function App() {
         <Route path="directory" element={<RomDirectory />} />
 
         <Route path="tracker" element={<ProgressTrackerPage />} />
+
+        <Route path="login" element={<SignInPage />} />
+        
       </Route>
     </Routes>
   );

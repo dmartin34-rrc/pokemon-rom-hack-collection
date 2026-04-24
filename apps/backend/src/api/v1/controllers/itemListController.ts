@@ -4,6 +4,9 @@ import { HTTP_STATUS } from '../../../constants/httpConstants';
 import { successResponse } from '../models/responseModel';
 import type { ItemList } from '../repositories/itemListRepo';
 
+// TEST USER, DELETE ONE CLERK WORKFLOW IS FULLY SETUP
+const TEST_USER = Number(process.env.TEST_USER ?? 1);
+
 type Roms = ItemList['items'];
 
 /**
@@ -19,7 +22,7 @@ export const getItems = async (
   try {
     const page = req.query.page as string;
 
-    const roms: Roms = await itemListService.getItems(page);
+    const roms: Roms = await itemListService.getItems(page, TEST_USER);
 
     res
       .status(HTTP_STATUS.OK)
@@ -42,7 +45,7 @@ export const addItem = async (
   try {
     const { page, title } = req.body as { page: string; title: string };
 
-    const roms: Roms = await itemListService.addItem(page, title);
+    const roms: Roms = await itemListService.addItem(page, title, TEST_USER);
 
     res
       .status(HTTP_STATUS.CREATED)
@@ -65,7 +68,7 @@ export const removeItem = async (
   try {
     const { page, title } = req.body as { page: string; title: string };
 
-    const roms = await itemListService.removeItem(page, title);
+    const roms = await itemListService.removeItem(page, title, TEST_USER);
 
     res
       .status(HTTP_STATUS.OK)
@@ -88,7 +91,7 @@ export const clearItems = async (
   try {
     const page = req.query.page as string;
 
-    const roms: Roms = await itemListService.clearItems(page);
+    const roms: Roms = await itemListService.clearItems(page, TEST_USER);
 
     res
       .status(HTTP_STATUS.OK)

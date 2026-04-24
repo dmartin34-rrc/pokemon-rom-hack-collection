@@ -7,6 +7,12 @@ async function main() {
   // clear table
   await prisma.rOM.deleteMany();
 
+  await prisma.user.upsert({
+    where: { clerkId: 'testuser01' },
+    create: { clerkId: 'testuser01', username: 'testuser1' },
+    update: {},
+  });
+
   // insert roms to db
   const createManyRoms = await prisma.rOM.createManyAndReturn({
     data: romSeedData,
