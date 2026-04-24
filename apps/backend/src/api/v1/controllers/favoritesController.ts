@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
+import { getAuth } from '@clerk/express';
 import * as favoritesService from '../services/favoritesService';
+import * as userRepository from '../repositories/userRepo';
 import { successResponse } from '../models/responseModel';
-
-// TEST USER, DELETE ONE CLERK WORKFLOW IS FULLY SETUP
-const TEST_USER = Number(process.env.TEST_USER ?? 1);
+import { AuthenticationError } from '../errors/errors';
 
 /**
  * Controller methods determine how to handle requests and respond to requests.
@@ -12,12 +12,26 @@ const TEST_USER = Number(process.env.TEST_USER ?? 1);
  */
 
 export const getFavorites = async (
-  _req: Request,
+  req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const favorites = await favoritesService.getAllFavorites(TEST_USER);
+    // Get userId from Clerk token
+    const { userId: clerkId } = getAuth(req);
+
+    // Check that Clerk token exists
+    if (!clerkId) {
+      throw new AuthenticationError('User not authenticated');
+    }
+
+    let dbUserId = await userRepository.findUserIdByClerkId(clerkId);
+
+    // Check that user exists in our database
+    if (!dbUserId) {
+      dbUserId = await userRepository.createUser(clerkId);
+    }
+    const favorites = await favoritesService.getAllFavorites(dbUserId);
     res
       .status(200)
       .json(successResponse(favorites, 'Favorites retrieved successfully'));
@@ -34,8 +48,20 @@ export const toggleFavorite = async (
 ): Promise<void> => {
   try {
     const romId = req.body.romId;
+    
+    const { userId: clerkId } = getAuth(req);
+    
+    if (!clerkId) {
+      throw new AuthenticationError('User not authenticated');
+    }
 
-    const result = await favoritesService.toggleFavorite(romId, TEST_USER);
+    let dbUserId = await userRepository.findUserIdByClerkId(clerkId);
+
+    if (!dbUserId) {
+      throw new AuthenticationError('User not found');
+    }
+
+    const result = await favoritesService.toggleFavorite(romId, dbUserId);
 
     if (result === null) {
       // removed
