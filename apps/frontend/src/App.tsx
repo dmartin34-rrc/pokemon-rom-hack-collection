@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 
 // layouts / pages
 import Layout from './layouts/Layout';
@@ -46,10 +47,17 @@ function App() {
         <Route
           path="favorites"
           element={
-            <Favorites
-              favoriteRomIds={favoriteRomIds}
-              onUpdateFavorites={toggleFavorite}
-            />
+            <>
+              <SignedIn>
+                <Favorites
+                  favoriteRomIds={favoriteRomIds}
+                  onUpdateFavorites={toggleFavorite}
+                />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
           }
         />
 

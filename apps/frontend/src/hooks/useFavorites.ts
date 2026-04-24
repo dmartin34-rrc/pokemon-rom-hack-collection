@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '@clerk/clerk-react';
 // apis
 import * as favoritesRepo from '../apis/favoritesRepo';
 // types
@@ -24,8 +25,10 @@ type UseFavoritesReturn = {
 
 /**
  * Handles the favorites state and interacts with the service layer to persist changes.
- * Automatically loads initial favorites from the data layer on the first render and
- * keeps the local React state synchronized with the service.
+ * Integrates with Clerk's `useAuth()` to securely manage user sessions. 
+ * On render and during any toggle actions, it dynamically retrieves the active user's 
+ * session token and passes it to the repository layer. This ensures that the frontend 
+ * only requests and mutates favorites belonging to the currently logged-in user.
  *
  * @returns {UseFavoritesReturn} The current favorites, rom IDs, and toggle function.
  *
@@ -41,16 +44,26 @@ type UseFavoritesReturn = {
  */
 const useFavorites = (): UseFavoritesReturn => {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
+  const { getToken } = useAuth();
 
   useEffect(() => {
-    favoritesRepo.getFavorites().then(setFavorites);
-  }, []);
+    const fetchFavorites = async () => {
+      const token = await getToken();
+      if (token) {
+        const data = await favoritesRepo.getFavorites(token);
+        setFavorites(data);
+      }
+    };
+    fetchFavorites();
+  }, [getToken]);
 
   const toggleFavorite = async (romId: number): Promise <void> => {
-    await favoritesRepo.toggleFavorite(romId);
-
-    const updatedFavorites = await favoritesRepo.getFavorites();
-    setFavorites(updatedFavorites);
+    const token = await getToken();
+    if (token) {
+      await favoritesRepo.toggleFavorite(romId, token);
+      const updatedFavorites = await favoritesRepo.getFavorites(token);
+      setFavorites(updatedFavorites);
+    }
   };
 
   const favoriteRomIds = favorites.map((fav) => fav.romId);
