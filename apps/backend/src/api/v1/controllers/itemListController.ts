@@ -3,11 +3,28 @@ import * as itemListService from '../services/itemListService';
 import { HTTP_STATUS } from '../../../constants/httpConstants';
 import { successResponse } from '../models/responseModel';
 import type { ItemList } from '../repositories/itemListRepo';
-
-// TEST USER, DELETE ONE CLERK WORKFLOW IS FULLY SETUP
-const TEST_USER = Number(process.env.TEST_USER ?? 1);
+import { getAuth } from '@clerk/express';
+import * as userRepo from '../repositories/userRepo';
+import { AuthenticationError } from '../errors/errors';
 
 type Roms = ItemList['items'];
+
+// just a helper function
+const authenticateUserId = async (req: Request): Promise<number> => {
+  const { userId: clerkId } = getAuth(req);
+
+  if (!clerkId) {
+    throw new AuthenticationError('User not authenticated');
+  }
+
+  let dbUserId = await userRepo.findUserIdByClerkId(clerkId);
+
+  if (!dbUserId) {
+    dbUserId = await userRepo.createUser(clerkId);
+  }
+
+  return dbUserId;
+};
 
 /**
  * @description Get all ROMs.
@@ -22,7 +39,9 @@ export const getItems = async (
   try {
     const page = req.query.page as string;
 
-    const roms: Roms = await itemListService.getItems(page, TEST_USER);
+    const userId = await authenticateUserId(req);
+
+    const roms: Roms = await itemListService.getItems(page, userId);
 
     res
       .status(HTTP_STATUS.OK)
@@ -45,7 +64,9 @@ export const addItem = async (
   try {
     const { page, title } = req.body as { page: string; title: string };
 
-    const roms: Roms = await itemListService.addItem(page, title, TEST_USER);
+    const userId = await authenticateUserId(req);
+
+    const roms: Roms = await itemListService.addItem(page, title, userId);
 
     res
       .status(HTTP_STATUS.CREATED)
@@ -68,7 +89,9 @@ export const removeItem = async (
   try {
     const { page, title } = req.body as { page: string; title: string };
 
-    const roms = await itemListService.removeItem(page, title, TEST_USER);
+    const userId = await authenticateUserId(req);
+
+    const roms = await itemListService.removeItem(page, title, userId);
 
     res
       .status(HTTP_STATUS.OK)
@@ -91,7 +114,9 @@ export const clearItems = async (
   try {
     const page = req.query.page as string;
 
-    const roms: Roms = await itemListService.clearItems(page, TEST_USER);
+    const userId = await authenticateUserId(req);
+
+    const roms: Roms = await itemListService.clearItems(page, userId);
 
     res
       .status(HTTP_STATUS.OK)

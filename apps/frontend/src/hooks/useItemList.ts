@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '@clerk/clerk-react';
 // apis
 import * as itemListRepo from '../apis/itemListRepo';
 // utils
@@ -81,8 +82,9 @@ type UseItemListReturn = {
 /**
  * Handles a list of items that persist for a given page with helpers for adding/removing items and handling drag/drop between lists.
  *
- * Items are loaded and persisted through the `itemListService`
- * using the current page as its key.
+ * Items are loaded and persisted through the backend using the current page as its key.
+ * Integrates with Clerk's `useAuth()` so the session token is sent on each request; only the
+ * signed-in user's lists are loaded or mutated.
  *
  * @param {UseItemListProps} props - Props using the page key for a list.
  * @returns {UseItemListReturn} The current items and handlers for list and drag/drop operations.
@@ -101,33 +103,49 @@ type UseItemListReturn = {
  */
 const useItemList = ({ page }: UseItemListProps): UseItemListReturn => {
   const [items, setItems] = useState<string[]>([]);
+  const { getToken } = useAuth();
 
   useEffect(() => {
-    itemListRepo.getItems(page).then(setItems);
-  }, [page]);
+    const load = async (): Promise<void> => {
+      const token = await getToken();
+      if (!token) {
+        setItems([]);
+        return;
+      }
+      const data = await itemListRepo.getItems(page, token);
+      setItems(data);
+    };
+    void load();
+  }, [page, getToken]);
 
   const addItem = async (title: string): Promise<string[]> => {
-    const items = await itemListRepo.addItem(page, title);
-
-    setItems(items);
-
-    return items;
+    const token = await getToken();
+    if (!token) {
+      return [];
+    }
+    const next = await itemListRepo.addItem(page, title, token);
+    setItems(next);
+    return next;
   };
 
   const removeItem = async (title: string): Promise<string[]> => {
-    const items = await itemListRepo.removeItem(page, title);
-
-    setItems(items);
-
-    return items;
+    const token = await getToken();
+    if (!token) {
+      return [];
+    }
+    const next = await itemListRepo.removeItem(page, title, token);
+    setItems(next);
+    return next;
   };
 
   const clearItems = async (): Promise<string[]> => {
-    const items = await itemListRepo.clearItems(page);
-
-    setItems(items);
-
-    return items;
+    const token = await getToken();
+    if (!token) {
+      return [];
+    }
+    const next = await itemListRepo.clearItems(page, token);
+    setItems(next);
+    return next;
   };
 
   const addDrop = handleAddDrop(addItem);

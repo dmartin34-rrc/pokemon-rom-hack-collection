@@ -7,11 +7,16 @@ type ItemListResponseJSON = {
   data?: string[];
 };
 
-const getItems = async (page: string): Promise<string[]> => {
+const getItems = async (page: string, token: string): Promise<string[]> => {
   const query = new URLSearchParams({ page });
 
   const itemResponse: Response = await fetch(
     `${BASE_URL}${ROMDIRECTORY_ENDPOINT}/?${query}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
   );
 
   if (!itemResponse.ok) {
@@ -23,12 +28,19 @@ const getItems = async (page: string): Promise<string[]> => {
   return json.data ?? [];
 };
 
-const addItem = async (page: string, title: string): Promise<string[]> => {
+const addItem = async (
+  page: string,
+  title: string,
+  token: string,
+): Promise<string[]> => {
   const itemResponse: Response = await fetch(
     `${BASE_URL}${ROMDIRECTORY_ENDPOINT}/roms`,
     {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({ page, title }),
     },
   );
@@ -42,12 +54,19 @@ const addItem = async (page: string, title: string): Promise<string[]> => {
   return json.data ?? [];
 };
 
-const removeItem = async (page: string, title: string): Promise<string[]> => {
+const removeItem = async (
+  page: string,
+  title: string,
+  token: string,
+): Promise<string[]> => {
   const itemResponse: Response = await fetch(
     `${BASE_URL}${ROMDIRECTORY_ENDPOINT}/roms`,
     {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({ page, title }),
     },
   );
@@ -62,12 +81,17 @@ const removeItem = async (page: string, title: string): Promise<string[]> => {
 };
 
 // clears list
-const clearItems = async (page: string): Promise<string[]> => {
+const clearItems = async (page: string, token: string): Promise<string[]> => {
   const query = new URLSearchParams({ page });
 
   const itemResponse: Response = await fetch(
     `${BASE_URL}${ROMDIRECTORY_ENDPOINT}/?${query}`,
-    { method: 'DELETE' },
+    {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
   );
 
   if (!itemResponse.ok) {

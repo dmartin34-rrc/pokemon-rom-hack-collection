@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useAuth } from '@clerk/clerk-react';
+import { NavLink } from 'react-router';
+import { useEffect, useState } from 'react';
 // types
 import type Filter from '../../../../shared/types/Filter';
 import type Rom from '../../../../shared/types/Rom';
 // services
 import * as RomService from '../../../backend/src/api/v1/services/romService';
-// repositories
-import * as ItemListRepo from '../../../backend/src/api/v1/repositories/itemListRepo';
+import { getSeedRoms } from '../apis/romRepo';
 // hooks
 import useSearchFilter from '../hooks/useSearchFilter';
 import useItemList from '../hooks/useItemList';
@@ -17,8 +18,6 @@ import RomDirectoryAside from '../components/directory/RomDirectoryAside';
 import Button from '../components/ui/Button';
 import SearchBar from '../layouts/header/SearchBar';
 
-const roms = ItemListRepo.getRoms();
-const year = RomService.getYearRange(roms);
 const PER_PAGE = 4;
 
 /**
@@ -32,14 +31,38 @@ const PER_PAGE = 4;
  * directly for filtering, search, and pagination but is otherwise invoked indirectly for the read later list through the custom useItemList hook.
  */
 const RomDirectory = (): React.JSX.Element => {
+  const { isSignedIn, isLoaded } = useAuth();
+  const authenticateReadLater = Boolean(isLoaded && isSignedIn);
+
+  const [roms, setRoms] = useState<Rom[]>([]);
   const [filter, setFilter] = useState<Filter>({
     tags: '',
-    yearMinimum: year.min,
-    yearMaximum: year.max,
+    yearMinimum: 0,
+    yearMaximum: new Date().getFullYear(),
     filterMultiplayer: null,
     filterCompleted: null,
   });
   const [page, setPage] = useState(1);
+  const year = RomService.getYearRange(roms);
+
+  useEffect(() => {
+    const loadRoms = async () => {
+      try {
+        const catalog = await getSeedRoms();
+        setRoms(catalog);
+        const range = RomService.getYearRange(catalog);
+        setFilter((prev) => ({
+          ...prev,
+          yearMinimum: range.min,
+          yearMaximum: range.max,
+        }));
+      } catch {
+        setRoms([]);
+      }
+    };
+
+    void loadRoms();
+  }, []);
 
   const {
     items: readLater,
@@ -70,8 +93,8 @@ const RomDirectory = (): React.JSX.Element => {
     <div className="flex gap-6 p-4">
       <div
         className="flex-1 min-w-0"
-        onDragOver={handleDragOver}
-        onDrop={removeDrop}
+        onDragOver={authenticateReadLater ? handleDragOver : undefined}
+        onDrop={authenticateReadLater ? removeDrop : undefined}
       >
         <SearchBar
           value={searchQuery}
@@ -85,8 +108,8 @@ const RomDirectory = (): React.JSX.Element => {
           onReset={() =>
             setFilter({
               tags: '',
-              yearMinimum: year.min,
-              yearMaximum: year.max,
+              yearMinimum: RomService.getYearRange(roms).min,
+              yearMaximum: RomService.getYearRange(roms).max,
               filterMultiplayer: null,
               filterCompleted: null,
             })
@@ -97,39 +120,48 @@ const RomDirectory = (): React.JSX.Element => {
 
         <CardList
           cards={currentPage}
-          readLaterWrapper={(card) => {
-            const title = card.title || '';
-            const inList = readLater.includes(title);
+          readLaterWrapper={
+            authenticateReadLater
+              ? (card) => {
+                  const title = card.title || '';
+                  const inList = readLater.includes(title);
 
-            return inList ? (
-              <Button
-                className="text-sm text-slate-600 hover:text-red-600 border border-slate-300 rounded px-2 py-1"
-                type="button"
-                onClick={() => removeReadLater(title)}
-              >
-                Remove from read later
-              </Button>
-            ) : (
-              <Button
-                className="text-sm text-slate-600 hover:text-slate-800 border border-slate-300 rounded px-2 py-1"
-                type="button"
-                onClick={() => addReadLater(title)}
-              >
-                Add to read later
-              </Button>
-            );
-          }}
-          dragWrapper={(card: any) => {
-            const title = card.title || '';
+                  return inList ? (
+                    <Button
+                      className="text-sm text-slate-600 hover:text-red-600 border border-slate-300 rounded px-2 py-1"
+                      type="button"
+                      onClick={() => removeReadLater(title)}
+                    >
+                      Remove from read later
+                    </Button>
+                  ) : (
+                    <Button
+                      className="text-sm text-slate-600 hover:text-slate-800 border border-slate-300 rounded px-2 py-1"
+                      type="button"
+                      onClick={() => addReadLater(title)}
+                    >
+                      Add to read later
+                    </Button>
+                  );
+                }
+              : undefined
+          }
+          dragWrapper={
+            authenticateReadLater
+              ? (card: Rom) => {
+                  const title = card.title || '';
 
-            return {
-              className: 'relative group cursor-grab active:cursor-grabbing',
-              draggable: true,
-              onDragStart: (e: any) => {
-                onDragStart(e, title);
-              },
-            };
-          }}
+                  return {
+                    className:
+                      'relative group cursor-grab active:cursor-grabbing',
+                    draggable: true,
+                    onDragStart: (e: React.DragEvent) => {
+                      onDragStart(e, title);
+                    },
+                  };
+                }
+              : undefined
+          }
         />
 
         {filteredRoms.length !== 0 ? (
@@ -142,14 +174,29 @@ const RomDirectory = (): React.JSX.Element => {
         ) : null}
       </div>
 
-      <RomDirectoryAside
-        items={readLater}
-        onRemove={removeReadLater}
-        onClear={clearReadLater}
-        handleDragOver={handleDragOver}
-        handleAddDrop={addDrop}
-        handleDragStart={handleDragStart}
-      />
+      {authenticateReadLater ? (
+        <RomDirectoryAside
+          items={readLater}
+          onRemove={removeReadLater}
+          onClear={clearReadLater}
+          handleDragOver={handleDragOver}
+          handleAddDrop={addDrop}
+          handleDragStart={handleDragStart}
+        />
+      ) : (
+        <aside className="w-64 shrink-0 border border-slate-200 rounded-lg p-4 bg-slate-50 min-h-[200px] sticky top-2 self-start">
+          <h3 className="font-semibold text-sm mb-2">Read Later</h3>
+          <p className="text-slate-600 text-sm mb-3">
+            Wanna save ROMs to read for later? Sign in to access full features!
+          </p>
+          <NavLink
+            to="/login"
+            className="text-sm font-medium text-slate-800 underline hover:text-slate-950"
+          >
+            Log in
+          </NavLink>
+        </aside>
+      )}
     </div>
   );
 };

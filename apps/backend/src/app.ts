@@ -16,6 +16,7 @@ import errorHandler from './api/v1/middleware/errorHandler';
 // routes
 import itemListRouter from './api/v1/routes/itemListRoutes';
 import favoritesRoutes from './api/v1/routes/favoritesRoutes';
+import uploadRomRoutes from './api/v1/routes/uploadRomRoutes';
 
 const app: Express = express();
 
@@ -25,6 +26,7 @@ app.use(express.json());
 
 app.use(cors(corsOptions));
 app.use(clerkMiddleware());
+app.use('/uploads', express.static('uploads'));
 
 /**
  * @openapi
@@ -47,6 +49,7 @@ app.get('/api/v1/health', (_req, res) => {
 
 app.use('/api/v1/romdirectory', itemListRouter);
 app.use('/api/v1/favorites', favoritesRoutes);
+app.use('/api/v1/upload-roms', uploadRomRoutes);
 app.use(errorHandler); // MUST BE AT THE END
 
 export default app;
