@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { HTTP_STATUS } from '../../../constants/httpConstants';
 import { createRom, listSeededRoms } from '../services/uploadRomService';
+import { uploadImage } from '../services/uploadImageService';
 import { successResponse } from '../models/responseModel';
 
 const isValid = (value: unknown): boolean => {
@@ -50,6 +51,8 @@ export const uploadRom = async (
   try {
     const files = (req.files as Express.Multer.File[]) ?? [];
 
+    const imagePaths = files.length > 0 ? await uploadImage(files) : [];
+
     const createdRom = await createRom({
       title: req.body.title,
       description: req.body.description,
@@ -57,7 +60,7 @@ export const uploadRom = async (
       year: toYear(req.body.year),
       completed: isValid(req.body.completed),
       multiplayer: isValid(req.body.multiplayer),
-      imagePaths: files.map((file) => `/uploads/${file.filename}`),
+      imagePaths,
     });
 
     if (!createdRom.isValid) {

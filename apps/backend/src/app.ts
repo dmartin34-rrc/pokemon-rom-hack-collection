@@ -26,7 +26,6 @@ app.use(express.json());
 
 app.use(cors(corsOptions));
 app.use(clerkMiddleware());
-app.use('/uploads', express.static('uploads'));
 
 /**
  * @openapi
