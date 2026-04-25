@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
 
 const Navbar = () => {
@@ -12,7 +12,6 @@ const Navbar = () => {
   return (
     <nav>
       <div className="flex gap-1 px-4 py-2">
-
         {/* Main Nav Items */}
         <NavLink to="/" end className={pseudoClass}>
           Home
@@ -25,7 +24,11 @@ const Navbar = () => {
         <NavLink to="/tracker" className={pseudoClass}>
           Tracker
         </NavLink>
-        
+
+        <NavLink to="/upload" className={pseudoClass}>
+          Upload
+        </NavLink>
+
         {/* Show when SIGNED IN */}
         <SignedIn>
           <NavLink to="/favorites" end className={pseudoClass}>
@@ -43,9 +46,8 @@ const Navbar = () => {
         </div>
 
         <SignedIn>
-          <UserButton afterSignOutUrl="/"/>
+          <UserButton afterSignOutUrl="/" />
         </SignedIn>
-
       </div>
     </nav>
   );

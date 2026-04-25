@@ -1,13 +1,12 @@
-import { useState } from 'react';
 import { useAuth } from '@clerk/clerk-react';
 import { NavLink } from 'react-router';
+import { useEffect, useState } from 'react';
 // types
 import type Filter from '../../../../shared/types/Filter';
 import type Rom from '../../../../shared/types/Rom';
 // services
 import * as RomService from '../../../backend/src/api/v1/services/romService';
-// repositories
-import * as ItemListRepo from '../../../backend/src/api/v1/repositories/itemListRepo';
+import { getSeedRoms } from '../apis/romRepo';
 // hooks
 import useSearchFilter from '../hooks/useSearchFilter';
 import useItemList from '../hooks/useItemList';
@@ -19,8 +18,6 @@ import RomDirectoryAside from '../components/directory/RomDirectoryAside';
 import Button from '../components/ui/Button';
 import SearchBar from '../layouts/header/SearchBar';
 
-const roms = ItemListRepo.getRoms();
-const year = RomService.getYearRange(roms);
 const PER_PAGE = 4;
 
 /**
@@ -37,14 +34,35 @@ const RomDirectory = (): React.JSX.Element => {
   const { isSignedIn, isLoaded } = useAuth();
   const authenticateReadLater = Boolean(isLoaded && isSignedIn);
 
+  const [roms, setRoms] = useState<Rom[]>([]);
   const [filter, setFilter] = useState<Filter>({
     tags: '',
-    yearMinimum: year.min,
-    yearMaximum: year.max,
+    yearMinimum: 0,
+    yearMaximum: new Date().getFullYear(),
     filterMultiplayer: null,
     filterCompleted: null,
   });
   const [page, setPage] = useState(1);
+  const year = RomService.getYearRange(roms);
+
+  useEffect(() => {
+    const loadRoms = async () => {
+      try {
+        const catalog = await getSeedRoms();
+        setRoms(catalog);
+        const range = RomService.getYearRange(catalog);
+        setFilter((prev) => ({
+          ...prev,
+          yearMinimum: range.min,
+          yearMaximum: range.max,
+        }));
+      } catch {
+        setRoms([]);
+      }
+    };
+
+    void loadRoms();
+  }, []);
 
   const {
     items: readLater,
@@ -90,8 +108,8 @@ const RomDirectory = (): React.JSX.Element => {
           onReset={() =>
             setFilter({
               tags: '',
-              yearMinimum: year.min,
-              yearMaximum: year.max,
+              yearMinimum: RomService.getYearRange(roms).min,
+              yearMaximum: RomService.getYearRange(roms).max,
               filterMultiplayer: null,
               filterCompleted: null,
             })

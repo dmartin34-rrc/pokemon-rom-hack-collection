@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
+import { useEffect, useState } from 'react';
 
 // layouts / pages
 import Layout from './layouts/Layout';
@@ -7,12 +8,15 @@ import RomDirectory from './pages/RomDirectoryPage';
 import Favorites from './pages/Favorites';
 import ProgressTrackerPage from './pages/ProgressTrackerPage';
 import SignInPage from './pages/SignIn.tsx';
+import UploadRomPage from './pages/UploadRomPage';
 
 // components
 import CardList from './components/card/CardList';
 
 // service
 import { cardService } from '../../backend/src/api/v1/services/cardService.ts';
+import { getSeedRoms } from './apis/romRepo';
+import type CardType from '../../../shared/types/CardType.ts';
 
 // hooks
 import useFavorites from './hooks/useFavorites.ts';
@@ -29,6 +33,21 @@ import useFavorites from './hooks/useFavorites.ts';
  */
 function App() {
   const { favoriteRomIds, toggleFavorite } = useFavorites();
+  const [homeRoms, setHomeRoms] = useState<CardType[]>(cardService.getCards());
+
+  useEffect(() => {
+    const loadCatalog = async () => {
+      try {
+        const romCatalog = await getSeedRoms();
+
+        setHomeRoms(romCatalog);
+      } catch {
+        setHomeRoms(cardService.getCards());
+      }
+    };
+
+    void loadCatalog();
+  }, []);
 
   return (
     <Routes>
@@ -37,7 +56,7 @@ function App() {
           index
           element={
             <CardList
-              cards={cardService.getCards()}
+              cards={homeRoms}
               favoriteRomIds={favoriteRomIds}
               onUpdateFavorites={toggleFavorite}
             />
@@ -66,7 +85,8 @@ function App() {
         <Route path="tracker" element={<ProgressTrackerPage />} />
 
         <Route path="login" element={<SignInPage />} />
-        
+
+        <Route path="upload" element={<UploadRomPage />} />
       </Route>
     </Routes>
   );
