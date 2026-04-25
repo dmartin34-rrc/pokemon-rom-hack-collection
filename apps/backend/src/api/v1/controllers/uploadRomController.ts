@@ -1,10 +1,30 @@
 import { Request, Response, NextFunction } from 'express';
 import { HTTP_STATUS } from '../../../constants/httpConstants';
 import { createRom, listSeededRoms } from '../services/uploadRomService';
-import { errorResponse, successResponse } from '../models/responseModel';
+import { successResponse } from '../models/responseModel';
 
-const isValid = (value: any): boolean => {
-  return value === true;
+const isValid = (value: unknown): boolean => {
+  if (typeof value === 'boolean') {
+    return value;
+  }
+
+  if (typeof value === 'string') {
+    return value.toLowerCase() === 'true';
+  }
+
+  return false;
+};
+
+const toYear = (value: unknown): number => {
+  if (typeof value === 'number') {
+    return value;
+  }
+
+  if (typeof value === 'string') {
+    return Number(value);
+  }
+
+  return Number.NaN;
 };
 
 const parseTags = (tags: any): string[] => {
@@ -34,7 +54,7 @@ export const uploadRom = async (
       title: req.body.title,
       description: req.body.description,
       tags: parseTags(req.body.tags),
-      year: req.body.year,
+      year: toYear(req.body.year),
       completed: isValid(req.body.completed),
       multiplayer: isValid(req.body.multiplayer),
       imagePaths: files.map((file) => `/uploads/${file.filename}`),
