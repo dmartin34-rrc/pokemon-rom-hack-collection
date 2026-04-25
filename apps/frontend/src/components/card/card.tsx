@@ -54,10 +54,19 @@ const Card: React.FC<CardProps> = ({
               </aside>
             </div>
 
-            <div className="absolute inset-0 flex h-full w-full flex-col justify-center overflow-hidden rounded-[15px] bg-slate-600 p-4 text-left text-white [backface-visibility:hidden] [transform:rotateY(180deg)]">
-              <p className="line-clamp-[14] text-sm leading-relaxed">
-                {card.description}
-              </p>
+            <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[15px] bg-slate-600 p-4 pt-14 text-left text-white [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              {onUpdateFavorites && (
+                <div className="absolute top-3 right-3 z-10">
+                  <FavoriteButton
+                    isFavorite={isFavorite ?? false}
+                    onClick={() => onUpdateFavorites(card.id!)}
+                  />
+                </div>
+              )}
+
+              <div className="h-full overflow-y-auto pr-1 text-sm leading-relaxed">
+                <p>{card.description}</p>
+              </div>
             </div>
           </div>
         </div>
