@@ -123,3 +123,8 @@ Full Stack Development Project
 - T.4: User Login/Registration
 - I.1: Custom User-Associated Data and Session Management (Favorites auth validation)
 - 1.2: Project Retrospective
+
+- ### Zachary Lam
+- T.3: Backend User Management 
+- I.1: Custom User-Associated Data and Session Management (read later aside in Directory page for session management, misc/extra features: Upload feature/page, card flipper feature, Multer middleware)
+- 1.2: Project Retrospective
