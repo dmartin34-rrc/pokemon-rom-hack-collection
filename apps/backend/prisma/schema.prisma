@@ -7,6 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id            Int        @id @default(autoincrement())
+  clerkId       String     @unique
+  username      String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  itemLists     ItemList[]
+  favorites     Favorites[]
+}
+
 model ROM {
   id            Int      @id @default(autoincrement())
   title         String
@@ -26,15 +37,23 @@ model ItemList {
   id        Int      @id @default(autoincrement())
   page      String
   romId     Int
+  userId    Int
   rom       ROM      @relation(fields: [romId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   
-  @@unique([page, romId])
+  @@unique([page, romId, userId])
+  @@index([userId])
 }
 
 model Favorites {
   id        Int      @id @default(autoincrement())
-  romId     Int      @unique
+  romId     Int
+  userId    Int
   rom       ROM      @relation(fields: [romId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
+
+  @@unique([romId, userId])
+  @@index([userId])
 }

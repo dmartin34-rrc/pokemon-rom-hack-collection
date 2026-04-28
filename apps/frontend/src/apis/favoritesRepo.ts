@@ -9,8 +9,12 @@ type FavoritesResponseJSON = {
   data?: Favorite | Favorite[];
 };
 
-const getFavorites = async (): Promise<Favorite[]> => {
-  const favoriteResponse: Response = await fetch(`${BASE_URL}${FAVORITES_ENDPOINT}`);
+const getFavorites = async (token: string): Promise<Favorite[]> => {
+  const favoriteResponse: Response = await fetch(`${BASE_URL}${FAVORITES_ENDPOINT}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    }
+  });
 
   if (!favoriteResponse.ok) {
     throw new Error('Failed to fetch Favorites');
@@ -20,10 +24,13 @@ const getFavorites = async (): Promise<Favorite[]> => {
   return (json.data as Favorite[]) ?? [];
 };
 
-const toggleFavorite = async (romId: number): Promise<Favorite | null> => {
+const toggleFavorite = async (romId: number, token: string): Promise<Favorite | null> => {
   const favoriteResponse: Response = await fetch(`${BASE_URL}${FAVORITES_ENDPOINT}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`, 
+      },
     body: JSON.stringify({ romId }),
   });
 

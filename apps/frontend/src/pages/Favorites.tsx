@@ -1,7 +1,8 @@
-// data
-import cardData from '../../../../shared/data/cardData.json';
+import { useEffect, useState } from 'react';
 // types
 import type CardType from '../../../../shared/types/CardType';
+// apis
+import { getSeedRoms } from '../apis/romRepo';
 // hooks
 import useSearchFilter from '../hooks/useSearchFilter';
 // components
@@ -28,7 +29,22 @@ const Favorites: React.FC<FavoritesProps> = ({
   favoriteRomIds,
   onUpdateFavorites,
 }): React.JSX.Element => {
-  const favoriteCards = cardData.filter(
+  const [roms, setRoms] = useState<CardType[]>([]);
+
+  useEffect(() => {
+    const loadCatalog = async () => {
+      try {
+        const romCatalog = await getSeedRoms();
+        setRoms(romCatalog);
+      } catch {
+        setRoms([]);
+      }
+    };
+
+    void loadCatalog();
+  }, []);
+
+  const favoriteCards = roms.filter(
     (card: CardType) => card.id !== undefined && favoriteRomIds.includes(card.id),
   );
 
