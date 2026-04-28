@@ -64,7 +64,10 @@ const Card: React.FC<CardProps> = ({
                 </div>
               )}
 
-              <div className="h-full overflow-y-auto pr-1 text-sm leading-relaxed">
+              <div
+                className="h-full overflow-y-auto pr-1 text-sm leading-relaxed"
+                tabIndex={0}
+              >
                 <p>{card.description}</p>
               </div>
             </div>
