@@ -48,7 +48,7 @@ model ItemList {
 
 model Favorites {
   id        Int      @id @default(autoincrement())
-  romId     Int      @unique
+  romId     Int
   userId    Int
   rom       ROM      @relation(fields: [romId], references: [id], onDelete: Cascade)
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
