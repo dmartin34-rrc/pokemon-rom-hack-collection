@@ -21,6 +21,13 @@ const Navbar = () => {
           Directory
         </NavLink>
 
+        {/* Show when SIGNED IN */}
+        <SignedIn>
+          <NavLink to="/favorites" end className={pseudoClass}>
+            Favorites
+          </NavLink>
+        </SignedIn>
+
         <NavLink to="/tracker" className={pseudoClass}>
           Tracker
         </NavLink>
@@ -28,13 +35,6 @@ const Navbar = () => {
         <NavLink to="/upload" className={pseudoClass}>
           Upload
         </NavLink>
-
-        {/* Show when SIGNED IN */}
-        <SignedIn>
-          <NavLink to="/favorites" end className={pseudoClass}>
-            Favorites
-          </NavLink>
-        </SignedIn>
 
         {/* NOTE: this component is only visible when the user is not signed in and comes from clerk */}
         <div className="ml-auto flex items-center">
