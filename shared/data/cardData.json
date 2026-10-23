@@ -108,5 +108,505 @@
     "year": 2026,
     "completed": false,
     "multiplayer": true
+    },
+    {
+        "id": 101,
+        "title": "Pokemon Radical Red",
+        "description": "A famously challenging enhancement hack of FireRed featuring Pokémon from Gen 1 to Gen 9, Mega Evolutions, highly competitive AI, and built-in randomizer modes.",
+        "tags": ["FireRed", "GBA", "Difficulty", "Mega Evolution", "Popular"],
+        "img": "",
+        "year": 2020,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 102,
+        "title": "Pokemon Unbound",
+        "description": "Set in the historical Borrius region, this hack features a custom story, complex puzzles, Gen 8 mechanics, and a highly customizable difficulty system.",
+        "tags": ["FireRed", "GBA", "Custom Story", "Fairy Type", "Popular"],
+        "img": "",
+        "year": 2020,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 103,
+        "title": "Pokemon Gaia",
+        "description": "Explore the Orbtus region, uncovering a rich lore surrounding an ancient civilization. Features Gen 6 mechanics, Mega Evolutions, and hidden grottos.",
+        "tags": ["FireRed", "GBA", "Custom Story", "Mega Evolution", "Classic"],
+        "img": "",
+        "year": 2018,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 104,
+        "title": "Pokemon Glazed",
+        "description": "Travel across the Tunod, Johto, and Rankor regions in this massive adventure featuring dream world elements, five starters, and Pokémon up to Gen 6.",
+        "tags": ["Emerald", "GBA", "Multiple Regions", "Classic"],
+        "img": "",
+        "year": 2012,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 105,
+        "title": "Pokemon Light Platinum",
+        "description": "A legendary GBA hack that completely overhauls the game with new regions (Zhery and Lauren), graphical updates, and leaders from across the franchise.",
+        "tags": ["Ruby", "GBA", "Multiple Regions", "Classic", "Fan Favorite"],
+        "img": "",
+        "year": 2011,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 106,
+        "title": "Pokemon Prism",
+        "description": "A remarkable GBC hack where you play as Lance's child exploring the Naljo region. Features a custom engine, new types (Gas and Sound), and crafting.",
+        "tags": ["Crystal", "GBC", "Custom Story", "New Types", "Classic"],
+        "img": "",
+        "year": 2016,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 107,
+        "title": "Pokemon Crystal Clear",
+        "description": "An open-world hack of Pokémon Crystal. Start in Johto or Kanto, pick from 24 starters, and challenge gyms in any order with level-scaling.",
+        "tags": ["Crystal", "GBC", "Open World", "Scaling", "Popular"],
+        "img": "",
+        "year": 2018,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 108,
+        "title": "Pokemon Renegade Platinum",
+        "description": "Drayano's definitive enhancement hack of Platinum. All 493 Pokémon are available, trainers are much harder, and classes/moves have been rebalanced.",
+        "tags": ["Platinum", "NDS", "Drayano", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2018,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 109,
+        "title": "Pokemon Blaze Black",
+        "description": "A difficulty and availability hack of Pokémon Black by Drayano. Access all 649 Pokémon, face tougher gym leaders, and experience edited stats/moves.",
+        "tags": ["Black", "NDS", "Drayano", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2011,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 110,
+        "title": "Pokemon Volt White",
+        "description": "The companion hack to Blaze Black, offering the same difficulty enhancements and complete Pokédex availability for the White version.",
+        "tags": ["White", "NDS", "Drayano", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2011,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 111,
+        "title": "Pokemon Blaze Black 2",
+        "description": "The sequel to Blaze Black, upgrading Black 2 with incredible challenge, rebalanced mechanics, and all Pokémon available without trading.",
+        "tags": ["Black 2", "NDS", "Drayano", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2012,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 112,
+        "title": "Pokemon Volt White 2",
+        "description": "The sequel to Volt White, giving White 2 the signature Drayano treatment with higher difficulty and an expanded catchable roster.",
+        "tags": ["White 2", "NDS", "Drayano", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2012,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 113,
+        "title": "Pokemon Sacred Gold",
+        "description": "An enhancement of HeartGold by Drayano. Features all 493 Pokémon, scripted legendary events, removed trade evolutions, and increased difficulty.",
+        "tags": ["HeartGold", "NDS", "Drayano", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2012,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 114,
+        "title": "Pokemon Storm Silver",
+        "description": "The counterpart to Sacred Gold, bringing the same expansive roster, difficulty spikes, and quality of life changes to SoulSilver.",
+        "tags": ["SoulSilver", "NDS", "Drayano", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2012,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 115,
+        "title": "Pokemon Liquid Crystal",
+        "description": "A massive GBA remake of Pokémon Crystal on the FireRed engine. Includes Johto, Kanto, and the Orange Islands with modern mechanics.",
+        "tags": ["FireRed", "GBA", "Remake", "Multiple Regions"],
+        "img": "",
+        "year": 2016,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 116,
+        "title": "Pokemon AshGray",
+        "description": "Play exactly through the events of the original Pokémon anime. Replaces Red with Ash and perfectly mimics the show's first 50 episodes.",
+        "tags": ["FireRed", "GBA", "Anime", "Story Driven"],
+        "img": "",
+        "year": 2015,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 117,
+        "title": "Pokemon Flora Sky",
+        "description": "An older but iconic GBA hack featuring a custom region, Pokémon up to Gen 5, day/night cycles, and legendary events.",
+        "tags": ["Emerald", "GBA", "Custom Story", "Classic"],
+        "img": "",
+        "year": 2011,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 118,
+        "title": "Pokemon Snakewood",
+        "description": "A bizarre and famous zombie apocalypse hack of Ruby. Features custom zombie Pokémon sprites, a dark storyline, and high difficulty.",
+        "tags": ["Ruby", "GBA", "Zombies", "Horror", "Difficulty"],
+        "img": "",
+        "year": 2013,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 119,
+        "title": "Pokemon Rocket Edition",
+        "description": "Play as a Team Rocket grunt in Kanto. Steal Pokémon, rise through the ranks, and uncover the dark conspiracies hiding behind the original Gen 1 plot.",
+        "tags": ["FireRed", "GBA", "Story Driven", "Team Rocket"],
+        "img": "",
+        "year": 2020,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 120,
+        "title": "Pokemon Emerald Kaizo",
+        "description": "One of the most brutally difficult Pokémon hacks ever created. Specifically designed to challenge hardcore Nuzlockers with vicious AI and limited encounters.",
+        "tags": ["Emerald", "GBA", "Extreme Difficulty", "Kaizo", "Nuzlocke"],
+        "img": "",
+        "year": 2017,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 121,
+        "title": "Pokemon Platinum Kaizo",
+        "description": "A mercilessly hard enhancement of Platinum meant to break even the most experienced players. Heavily limits healing and setup sweeping.",
+        "tags": ["Platinum", "NDS", "Extreme Difficulty", "Kaizo"],
+        "img": "",
+        "year": 2018,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 122,
+        "title": "Pokemon Crystal Kaizo",
+        "description": "A highly punishing Gen 2 hack that overhauls boss battles, wild encounters, and item availability to create a grueling Johto experience.",
+        "tags": ["Crystal", "GBC", "Extreme Difficulty", "Kaizo"],
+        "img": "",
+        "year": 2015,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 123,
+        "title": "Pokemon Blue Kaizo",
+        "description": "Redesigns Kanto into a maze of high-level trainers and devious puzzles, staying true to Gen 1 mechanics while maximizing difficulty.",
+        "tags": ["Blue", "GB", "Extreme Difficulty", "Kaizo"],
+        "img": "",
+        "year": 2014,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 124,
+        "title": "Pokemon Polished Crystal",
+        "description": "A massive quality of life update to Crystal. Adds the physical/special split, fairy type, running shoes, and expanded storylines without losing the Gen 2 feel.",
+        "tags": ["Crystal", "GBC", "Quality of Life", "Enhancement"],
+        "img": "",
+        "year": 2018,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 125,
+        "title": "Pokemon Adventure Red Chapter",
+        "description": "Follows the exact storyline of the Pokémon Adventures manga. Features incredible custom art, level caps, and multiple massive regions.",
+        "tags": ["FireRed", "GBA", "Manga", "Story Driven", "Multiple Regions"],
+        "img": "",
+        "year": 2020,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 126,
+        "title": "Pokemon Clover",
+        "description": "A high-quality 4chan imageboard hack featuring 386 completely original (and often offensive) Fakemon, surprisingly deep lore, and high difficulty.",
+        "tags": ["FireRed", "GBA", "Fakemon", "Meme", "Difficulty"],
+        "img": "",
+        "year": 2020,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 127,
+        "title": "Pokemon Orange Islands",
+        "description": "Explore the Orange Archipelago from the anime. Features 4 gym leaders, the Orange Crew, and a faithful recreation of Ash's journey.",
+        "tags": ["FireRed", "GBA", "Anime", "New Region"],
+        "img": "",
+        "year": 2017,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 128,
+        "title": "Pokemon Sovereign of the Skies",
+        "description": "A German hack translated to English featuring a deep, narrative-driven story with completely custom graphics and an incredible soundtrack.",
+        "tags": ["Emerald", "GBA", "Custom Story", "Translated"],
+        "img": "",
+        "year": 2021,
+        "completed": false,
+        "multiplayer": false
+    },
+    {
+        "id": 129,
+        "title": "Pokemon Sors",
+        "description": "A Gen 7 style Eclipse mechanic hack set in the Hupest region. Focuses heavily on story and a brand new type mechanic.",
+        "tags": ["FireRed", "GBA", "Custom Story", "New Mechanics"],
+        "img": "",
+        "year": 2021,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 130,
+        "title": "Pokemon Saiph",
+        "description": "The prequel to Pokémon Sors. Features mechanics from Gen 4/5/6 and a dark storyline involving Team Royal.",
+        "tags": ["FireRed", "GBA", "Custom Story", "Prequel"],
+        "img": "",
+        "year": 2019,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 131,
+        "title": "Pokemon GS Chronicles",
+        "description": "A stunning visual remake of HeartGold/SoulSilver for the GBA featuring Mega Evolution, Z-moves, and an expanded Johto narrative.",
+        "tags": ["FireRed", "GBA", "Remake", "Johto", "Mega Evolution"],
+        "img": "",
+        "year": 2022,
+        "completed": false,
+        "multiplayer": false
+    },
+    {
+        "id": 132,
+        "title": "Pokemon Inclement Emerald",
+        "description": "A modern enhancement of Emerald similar to Radical Red. Features Pokémon up to Gen 7, mega evolutions, customized difficulty, and full decapitalization.",
+        "tags": ["Emerald", "GBA", "Difficulty", "Enhancement", "Mega Evolution"],
+        "img": "",
+        "year": 2021,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 133,
+        "title": "Pokemon Photonic Sun",
+        "description": "An enhancement hack of Ultra Sun. Completely removes trade evolutions, spikes the difficulty, and rebalances the Alola region for veteran players.",
+        "tags": ["Ultra Sun", "3DS", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2018,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 134,
+        "title": "Pokemon Prismatic Moon",
+        "description": "The sister hack to Photonic Sun, providing the same challenging, definitive way to play through the Ultra Moon campaign.",
+        "tags": ["Ultra Moon", "3DS", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2018,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 135,
+        "title": "Pokemon Penumbra Moon",
+        "description": "A rebalance and difficulty hack for the base Pokémon Moon game. Overhauls trainer rosters and allows all Pokémon to be caught legitimately.",
+        "tags": ["Moon", "3DS", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2017,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 136,
+        "title": "Pokemon Supernova Sun",
+        "description": "The companion to Penumbra Moon, giving the base Pokémon Sun game a competitive edge and expansive wild encounter lists.",
+        "tags": ["Sun", "3DS", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2017,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 137,
+        "title": "Pokemon Rutile Ruby",
+        "description": "A 3DS hack of Omega Ruby featuring an overhauled level curve, completely revamped trainer AI, and access to all 721 Pokémon.",
+        "tags": ["Omega Ruby", "3DS", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2015,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 138,
+        "title": "Pokemon Star Sapphire",
+        "description": "A 3DS hack of Alpha Sapphire bringing extreme difficulty to Hoenn. Designed for players who find modern official games too easy.",
+        "tags": ["Alpha Sapphire", "3DS", "Difficulty", "Enhancement"],
+        "img": "",
+        "year": 2015,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 139,
+        "title": "Pokemon Moon Black 2",
+        "description": "A crossover hack bringing Gen 7 Pokémon, Alolan forms, and characters from Sun/Moon into the Nintendo DS Black 2 engine.",
+        "tags": ["Black 2", "NDS", "Alola", "Crossover"],
+        "img": "",
+        "year": 2019,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 140,
+        "title": "Pokemon Shiny Gold Sigma",
+        "description": "An incredibly ambitious GBA remake of Johto spanning into Kanto, the Orange Islands, and Hoenn, featuring over 800 Pokémon.",
+        "tags": ["FireRed", "GBA", "Massive", "Multiple Regions"],
+        "img": "",
+        "year": 2017,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 141,
+        "title": "Pokemon Ultra Shiny Gold Sigma",
+        "description": "The updated successor to Shiny Gold Sigma, fixing bugs and adding Gen 8 mechanics, Mega Evolution, and Z-Moves to the massive map.",
+        "tags": ["FireRed", "GBA", "Massive", "Mega Evolution", "Z-Moves"],
+        "img": "",
+        "year": 2019,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 142,
+        "title": "Pokemon Nameless FireRed Project",
+        "description": "A purist, feature-rich hack of FireRed that adds hidden abilities, Gen 4-6 moves, and an expanded roster while keeping the base story intact.",
+        "tags": ["FireRed", "GBA", "Enhancement", "Quality of Life"],
+        "img": "",
+        "year": 2016,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 143,
+        "title": "Pokemon Mega Power",
+        "description": "Play as a scientist working for a sinister organization to create the strongest Mewtwo. Features three regions: Ivara, Lander, and Sevii.",
+        "tags": ["Emerald", "GBA", "Custom Story", "Multiple Regions"],
+        "img": "",
+        "year": 2017,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 144,
+        "title": "Pokemon Resolute",
+        "description": "Set in the Sylon and Tyron regions. The protagonist must stop an evil organization from mutating Pokémon. Features Mega Evolutions.",
+        "tags": ["Emerald", "GBA", "Custom Story", "Multiple Regions"],
+        "img": "",
+        "year": 2015,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 145,
+        "title": "Pokemon Victory Fire",
+        "description": "Set in the Tyron region. Features an expansive story involving Team Mirage, custom sprites, and a blend of classic and modern mechanics.",
+        "tags": ["Emerald", "GBA", "Custom Story", "Classic"],
+        "img": "",
+        "year": 2012,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 146,
+        "title": "Pokemon Coral",
+        "description": "A beautiful GBC-style hack pushing the limits of the engine. Features a unique, vibrant region, 60fps support, and highly polished custom sprites.",
+        "tags": ["Crystal", "GBC", "Custom Story", "Aesthetic"],
+        "img": "",
+        "year": 2023,
+        "completed": false,
+        "multiplayer": false
+    },
+    {
+        "id": 147,
+        "title": "Pokemon ROWE",
+        "description": "An open-world recreation of Pokémon Emerald. Tackle gym leaders in any order with full level-scaling and extensive quality of life upgrades.",
+        "tags": ["Emerald", "GBA", "Open World", "Scaling", "Quality of Life"],
+        "img": "",
+        "year": 2021,
+        "completed": true,
+        "multiplayer": true
+    },
+    {
+        "id": 148,
+        "title": "Pokemon Theta Emerald EX",
+        "description": "One of the first hacks to successfully stuff 721 Pokémon, 600+ moves, and Fairy typing into the Emerald engine.",
+        "tags": ["Emerald", "GBA", "Enhancement", "Dex Expansion"],
+        "img": "",
+        "year": 2017,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 149,
+        "title": "Pokemon Theta Emerald Renev",
+        "description": "The definitive sequel to EX, fixing major bugs, updating sprites, and bringing the total catchable roster to 721 with modern mechanics.",
+        "tags": ["Emerald", "GBA", "Enhancement", "Dex Expansion"],
+        "img": "",
+        "year": 2018,
+        "completed": true,
+        "multiplayer": false
+    },
+    {
+        "id": 150,
+        "title": "Pokemon Dark Rising",
+        "description": "An infamous GBA hack known for its punishing level curve, mature storyline, and requirement for extensive grinding to progress.",
+        "tags": ["FireRed", "GBA", "Extreme Difficulty", "Story Driven"],
+        "img": "",
+        "year": 2012,
+        "completed": true,
+        "multiplayer": false
     }
 ]
